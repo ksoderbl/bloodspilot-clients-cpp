@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,22 +25,20 @@
 #ifndef CONNECTPARAM_H
 #define CONNECTPARAM_H
 
-
 #ifndef PACK_H
 /* need MAX_..._LEN */
 #include "pack.h"
 #endif
 
-
-typedef struct Connect_param {
+typedef struct Connect_param
+{
 	int contact_port, server_port, login_port;
 	char nick_name[MAX_NAME_LEN],
-	    real_name[MAX_NAME_LEN], server_addr[MAX_HOST_LEN], server_name[MAX_HOST_LEN],
-	    disp_name[MAX_DISP_LEN];
+		real_name[MAX_NAME_LEN], server_addr[MAX_HOST_LEN], server_name[MAX_HOST_LEN],
+		disp_name[MAX_DISP_LEN];
 	unsigned server_version;
 	int team;
 } Connect_param_t;
-
 
 #ifdef PROTOCLIENT_H
 #error "protoclient.h was included before connectparam.h"

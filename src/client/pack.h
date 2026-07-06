@@ -1,10 +1,10 @@
 /*
  * BloodsPilot, a multiplayer space war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,17 +23,17 @@
 
 /* $Id: pack.h,v 1.5 2007/10/07 15:50:43 kps Exp $ */
 
-#ifndef	PACK_H
-#define	PACK_H
+#ifndef PACK_H
+#define PACK_H
 
 #ifndef PACK_NG_H
-# include "pack-ng.h"
+#include "pack-ng.h"
 #endif
 
-#define CAP_LETTER(c)	((c) = ((c)>='a' && (c)<='z') ? (c)-'a'+'A' : (c))
+#define CAP_LETTER(c) ((c) = ((c) >= 'a' && (c) <= 'z') ? (c) - 'a' + 'A' : (c))
 
-#define SERVER_PORT	15345	/* Port which server listens to. */
-#define SERVER_PORT_STR	"15345"	/* ASCII version of server port. */
+#define SERVER_PORT 15345       /* Port which server listens to. */
+#define SERVER_PORT_STR "15345" /* ASCII version of server port. */
 
 /*
  * Magic contact word.
@@ -105,62 +105,62 @@
  * 4.5.0.0: new team score packet; score packet made larger to send decimals
  * 4.5.0.1: temporary wormholes
  */
-#define	MAGIC_WORD	0xF4ED
+#define MAGIC_WORD 0xF4ED
 
 extern int protocolVersion;
 
-#define XP4_PROTOCOL_VERSION	0x4501
-#define MAGIC2VERSION(M)	(((M) >> 16) & 0xFFFF)
-#define VERSION2MAGIC(V)	((((V) & 0xFFFF) << 16) | (MAGIC_WORD))
-#define	MAGIC			(VERSION2MAGIC(protocolVersion))
-#define MY_VERSION		MAGIC2VERSION(MAGIC)
+#define XP4_PROTOCOL_VERSION 0x4501
+#define MAGIC2VERSION(M) (((M) >> 16) & 0xFFFF)
+#define VERSION2MAGIC(V) ((((V) & 0xFFFF) << 16) | (MAGIC_WORD))
+#define MAGIC (VERSION2MAGIC(protocolVersion))
+#define MY_VERSION MAGIC2VERSION(MAGIC)
 
 /*
  * Which server versions can this client join.
  */
-#define MIN_XP4_SERVER_VERSION	0x4210
-#define MAX_XP4_SERVER_VERSION	MY_VERSION
+#define MIN_XP4_SERVER_VERSION 0x4210
+#define MAX_XP4_SERVER_VERSION MY_VERSION
 
-#define	MAX_STR_LEN		4096
-#define	MAX_DISP_LEN		MAX_CHARS /* was 80 */
-#define	MAX_NAME_LEN		MAX_CHARS
-#define	MAX_HOST_LEN		MAX_CHARS /* was 64 */
-#define	OLD_MAX_NAME_LEN	16
+#define MAX_STR_LEN 4096
+#define MAX_DISP_LEN MAX_CHARS /* was 80 */
+#define MAX_NAME_LEN MAX_CHARS
+#define MAX_HOST_LEN MAX_CHARS /* was 64 */
+#define OLD_MAX_NAME_LEN 16
 
 /*
  * Different contact pack types.
  */
-#define	ENTER_GAME_pack		0x00
-#define	ENTER_QUEUE_pack	0x01
-#define	REPLY_pack		0x10
-#define	REPORT_STATUS_pack	0x21
-#define	OPTION_LIST_pack	0x28
-#define	CONTACT_pack		0x31
+#define ENTER_GAME_pack 0x00
+#define ENTER_QUEUE_pack 0x01
+#define REPLY_pack 0x10
+#define REPORT_STATUS_pack 0x21
+#define OPTION_LIST_pack 0x28
+#define CONTACT_pack 0x31
 /* The owner-only commands have a common bit high. */
-#define PRIVILEGE_PACK_MASK	0x40
-#define	LOCK_GAME_pack		0x62
-#define	MESSAGE_pack		0x63
-#define	SHUTDOWN_pack		0x64
-#define	KICK_PLAYER_pack	0x65
-#define	MAX_ROBOT_pack		0x66
-#define	OPTION_TUNE_pack	0x67
-#define	CREDENTIALS_pack	0x69
+#define PRIVILEGE_PACK_MASK 0x40
+#define LOCK_GAME_pack 0x62
+#define MESSAGE_pack 0x63
+#define SHUTDOWN_pack 0x64
+#define KICK_PLAYER_pack 0x65
+#define MAX_ROBOT_pack 0x66
+#define OPTION_TUNE_pack 0x67
+#define CREDENTIALS_pack 0x69
 
 /*
  * Possible error codes returned.
  */
-#define	SUCCESS		0x00	/* Operation successful */
-#define	E_NOT_OWNER	0x01	/* Permission denied, not owner */
-#define	E_GAME_FULL	0x02	/* Game is full, play denied */
-#define	E_TEAM_FULL	0x03	/* Team is full, play denied */
-#define	E_TEAM_NOT_SET	0x04	/* Need to specify a team */
-#define	E_GAME_LOCKED	0x05	/* Game is locked, entry denied */
-#define	E_NOT_FOUND	0x07	/* Player was not found */
-#define	E_IN_USE	0x08	/* Name is already in use */
-#define	E_SOCKET	0x09	/* Can't setup socket */
-#define	E_INVAL		0x0A	/* Invalid input parameters */
-#define	E_VERSION	0x0C	/* Incompatible version */
-#define	E_NOENT		0x0D	/* No such variable */
-#define	E_UNDEFINED	0x0E	/* Operation undefined */
+#define SUCCESS 0x00        /* Operation successful */
+#define E_NOT_OWNER 0x01    /* Permission denied, not owner */
+#define E_GAME_FULL 0x02    /* Game is full, play denied */
+#define E_TEAM_FULL 0x03    /* Team is full, play denied */
+#define E_TEAM_NOT_SET 0x04 /* Need to specify a team */
+#define E_GAME_LOCKED 0x05  /* Game is locked, entry denied */
+#define E_NOT_FOUND 0x07    /* Player was not found */
+#define E_IN_USE 0x08       /* Name is already in use */
+#define E_SOCKET 0x09       /* Can't setup socket */
+#define E_INVAL 0x0A        /* Invalid input parameters */
+#define E_VERSION 0x0C      /* Incompatible version */
+#define E_NOENT 0x0D        /* No such variable */
+#define E_UNDEFINED 0x0E    /* Operation undefined */
 
 #endif

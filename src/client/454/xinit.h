@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,21 +22,21 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef	XINIT_H
-#define	XINIT_H
+#ifndef XINIT_H
+#define XINIT_H
 
-#define MAX_VISUAL_NAME	12
+#define MAX_VISUAL_NAME 12
 
-#define MIN_TOP_WIDTH	(640 + 2)
-#define MAX_TOP_WIDTH	(1280 + 2)
-#define DEF_TOP_WIDTH	(1024 + 2)
-#define MIN_TOP_HEIGHT	480
-#define MAX_TOP_HEIGHT	1024
-#define DEF_TOP_HEIGHT	768
+#define MIN_TOP_WIDTH (640 + 2)
+#define MAX_TOP_WIDTH (1280 + 2)
+#define DEF_TOP_WIDTH (1024 + 2)
+#define MIN_TOP_HEIGHT 480
+#define MAX_TOP_HEIGHT 1024
+#define DEF_TOP_HEIGHT 768
 
-#define MAX_POINTER_BUTTONS	5
-#define MAX_BUTTON_DEFS		3
-#define NUM_BUTTON_DEFS(i)	(buttonDefs[(i)][MAX_BUTTON_DEFS])
+#define MAX_POINTER_BUTTONS 5
+#define MAX_BUTTON_DEFS 3
+#define NUM_BUTTON_DEFS(i) (buttonDefs[(i)][MAX_BUTTON_DEFS])
 
 extern Atom ProtocolAtom, KillAtom;
 extern int buttonColor, windowColor, borderColor;
@@ -76,24 +76,24 @@ extern void Info(Window w);
 extern void Talk_resize(void);
 extern void Talk_cursor(bool visible);
 extern void Talk_map_window(bool map);
-extern int Talk_do_event(XEvent * event);
+extern int Talk_do_event(XEvent *event);
 extern int Talk_paste(char *data, int len, bool overwrite);
-extern int Talk_place_cursor(XButtonEvent * xbutton, bool pending);
-extern void Talk_window_cut(XButtonEvent * xbutton);
-extern void Talk_cut_from_messages(XButtonEvent * xbutton);
+extern int Talk_place_cursor(XButtonEvent *xbutton, bool pending);
+extern void Talk_window_cut(XButtonEvent *xbutton);
+extern void Talk_cut_from_messages(XButtonEvent *xbutton);
 extern void Clear_selection(void);
 extern void Print_messages_to_stdout(void);
 extern void Talk_reverse_cut(void);
 extern void Quit(void);
-extern int FatalError(Display * dpy);
+extern int FatalError(Display *dpy);
 extern void Draw_score_table(void);
 extern void Resize(Window w, int width, int height);
 
 extern int DrawShadowText(Display *, Window w, GC gc,
-			  int x_border, int start_y, const char *str, unsigned long fg,
-			  unsigned long bg);
+						  int x_border, int start_y, const char *str, unsigned long fg,
+						  unsigned long bg);
 extern void ShadowDrawString(Display *, Window w, GC gc, int x, int start_y, const char *str,
-			     unsigned long fg, unsigned long bg);
+							 unsigned long fg, unsigned long bg);
 /*
  * about.c
  */

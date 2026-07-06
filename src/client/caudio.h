@@ -1,12 +1,12 @@
-/* 
+/*
  * BloodsPilot, a multiplayer space war game.
  *
  * Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,9 +34,9 @@
 
 #ifdef SOUND
 
-extern char soundFile[PATH_MAX];	/* audio mappings */
-extern int maxVolume;		/* maximum volume (in percent) */
-extern bool sound;		/* option 'sound' */
+extern char soundFile[PATH_MAX]; /* audio mappings */
+extern int maxVolume;            /* maximum volume (in percent) */
+extern bool sound;               /* option 'sound' */
 
 int Handle_audio(int type, int volume);
 void audioInit(char *display);

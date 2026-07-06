@@ -1,12 +1,12 @@
-/* 
+/*
  * BloodsPilot, a multiplayer space war game.
  *
  * Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,39 +30,37 @@
  * Structure to call all user-interface drawing routines
  * which are modified versions when recording is active.
  */
-struct recordable_drawing {
-	void (*newFrame) (void);
-	void (*endFrame) (void);
-	int (*drawArc) (Display * display, Drawable drawable, GC gc,
-			int x, int y, unsigned width, unsigned height, int angle1, int angle2);
-	int (*drawLines) (Display * display, Drawable drawable, GC gc, XPoint * points, int npoints,
-			  int mode);
-	int (*drawLine) (Display * display, Drawable drawable, GC gc, int x_1, int y_1, int x_2,
-			 int y_2);
-	int (*drawRectangle) (Display * display, Drawable drawable, GC gc, int x, int y,
-			      unsigned int width, unsigned int height);
-	int (*drawString) (Display * display, Drawable drawable, GC gc, int x, int y,
-			   const char *string, int length);
-	int (*fillArc) (Display * display, Drawable drawable, GC gc, int x, int y, unsigned height,
-			unsigned width, int angle1, int angle2);
-	int (*fillPolygon) (Display * display, Drawable drawable, GC gc, XPoint * points,
-			    int npoints, int shape, int mode);
-	void (*paintItemSymbol) (int type, Drawable drawable, GC mygc, int x, int y, int color);
-	int (*fillRectangle) (Display * display, Drawable drawable, GC gc,
-			      int x, int y, unsigned width, unsigned height);
-	int (*fillRectangles) (Display * display, Drawable drawable, GC gc, XRectangle * rectangles,
-			       int nrectangles);
-	int (*drawArcs) (Display * display, Drawable drawable, GC gc, XArc * arcs, int narcs);
-	int (*drawSegments) (Display * display, Drawable drawable, GC gc, XSegment * segments,
-			     int nsegments);
-	int (*setDashes) (Display * display, GC gc, int dash_offset, const char *dash_list, int n);
+struct recordable_drawing
+{
+	void (*newFrame)(void);
+	void (*endFrame)(void);
+	int (*drawArc)(Display *display, Drawable drawable, GC gc,
+				   int x, int y, unsigned width, unsigned height, int angle1, int angle2);
+	int (*drawLines)(Display *display, Drawable drawable, GC gc, XPoint *points, int npoints,
+					 int mode);
+	int (*drawLine)(Display *display, Drawable drawable, GC gc, int x_1, int y_1, int x_2,
+					int y_2);
+	int (*drawRectangle)(Display *display, Drawable drawable, GC gc, int x, int y,
+						 unsigned int width, unsigned int height);
+	int (*drawString)(Display *display, Drawable drawable, GC gc, int x, int y,
+					  const char *string, int length);
+	int (*fillArc)(Display *display, Drawable drawable, GC gc, int x, int y, unsigned height,
+				   unsigned width, int angle1, int angle2);
+	int (*fillPolygon)(Display *display, Drawable drawable, GC gc, XPoint *points,
+					   int npoints, int shape, int mode);
+	void (*paintItemSymbol)(int type, Drawable drawable, GC mygc, int x, int y, int color);
+	int (*fillRectangle)(Display *display, Drawable drawable, GC gc,
+						 int x, int y, unsigned width, unsigned height);
+	int (*fillRectangles)(Display *display, Drawable drawable, GC gc, XRectangle *rectangles,
+						  int nrectangles);
+	int (*drawArcs)(Display *display, Drawable drawable, GC gc, XArc *arcs, int narcs);
+	int (*drawSegments)(Display *display, Drawable drawable, GC gc, XSegment *segments,
+						int nsegments);
+	int (*setDashes)(Display *display, GC gc, int dash_offset, const char *dash_list, int n);
 };
 
-extern struct recordable_drawing rd;	/* external Drawing interface */
+extern struct recordable_drawing rd; /* external Drawing interface */
 
-extern bool recording;		/* Are we recording or not. */
-
-
-
+extern bool recording; /* Are we recording or not. */
 
 #endif

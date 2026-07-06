@@ -1,12 +1,12 @@
-/* 
+/*
  * BloodsPilot, a multiplayer space war game.
  *
  * Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,13 +30,13 @@ extern int talk_key_repeating;
 extern XEvent talk_key_repeat_event;
 extern struct timeval talk_key_repeat_time;
 
-extern ipos_t mousePosition;	/* position of mouse pointer. */
-extern int mouseMovement;	/* horizontal mouse movement. */
+extern ipos_t mousePosition; /* position of mouse pointer. */
+extern int mouseMovement;    /* horizontal mouse movement. */
 
 bool Key_binding_callback(keys_t key, const char *str);
-keys_t Lookup_key(XEvent * event, KeySym ks, bool reset);
-void Key_event(XEvent * event);
-void Talk_event(XEvent * event);
+keys_t Lookup_key(XEvent *event, KeySym ks, bool reset);
+void Key_event(XEvent *event);
+void Talk_event(XEvent *event);
 void xevent_keyboard(int queued);
 void xevent_pointer(void);
 int x_event(int new_input);

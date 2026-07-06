@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,6 @@ void Gui_paint_asteroid(int x, int y, int type, int rot, int size);
 void Gui_paint_fastshot(int color, int x, int y);
 void Gui_paint_teamshot(int color, int x, int y);
 
-
 void Gui_paint_missiles_begin(void);
 void Gui_paint_missiles_end(void);
 void Gui_paint_missile(int x, int y, int len, int dir);
@@ -64,6 +63,6 @@ void Gui_paint_ships_begin(void);
 void Gui_paint_ships_end(void);
 
 void Gui_paint_ship(int x, int y, int dir, int id, int cloak, int phased, int shield, int deflector,
-		    int eshield);
+					int eshield);
 
 #endif

@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,14 +34,13 @@
  */
 /* #define MOD2(x, m)	mod(x, m) */
 
-
 /*
  * The following macros decide the speed of the game and
  * how often the server should draw a frame.  (Hmm...)
  */
 
-#ifndef	UPDATES_PR_FRAME
-#    define UPDATES_PR_FRAME	1
+#ifndef UPDATES_PR_FRAME
+#define UPDATES_PR_FRAME 1
 #endif
 
 /*
@@ -52,43 +51,50 @@
  */
 
 #if defined(_WINDOWS)
-#    ifdef COMPRESSED_MAPS
-	/*
-	 * Couldn't find a popen(), also compress and gzip don't exist.
-	 */
-#        undef COMPRESSED_MAPS
-#    endif
+#ifdef COMPRESSED_MAPS
+/*
+ * Couldn't find a popen(), also compress and gzip don't exist.
+ */
+#undef COMPRESSED_MAPS
+#endif
 #else
-#    define COMPRESSED_MAPS
+#define COMPRESSED_MAPS
 #endif
 
 #ifdef _WINDOWS
-#	ifdef	_DEBUG
-#		define	DEBUG	1
-#		define	D(x)	{x;}
-#	else
-#		define	D(x)
-#	endif
+#ifdef _DEBUG
+#define DEBUG 1
+#define D(x) \
+	{        \
+		x;   \
+	}
 #else
-#	ifdef	DEBUG
-#		define D(x)	{ {x}; fflush(stdout); }
-#	else
-#		define D(x)
-#	endif
+#define D(x)
+#endif
+#else
+#ifdef DEBUG
+#define D(x)            \
+	{                   \
+		{x};            \
+		fflush(stdout); \
+	}
+#else
+#define D(x)
+#endif
 #endif
 
 /* Windows doesn't play with stdin/out well at all... */
 /* So for the client i route the "debug" printfs to the debug stream */
 /* The server gets 'real' messages routed to the messages window */
 #ifdef _WINDOWS
-#	ifdef	_XPILOTNTSERVER_
-#	define	xpprintf	xpprintfW
+#ifdef _XPILOTNTSERVER_
+#define xpprintf xpprintfW
 /*#	define	xpprintf	_Trace */
-#	else
-#	define	xpprintf	_Trace
-#	endif
 #else
-#	define	xpprintf	printf
+#define xpprintf _Trace
+#endif
+#else
+#define xpprintf printf
 #endif
 
 /*
@@ -97,8 +103,8 @@ warning C4244: 'initializing' : conversion from 'double ' to 'int ', possible lo
 a million times.  I used to fix each warning added by the Unix people, but
 this makes for harder to read code (and was tiring with each patch)
 */
-#ifdef	_WINDOWS
-#pragma warning (disable : 4244 4761)
+#ifdef _WINDOWS
+#pragma warning(disable : 4244 4761)
 #endif
 
 char *Conf_libdir(void);
@@ -120,4 +126,4 @@ char *Conf_robotfile(void);
 char *Conf_zcat_ext(void);
 char *Conf_zcat_format(void);
 
-#endif				/* CONFIG_H */
+#endif /* CONFIG_H */

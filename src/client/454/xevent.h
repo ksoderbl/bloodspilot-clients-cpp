@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 #ifndef XEVENT_H
 #define XEVENT_H
 
-keys_t Lookup_key(XEvent * event, KeySym ks, bool reset);
+keys_t Lookup_key(XEvent *event, KeySym ks, bool reset);
 void Pointer_control_set_state(int onoff);
 int Key_init(void);
 int Key_update(void);
@@ -49,11 +49,11 @@ bool Key_press_msgs_stdout(keys_t key);
 bool Key_press_select_lose_item(keys_t key);
 bool Key_press(keys_t key);
 bool Key_release(keys_t key);
-void Key_event(XEvent * event);
+void Key_event(XEvent *event);
 void Reset_shields(void);
 void Set_auto_shield(int onoff);
 void Set_toggle_shield(int onoff);
-void Talk_event(XEvent * event);
+void Talk_event(XEvent *event);
 void xevent_keyboard(int queued);
 void xevent_pointer(void);
 int x_event(int new_input);

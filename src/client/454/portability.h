@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,40 +32,40 @@
 #undef max
 #undef min
 
-#define	strncasecmp(__a, __b, __c)	strnicmp(__a, __b, __c)
+#define strncasecmp(__a, __b, __c) strnicmp(__a, __b, __c)
 
 /* there are tons of "conversion from 'double ' to 'int '", stop warning us */
-#pragma warning (disable : 4244)
+#pragma warning(disable : 4244)
 
-#endif				/* _WINDOWS */
+#endif /* _WINDOWS */
 
 /*
  * Portability fixes for Sony NeWS.
  */
 #ifdef sony_news
-#define setvbuf(A,B,C,D)	setlinebuf(A)
+#define setvbuf(A, B, C, D) setlinebuf(A)
 
 typedef unsigned int sigset_t;
 
-#define sigemptyset(set)        (*(set) = 0)
-#define sigfillset(set)         (*(set) = ~(sigset_t)0, 0)
-#define sigaddset(set,signo)    (*(set) |= sigmask(signo), 0)
-#define sigdelset(set,signo)    (*(set) &= ~sigmask(signo), 0)
-#define sigismember(set,signo)  ((*(set) & sigmask(signo)) != 0)
+#define sigemptyset(set) (*(set) = 0)
+#define sigfillset(set) (*(set) = ~(sigset_t)0, 0)
+#define sigaddset(set, signo) (*(set) |= sigmask(signo), 0)
+#define sigdelset(set, signo) (*(set) &= ~sigmask(signo), 0)
+#define sigismember(set, signo) ((*(set) & sigmask(signo)) != 0)
 
-#define SIG_BLOCK		1
-#define SIG_UNBLOCK		2
-#define SIG_SETMASK		3
+#define SIG_BLOCK 1
+#define SIG_UNBLOCK 2
+#define SIG_SETMASK 3
 
-extern int sigprocmask(int how, const sigset_t * set, sigset_t * oset);
+extern int sigprocmask(int how, const sigset_t *set, sigset_t *oset);
 
 /*
  * Sony NEWS doesn't have sigaction(), using sigvec() instead.
  */
-#define sigaction	sigvec
-#define sa_handler	sv_handler
-#define sa_mask		sv_mask
-#define sa_flags	sv_flags
+#define sigaction sigvec
+#define sa_handler sv_handler
+#define sa_mask sv_mask
+#define sa_flags sv_flags
 
 #endif
 
@@ -75,38 +75,38 @@ extern int sigprocmask(int how, const sigset_t * set, sigset_t * oset);
  */
 #ifdef _WINDOWS
 extern int ServerKilled;
-#define	ServerExit() ServerKilled = TRUE; return;
+#define ServerExit()     \
+    ServerKilled = TRUE; \
+    return;
 #else
-#define	ServerExit() exit(1);
+#define ServerExit() exit(1);
 #endif
 
 /*
  * Macros to block out Windows only code (and never Windows code)
  */
 #ifdef _WINDOWS
-#define IFWINDOWS(x)	x
+#define IFWINDOWS(x) x
 #else
 #define IFWINDOWS(x)
 #endif
 
 #ifndef _WINDOWS
-#define IFNWINDOWS(x)	x
+#define IFNWINDOWS(x) x
 #else
 #define IFNWINDOWS(x)
 #endif
 
-
 #ifdef _WINDOWS
-#define PATHNAME_SEP    '\\'
+#define PATHNAME_SEP '\\'
 #else
-#define PATHNAME_SEP    '/'
+#define PATHNAME_SEP '/'
 #endif
-
 
 /*
  * Prototypes for OS function wrappers in portability.c.
  */
-extern int Get_process_id(void);	/* getpid */
+extern int Get_process_id(void); /* getpid */
 extern void Get_login_name(char *buf, int size);
 
 /*
@@ -119,7 +119,6 @@ extern void move_memory(void *dst, void *src, size_t len);
  */
 extern int is_this_windows(void);
 
-
 /*
  * Round to nearest integer.
  */
@@ -127,5 +126,4 @@ extern int is_this_windows(void);
 double rint(double x);
 #endif
 
-
-#endif				/* PORTABILITY_H_INCLUDED */
+#endif /* PORTABILITY_H_INCLUDED */

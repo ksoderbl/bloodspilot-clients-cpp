@@ -1,10 +1,10 @@
 /*
  * BloodsPilot, a multiplayer space war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,10 +29,10 @@
 /*
  * Bitfield definitions for playing mode.
  */
-#define LIMITED_LIVES		(1<<3)
-#define TIMING			(1<<4)
-#define TEAM_PLAY		(1<<8)
-#define WRAP_PLAY		(1<<9)
+#define LIMITED_LIVES (1 << 3)
+#define TIMING (1 << 4)
+#define TEAM_PLAY (1 << 8)
+#define WRAP_PLAY (1 << 9)
 
 /*
  * Possible object and player status bits.
@@ -40,11 +40,11 @@
  * The bits that the client needs must fit into a byte,
  * so the first 8 bitvalues are reserved for that purpose.
  */
-#define PLAYING			(1L<<0)	/* Not returning to base */
-#define OLD_PLAYING		PLAYING
-#define PAUSE			(1L<<1)	/* Must stay below 8 */
-#define OLD_PAUSE		PAUSE
-#define GAME_OVER		(1L<<2)	/* Must stay below 8 */
-#define OLD_GAME_OVER		GAME_OVER
+#define PLAYING (1L << 0) /* Not returning to base */
+#define OLD_PLAYING PLAYING
+#define PAUSE (1L << 1) /* Must stay below 8 */
+#define OLD_PAUSE PAUSE
+#define GAME_OVER (1L << 2) /* Must stay below 8 */
+#define OLD_GAME_OVER GAME_OVER
 
 #endif

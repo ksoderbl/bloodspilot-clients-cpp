@@ -1,12 +1,12 @@
-/* 
+/*
  * BloodsPilot, a multiplayer space war game.
  *
  * Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,10 +27,10 @@
 #define PACKET_H
 
 #ifndef SOCKBUF_H
-# include "sockbuf.h"
+#include "sockbuf.h"
 #endif
 
 int Packet_printf(sockbuf_t *, const char *fmt, ...);
 int Packet_scanf(sockbuf_t *, const char *fmt, ...);
 
-#endif				/* PACKET_H */
+#endif /* PACKET_H */

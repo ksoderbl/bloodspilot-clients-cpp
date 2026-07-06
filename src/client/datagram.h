@@ -1,10 +1,10 @@
 /*
  * BloodsPilot, a multiplayer space war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@
 
 /* $Id: datagram.h,v 1.2 2007/09/27 22:19:45 kps Exp $ */
 
-#ifndef	DATAGRAM_H
-#define	DATAGRAM_H
+#ifndef DATAGRAM_H
+#define DATAGRAM_H
 
 #ifndef SOCKLIB_H
 /* need sock_t */
@@ -34,11 +34,11 @@
 /*
  * datagram.c
  */
-extern int clientPortStart;	/* First UDP port for clients */
-extern int clientPortEnd;	/* Last one (these are for firewalls) */
+extern int clientPortStart; /* First UDP port for clients */
+extern int clientPortEnd;   /* Last one (these are for firewalls) */
 
-int create_dgram_addr_socket(sock_t * sock, char *dotaddr, int port);
-int create_dgram_socket(sock_t * sock, int port);
-void close_dgram_socket(sock_t * sock);
+int create_dgram_addr_socket(sock_t *sock, char *dotaddr, int port);
+int create_dgram_socket(sock_t *sock, int port);
+void close_dgram_socket(sock_t *sock);
 
 #endif

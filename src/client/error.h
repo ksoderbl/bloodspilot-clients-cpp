@@ -1,10 +1,10 @@
-/* 
+/*
  * BloodsPilot, a multiplayer space war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,8 +32,8 @@
 
 /* $Id: error.h,v 1.3 2007/09/27 22:19:46 kps Exp $ */
 
-#ifndef	ERROR_H
-#define	ERROR_H
+#ifndef ERROR_H
+#define ERROR_H
 
 #include "sysdeps.h"
 
@@ -44,13 +44,13 @@ extern void fatal(const char *fmt, ...);
 extern void dumpcore(const char *fmt, ...);
 
 #ifdef _WINDOWS
-# ifdef	_DEBUG
-#  define	Trace _Trace
-# else
-#  define	Trace
-# endif
+#ifdef _DEBUG
+#define Trace _Trace
+#else
+#define Trace
+#endif
 #endif
 
 extern void init_error(const char *prog);
 
-#endif				/* ERROR_H */
+#endif /* ERROR_H */

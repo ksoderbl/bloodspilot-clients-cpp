@@ -1,10 +1,10 @@
 /*
  * BloodsPilot, a multiplayer space war game.  Copyright (C) 1991-2005 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
 #define FRAME_H
 
 /* need uint8_t */
-#ifndef	TYPES_H
+#ifndef TYPES_H
 #include "types.h"
 #endif
 #ifndef CONST_H
@@ -44,95 +44,115 @@
  * Local types and data for painting.
  */
 
-typedef struct {
+typedef struct
+{
 	short xa, ya, xb, yb;
 } refuel_t;
 
-typedef struct {
+typedef struct
+{
 	short xa, ya, xb, yb;
 	uint8_t tractor;
 } connector_t;
 
-typedef struct {
+typedef struct
+{
 	unsigned char color, dir;
 	short x, y, len;
 } laser_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, dir;
 	unsigned char len;
 } missile_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, id;
 	uint8_t style;
 } ball_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, id;
 	float angle;
 	uint8_t shield, cloak, eshield;
 	uint8_t phased, deflector;
 } ship_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, teammine, id;
 } mine_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, type;
 } itemtype_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, size;
 } ecm_t;
 
-typedef struct {
+typedef struct
+{
 	short xa, ya, xb, yb;
 } trans_t;
 
-typedef enum {
+typedef enum
+{
 	RadarEnemy,
 	RadarFriend
 } radar_type_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, size;
 	radar_type_t type;
 } radar_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, type;
 } vcannon_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y;
 	int fuel;
 } vfuel_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, xi, yi, type;
 } vbase_t;
 
-typedef struct {
+typedef struct
+{
 	uint8_t x, y;
 } debris_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, xi, yi, type;
 } vdecor_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y;
 	uint8_t wrecktype, size, rotation;
 } wreckage_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y;
 	uint8_t type, size, rotation;
 } asteroid_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y;
 } wormhole_t;
 
@@ -179,14 +199,14 @@ extern int num_wormholes, max_wormholes;
 
 extern long start_loops, end_loops;
 
-extern int eyesId;		/* Player we get frame updates for */
-extern other_t *eyes;		/* Player we get frame updates for */
-extern bool snooping;		/* are we snooping on someone else? */
-extern int eyeTeam;		/* Team of player we get updates for */
+extern int eyesId;	  /* Player we get frame updates for */
+extern other_t *eyes; /* Player we get frame updates for */
+extern bool snooping; /* are we snooping on someone else? */
+extern int eyeTeam;	  /* Team of player we get updates for */
 extern int scoresChanged;
 
-extern short damaged;		/* Damaged by ECM */
-extern short destruct;		/* If self destructing */
+extern short damaged;  /* Damaged by ECM */
+extern short destruct; /* If self destructing */
 extern short shutdown_delay;
 extern short shutdown_count;
 extern short thrusttime;
@@ -196,39 +216,37 @@ extern short shieldtimemax;
 extern short phasingtime;
 extern short phasingtimemax;
 
-
-
 extern ipos_t selfPos;
 extern ipos_t selfVel;
 extern short heading;
-extern double displayedPower;	/* What the server is sending us */
-extern double displayedTurnspeed;	/* What the server is sending us */
-extern double displayedTurnresistance;	/* What the server is sending us */
-extern short lock_id;		/* Id of player locked onto */
-extern short lock_dir;		/* Direction of lock */
-extern short lock_dist;		/* Distance to player locked onto */
+extern double displayedPower;		   /* What the server is sending us */
+extern double displayedTurnspeed;	   /* What the server is sending us */
+extern double displayedTurnresistance; /* What the server is sending us */
+extern short lock_id;				   /* Id of player locked onto */
+extern short lock_dir;				   /* Direction of lock */
+extern short lock_dist;				   /* Distance to player locked onto */
 extern short nextCheckPoint;
 extern short autopilotLight;
 extern uint8_t numItems[NUM_ITEMS];
 extern uint8_t lastNumItems[NUM_ITEMS];
-extern short currentTank;	/* Number of currently used tank */
-extern int fuelSum;		/* Sum of fuel in all tanks */
-extern int fuelMax;		/* How much fuel can you take? */
-extern double fuelTime;		/* Display fuel for how long? */
-extern short selfVisible;	/* Are we alive and playing? */
-extern int packet_size;		/* Current frame update packet size */
+extern short currentTank; /* Number of currently used tank */
+extern int fuelSum;		  /* Sum of fuel in all tanks */
+extern int fuelMax;		  /* How much fuel can you take? */
+extern double fuelTime;	  /* Display fuel for how long? */
+extern short selfVisible; /* Are we alive and playing? */
+extern int packet_size;	  /* Current frame update packet size */
 extern ipos_t world;
 extern ipos_t realWorld;
 
-extern char modifiers[MAX_CHARS];	/* Current weapon modifiers */
+extern char modifiers[MAX_CHARS]; /* Current weapon modifiers */
 extern int roundDelay;
 extern int roundDelayMax;
 
 extern bool newSecond;		/* Second changed this frame */
 extern double clientFPS;	/* FPS client is drawing at */
-extern double timePerFrame;	/* Time a frame is shown, unit s */
+extern double timePerFrame; /* Time a frame is shown, unit s */
 extern bool played_this_round;
-extern unsigned twelveHz;	/* Attempt to increment this at 12Hz */
+extern unsigned twelveHz; /* Attempt to increment this at 12Hz */
 
 void Paint_frame(void);
 void frameCleanup(void);
@@ -236,13 +254,13 @@ void frameCleanup(void);
 int Handle_start(long server_loops);
 int Handle_end(long server_loops);
 int Handle_self(int x, int y, int vx, int vy, int newHeading,
-		float newPower, float newTurnspeed, float newTurnresistance,
-		int newLockId, int newLockDist, int newLockBearing,
-		int newNextCheckPoint, int newAutopilotLight,
-		uint8_t * newNumItems, int newCurrentTank,
-		int newFuelSum, int newFuelMax, int newPacketSize,
-		int status /* kps - ng - ??? */ );
-int Handle_self_items(uint8_t * newNumItems);
+				float newPower, float newTurnspeed, float newTurnresistance,
+				int newLockId, int newLockDist, int newLockBearing,
+				int newNextCheckPoint, int newAutopilotLight,
+				uint8_t *newNumItems, int newCurrentTank,
+				int newFuelSum, int newFuelMax, int newPacketSize,
+				int status /* kps - ng - ??? */);
+int Handle_self_items(uint8_t *newNumItems);
 int Handle_modifiers(char *m);
 int Handle_damaged(int damaged);
 int Handle_destruct(int count);
@@ -257,11 +275,11 @@ int Handle_laser(int color, int x, int y, int len, int dir);
 int Handle_missile(int x, int y, int dir, int len);
 int Handle_ball(int x, int y, int id, int style);
 int Handle_ship(int x, int y, int id, float angle, int shield, int cloak, int eshield, int phased,
-		int deflector);
+				int deflector);
 int Handle_mine(int x, int y, int teammine, int id);
 int Handle_item(int x, int y, int type);
-int Handle_fastshot(int type, uint8_t * p, int n);
-int Handle_debris(int type, uint8_t * p, int n);
+int Handle_fastshot(int type, uint8_t *p, int n);
+int Handle_debris(int type, uint8_t *p, int n);
 int Handle_wreckage(int x, int y, int wrecktype, int size, int rotation);
 int Handle_asteroid(int x, int y, int type, int size, int rotation);
 int Handle_wormhole(int x, int y);

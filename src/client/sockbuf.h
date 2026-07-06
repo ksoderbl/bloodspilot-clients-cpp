@@ -1,10 +1,10 @@
 /*
  * BloodsPilot, a multiplayer space war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,22 +23,22 @@
 
 /* $Id: sockbuf.h,v 1.2 2007/09/27 22:19:46 kps Exp $ */
 
-#ifndef	SOCKBUF_H
-#define	SOCKBUF_H
+#ifndef SOCKBUF_H
+#define SOCKBUF_H
 
 #ifndef SOCKLIB_H
 /* need sock_t */
 #include "socklib.h"
 #endif
 
-#define MIN_SOCKBUF_SIZE	1024
-#define MAX_SOCKBUF_SIZE	(50*1024)
+#define MIN_SOCKBUF_SIZE 1024
+#define MAX_SOCKBUF_SIZE (50 * 1024)
 
-#define SERVER_RECV_SIZE	MIN_SOCKBUF_SIZE
-#define SERVER_SEND_SIZE	(4*1024)
+#define SERVER_RECV_SIZE MIN_SOCKBUF_SIZE
+#define SERVER_SEND_SIZE (4 * 1024)
 
-#define CLIENT_SEND_SIZE	SERVER_RECV_SIZE
-#define CLIENT_RECV_SIZE	SERVER_SEND_SIZE
+#define CLIENT_SEND_SIZE SERVER_RECV_SIZE
+#define CLIENT_RECV_SIZE SERVER_SEND_SIZE
 
 /* NG:
    I added 1024 to this because the client can get 4 1035 byte packets
@@ -52,45 +52,46 @@
 /*
  * Definitions for the states a socket buffer can be in.
  */
-#define SOCKBUF_READ		0x01	/* if readable */
-#define SOCKBUF_WRITE		0x02	/* if writeable */
-#define SOCKBUF_LOCK		0x04	/* if locked against kernel i/o */
-#define SOCKBUF_ERROR		0x08	/* if i/o error occurred */
-#define SOCKBUF_DGRAM		0x10	/* if datagram socket */
+#define SOCKBUF_READ 0x01  /* if readable */
+#define SOCKBUF_WRITE 0x02 /* if writeable */
+#define SOCKBUF_LOCK 0x04  /* if locked against kernel i/o */
+#define SOCKBUF_ERROR 0x08 /* if i/o error occurred */
+#define SOCKBUF_DGRAM 0x10 /* if datagram socket */
 
 /*
  * Hack: leave some spare room for the last terminating packet
  * of a frame update.
  */
-#define SOCKBUF_WRITE_SPARE	8
+#define SOCKBUF_WRITE_SPARE 8
 
 /*
  * Maximum number of socket i/o retries if datagram socket.
  */
-#define MAX_SOCKBUF_RETRIES	2
+#define MAX_SOCKBUF_RETRIES 2
 
 /*
  * A buffer to reduce the number of system calls made and to reduce
  * the number of network packets.
  */
-typedef struct {
-	sock_t sock;		/* socket descriptor */
-	char *buf;		/* i/o data buffer */
-	int size;		/* size of buffer */
-	int len;		/* amount of data in buffer (writing/reading) */
-	char *ptr;		/* current position in buffer (reading) */
-	int state;		/* read/write/locked/error status flags */
+typedef struct
+{
+	sock_t sock; /* socket descriptor */
+	char *buf;	 /* i/o data buffer */
+	int size;	 /* size of buffer */
+	int len;	 /* amount of data in buffer (writing/reading) */
+	char *ptr;	 /* current position in buffer (reading) */
+	int state;	 /* read/write/locked/error status flags */
 } sockbuf_t;
 
 extern int last_packet_of_frame;
 
-int Sockbuf_init(sockbuf_t * sbuf, sock_t * sock, int size, int state);
-int Sockbuf_cleanup(sockbuf_t * sbuf);
-int Sockbuf_clear(sockbuf_t * sbuf);
-int Sockbuf_advance(sockbuf_t * sbuf, int len);
-int Sockbuf_flush(sockbuf_t * sbuf);
-int Sockbuf_write(sockbuf_t * sbuf, char *buf, int len);
-int Sockbuf_read(sockbuf_t * sbuf);
-int Sockbuf_copy(sockbuf_t * dest, sockbuf_t * src, int len);
+int Sockbuf_init(sockbuf_t *sbuf, sock_t *sock, int size, int state);
+int Sockbuf_cleanup(sockbuf_t *sbuf);
+int Sockbuf_clear(sockbuf_t *sbuf);
+int Sockbuf_advance(sockbuf_t *sbuf, int len);
+int Sockbuf_flush(sockbuf_t *sbuf);
+int Sockbuf_write(sockbuf_t *sbuf, char *buf, int len);
+int Sockbuf_read(sockbuf_t *sbuf);
+int Sockbuf_copy(sockbuf_t *dest, sockbuf_t *src, int len);
 
 #endif

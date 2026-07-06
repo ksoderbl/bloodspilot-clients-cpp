@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,16 +25,17 @@
 #ifndef _DEFAULT_H_
 #define _DEFAULT_H_
 
-typedef struct {
-	const char *name;	/* option name */
-	const char *noArg;	/* value for non-argument options */
-	const char *fallback;	/* default value */
-	keys_t key;		/* key if not KEY_DUMMY */
-	const char *help;	/* user help (multiline) */
-	unsigned hash;		/* option name hashed. */
+typedef struct
+{
+	const char *name;	  /* option name */
+	const char *noArg;	  /* value for non-argument options */
+	const char *fallback; /* default value */
+	keys_t key;			  /* key if not KEY_DUMMY */
+	const char *help;	  /* user help (multiline) */
+	unsigned hash;		  /* option name hashed. */
 } option;
 
 extern option options[];
-extern int optionsCount;	/* NELEM(options) */
+extern int optionsCount; /* NELEM(options) */
 
 #endif

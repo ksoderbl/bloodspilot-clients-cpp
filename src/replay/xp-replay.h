@@ -1,9 +1,9 @@
-/* 
+/*
  * XP-Replay, playback an XPilot session.  Copyright (C) 1994-98 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
  *      Steven Singer        (S.Singer@ph.surrey.ac.uk)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -21,8 +21,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef	XP_REPLAY_H
-#define	XP_REPLAY_H
+#ifndef XP_REPLAY_H
+#define XP_REPLAY_H
 
 #include "xpcommon.h"
 
@@ -33,12 +33,13 @@
 #include "item.h"
 #include "buttons.h"
 
-#define BLACK               0
-#define WHITE               1
-#define BLUE                2
-#define RED                 3
+#define BLACK 0
+#define WHITE 1
+#define BLUE 2
+#define RED 3
 
-enum MemTypes {
+enum MemTypes
+{
 	MEM_STRING,
 	MEM_FRAME,
 	MEM_SHAPE,

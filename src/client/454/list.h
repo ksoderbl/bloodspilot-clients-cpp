@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -104,17 +104,17 @@ int List_remove(list_t list, void *data);
 int List_size(list_t);
 
 /* advance list iterator one position and return new position. */
-list_iter_t List_iter_forward(list_iter_t * pos);
+list_iter_t List_iter_forward(list_iter_t *pos);
 
 /* move list iterator one position backwards and return new position. */
-list_iter_t List_iter_backward(list_iter_t * pos);
+list_iter_t List_iter_backward(list_iter_t *pos);
 
 /* return data at list position. */
 void *List_iter_data(list_iter_t pos);
 
 /* macros to reduce typing. */
-#define LI_FORWARD(pos_)	List_iter_forward(&(pos_))
-#define LI_BACKWARD(pos_)	List_iter_backward(&(pos_))
-#define LI_DATA(pos_)		List_iter_data((pos_))
+#define LI_FORWARD(pos_) List_iter_forward(&(pos_))
+#define LI_BACKWARD(pos_) List_iter_backward(&(pos_))
+#define LI_DATA(pos_) List_iter_data((pos_))
 
 #endif

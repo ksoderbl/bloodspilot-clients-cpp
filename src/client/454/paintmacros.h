@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,27 +25,21 @@
 #ifndef PAINTMACROS_H
 #define PAINTMACROS_H
 
-
 /* includes begin */
 /* includes end */
-
 
 /* constants begin */
 /* constants end */
 
-
 /* macros begin */
-#define X(co)	((int) ((co) - world.x))
-#define Y(co)	((int) (world.y + ext_view_height - (co)))
+#define X(co) ((int)((co) - world.x))
+#define Y(co) ((int)(world.y + ext_view_height - (co)))
 /* macros end */
-
 
 /* typedefs begin */
 /* typedefs end */
 
-
 /* globals begin */
 /* globals end */
-
 
 #endif

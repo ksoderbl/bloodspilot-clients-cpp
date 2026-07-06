@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,10 +26,11 @@
 #ifndef _audio_h
 #define _audio_h
 
-#define SOUND_MAX_VOLUME	100
-#define SOUND_MIN_VOLUME	10
+#define SOUND_MAX_VOLUME 100
+#define SOUND_MIN_VOLUME 10
 
-enum {
+enum
+{
 	START_SOUND,
 	FIRE_SHOT_SOUND,
 	FIRE_TORPEDO_SOUND,
@@ -204,7 +205,7 @@ static char *soundNames[] = {
 	"asteroid_break",
 };
 
-#endif				/* _CAUDIO_C_ */
+#endif /* _CAUDIO_C_ */
 
 extern void audioInit(char *display);
 extern void audioCleanup(void);
@@ -214,4 +215,4 @@ extern int audioDeviceInit(char *display);
 extern void audioDeviceEvents(void);
 extern void audioDevicePlay(char *filename, int type, int volume, void **private);
 
-#endif				/* _audio_h */
+#endif /* _audio_h */

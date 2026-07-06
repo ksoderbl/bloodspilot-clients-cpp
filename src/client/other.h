@@ -1,10 +1,10 @@
 /*
  * BloodsPilot, a multiplayer space war game.  Copyright (C) 1991-2005 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,13 +27,14 @@
 #define OTHER_H
 
 #ifndef TYPES_H
-# include "types.h"
+#include "types.h"
 #endif
 #ifndef SHIPSHAPE_H
-# include "shipshape.h"
+#include "shipshape.h"
 #endif
 
-typedef struct {
+typedef struct
+{
 	DFLOAT ratio;
 	short id;
 	short team;
@@ -52,12 +53,12 @@ typedef struct {
 	char nick_name[MAX_CHARS];
 	char user_name[MAX_CHARS];
 	char host_name[MAX_CHARS];
-	char abbrev_nick_name[MAX_CHARS];	/* Used to support maxCharsInNames option. */
-	short name_width;	/* In pixels */
-	short name_len;		/* In chars */
+	char abbrev_nick_name[MAX_CHARS]; /* Used to support maxCharsInNames option. */
+	short name_width;				  /* In pixels */
+	short name_len;					  /* In chars */
 } other_t;
 
-extern other_t *self;		/* Player info */
+extern other_t *self; /* Player info */
 extern other_t *Others;
 extern int num_others, max_others;
 
@@ -79,18 +80,21 @@ static inline void Check_abbrev_nick_name(other_t *other, int max_chars_in_names
 	str_len = strlen(other->nick_name);
 	buf = other->abbrev_nick_name;
 
-	while (str_offset < str_len
-	       && buf_offset < max_chars_in_names) {
+	while (str_offset < str_len && buf_offset < max_chars_in_names)
+	{
 		char c = str[str_offset++];
-		if (c != '^') {
+		if (c != '^')
+		{
 			buf[buf_offset++] = c;
 		}
-		else {
+		else
+		{
 			char c2 = str[str_offset++];
 			/* String ends, ignore final ^ */
 			if (c2 == '\0')
 				break;
-			else if (c2 == '^') {
+			else if (c2 == '^')
+			{
 				buf[buf_offset++] = '^';
 			}
 		}

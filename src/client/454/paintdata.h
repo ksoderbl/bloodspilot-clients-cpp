@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #define PAINTTYPES_H
 
 /* need u_byte */
-#ifndef	TYPES_H
+#ifndef TYPES_H
 #include "types.h"
 #endif
 
@@ -40,105 +40,127 @@
  * The goal is to keep the number of malloc/realloc calls low
  * while not wasting too much memory because of over-allocation.
  */
-#define STORE(T,P,N,M,V)						\
-    if (N >= M && ((M <= 0)						\
-	? (P = (T *) malloc((M = 1) * sizeof(*P)))			\
-	: (P = (T *) realloc(P, (M += M) * sizeof(*P)))) == NULL) {	\
-	error("No memory");						\
-	N = M = 0;							\
-	return -1;							\
-    } else								\
-	(P[N++] = V)
+#define STORE(T, P, N, M, V)                                                    \
+	if (N >= M && ((M <= 0)                                                     \
+					   ? (P = (T *)malloc((M = 1) * sizeof(*P)))                \
+					   : (P = (T *)realloc(P, (M += M) * sizeof(*P)))) == NULL) \
+	{                                                                           \
+		error("No memory");                                                     \
+		N = M = 0;                                                              \
+		return -1;                                                              \
+	}                                                                           \
+	else                                                                        \
+		(P[N++] = V)
 
 /*
  * Local types and data for painting.
  */
 
-typedef struct {
+typedef struct
+{
 	short x0, y0, x1, y1;
 } refuel_t;
 
-typedef struct {
+typedef struct
+{
 	short x0, y0, x1, y1;
 	u_byte tractor;
 } connector_t;
 
-typedef struct {
+typedef struct
+{
 	unsigned char color, dir;
 	short x, y, len;
 } laser_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, dir;
 	unsigned char len;
 } missile_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, id;
 } ball_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, id, dir;
 	u_byte shield, cloak, eshield;
 	u_byte phased, deflector;
 } ship_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, teammine, id;
 } mine_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, type;
 } itemtype_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, size;
 } ecm_t;
 
-typedef struct {
+typedef struct
+{
 	short x1, y1, x2, y2;
 } trans_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, count;
 } paused_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, size;
 } radar_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, type;
 } vcannon_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y;
 	long fuel;
 } vfuel_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, xi, yi, type;
 } vbase_t;
 
-typedef struct {
+typedef struct
+{
 	u_byte x, y;
 } debris_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y, xi, yi, type;
 } vdecor_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y;
 	u_byte wrecktype, size, rotation;
 } wreckage_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y;
 	u_byte type, size, rotation;
 } asteroid_t;
 
-typedef struct {
+typedef struct
+{
 	short x, y;
 } wormhole_t;
 
@@ -188,19 +210,21 @@ extern int num_wormholes, max_wormholes;
 extern long start_loops, end_loops;
 extern long time_left;
 
-#define RESET_FG()	(current_foreground = -1)
-#define SET_FG(PIXEL)				\
-    if ((PIXEL) == current_foreground) ;	\
-    else XSetForeground(dpy, gc, current_foreground = (PIXEL))
+#define RESET_FG() (current_foreground = -1)
+#define SET_FG(PIXEL)                  \
+	if ((PIXEL) == current_foreground) \
+		;                              \
+	else                               \
+		XSetForeground(dpy, gc, current_foreground = (PIXEL))
 
 extern unsigned long current_foreground;
 
+#define ERASE_INITIALIZED (1 << 0)
 
-#define ERASE_INITIALIZED	(1 << 0)
+#define MAX_LINE_WIDTH 4
 
-#define MAX_LINE_WIDTH	4
-
-typedef struct {
+typedef struct
+{
 	int flags;
 	XRectangle *rect_ptr;
 	int num_rect, max_rect;
@@ -222,37 +246,47 @@ extern erase_t erase[2], *erp;
  * The goal is to keep the number of malloc/realloc calls low
  * while not wasting too much memory because of over-allocation.
  */
-#define EXPAND(P,N,M,T,E)						\
-    if ((N) + (E) > (M)) {						\
-	if ((M) <= 0) {							\
-	    M = (E) + 2;						\
-	    P = (T *) malloc((M) * sizeof(T));				\
-	    N = 0;							\
-	} else {							\
-	    M = ((M) << 1) + (E);					\
-	    P = (T *) realloc(P, (M) * sizeof(T));			\
-	}								\
-	if (P == NULL) {						\
-	    error("No memory");						\
-	    N = M = 0;							\
-	    return;	/* ! */						\
-	}								\
-    }
+#define EXPAND(P, N, M, T, E)                     \
+	if ((N) + (E) > (M))                          \
+	{                                             \
+		if ((M) <= 0)                             \
+		{                                         \
+			M = (E) + 2;                          \
+			P = (T *)malloc((M) * sizeof(T));     \
+			N = 0;                                \
+		}                                         \
+		else                                      \
+		{                                         \
+			M = ((M) << 1) + (E);                 \
+			P = (T *)realloc(P, (M) * sizeof(T)); \
+		}                                         \
+		if (P == NULL)                            \
+		{                                         \
+			error("No memory");                   \
+			N = M = 0;                            \
+			return; /* ! */                       \
+		}                                         \
+	}
 
-#define UNEXPAND(P,N,M)							\
-    if ((N) < ((M) >> 2)) {						\
-	free(P);							\
-	M = 0;								\
-    }									\
-    N = 0;
+#define UNEXPAND(P, N, M) \
+	if ((N) < ((M) >> 2)) \
+	{                     \
+		free(P);          \
+		M = 0;            \
+	}                     \
+	N = 0;
 
 #ifndef PAINT_FREE
-# define PAINT_FREE	1
+#define PAINT_FREE 1
 #endif
 #if PAINT_FREE
-# define RELEASE(P, N, M)	if (!(N)) ; else (free(P), (M) = 0, (N) = 0)
+#define RELEASE(P, N, M) \
+	if (!(N))            \
+		;                \
+	else                 \
+		(free(P), (M) = 0, (N) = 0)
 #else
-# define RELEASE(P, N, M)	((N) = 0)
+#define RELEASE(P, N, M) ((N) = 0)
 #endif
 
 extern XRectangle *rect_ptr[MAX_COLORS];
@@ -262,40 +296,40 @@ extern int num_arc[MAX_COLORS], max_arc[MAX_COLORS];
 extern XSegment *seg_ptr[MAX_COLORS];
 extern int num_seg[MAX_COLORS], max_seg[MAX_COLORS];
 
-extern int eyesId;		/* Player we get frame updates for */
-extern short snooping;		/* are we snooping on someone else? */
+extern int eyesId;	   /* Player we get frame updates for */
+extern short snooping; /* are we snooping on someone else? */
 
 extern void Erase_do_start(void);
 extern void Erase_do_end(void);
 extern void Erase_do_rectangle(int x, int y, int width, int height);
-extern void Erase_do_rectangles(XRectangle * rectp, int n);
+extern void Erase_do_rectangles(XRectangle *rectp, int n);
 extern void Erase_do_arc(int x, int y, int width, int height, int angle1, int angle2);
-extern void Erase_do_arcs(XArc * arcp, int n);
+extern void Erase_do_arcs(XArc *arcp, int n);
 extern void Erase_do_segment(int width, int x1, int y1, int x2, int y2);
-extern void Erase_do_segments(XSegment * segp, int n);
-extern void Erase_do_points(int width, XPoint * pointp, int n);
+extern void Erase_do_segments(XSegment *segp, int n);
+extern void Erase_do_points(int width, XPoint *pointp, int n);
 extern void Erase_do_4point(int x, int y, int width, int height);
 
 #define Erase_start() \
-	    ((useErase) ? Erase_do_start() : (void)0 )
+	((useErase) ? Erase_do_start() : (void)0)
 #define Erase_end() \
-	    ((useErase) ? Erase_do_end() : (void)0 )
-#define Erase_rectangle( _A, _B, _C, _D ) \
-	    ((useErase) ? Erase_do_rectangle((_A), (_B), (_C), (_D)) : (void)0 )
+	((useErase) ? Erase_do_end() : (void)0)
+#define Erase_rectangle(_A, _B, _C, _D) \
+	((useErase) ? Erase_do_rectangle((_A), (_B), (_C), (_D)) : (void)0)
 #define Erase_rectangles(_A, _B) \
-	    ((useErase) ? Erase_do_rectangles((_A), (_B)) : (void)0 )
+	((useErase) ? Erase_do_rectangles((_A), (_B)) : (void)0)
 #define Erase_arc(_A, _B, _C, _D, _E, _F) \
-	    ((useErase) ? Erase_do_arc((_A), (_B), (_C), (_D), (_E), (_F)):(void)0 )
+	((useErase) ? Erase_do_arc((_A), (_B), (_C), (_D), (_E), (_F)) : (void)0)
 #define Erase_arcs(_A, _B) \
-	    ((useErase) ? Erase_do_arcs((_A), (_B)) : (void)0 )
+	((useErase) ? Erase_do_arcs((_A), (_B)) : (void)0)
 #define Erase_segment(_A, _B, _C, _D, _E) \
-	    ((useErase) ? Erase_do_segment((_A), (_B), (_C), (_D), (_E)) : (void)0 )
+	((useErase) ? Erase_do_segment((_A), (_B), (_C), (_D), (_E)) : (void)0)
 #define Erase_segments(_A, _B) \
-	    ((useErase) ? Erase_do_segments((_A), (_B)) : (void)0 )
+	((useErase) ? Erase_do_segments((_A), (_B)) : (void)0)
 #define Erase_points(_A, _B, _C) \
-	    ((useErase) ? Erase_do_points((_A), (_B), (_C)) : (void)0 )
+	((useErase) ? Erase_do_points((_A), (_B), (_C)) : (void)0)
 #define Erase_4point(_A, _B, _C, _D) \
-	    ((useErase) ? Erase_do_4point((_A), (_B), (_C), (_D)) : (void)0 )
+	((useErase) ? Erase_do_4point((_A), (_B), (_C), (_D)) : (void)0)
 
 extern void Rectangle_start(void);
 extern void Rectangle_end(void);

@@ -2,10 +2,10 @@
  *
  * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,8 +22,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef	PROTOCLIENT_H
-#define	PROTOCLIENT_H
+#ifndef PROTOCLIENT_H
+#define PROTOCLIENT_H
 
 /*
  * about.c
@@ -36,7 +36,7 @@ extern void Motd_destroy();
 extern void Keys_destroy();
 #endif
 
-extern int motd_viewer;		/* so Windows can clean him up */
+extern int motd_viewer; /* so Windows can clean him up */
 extern int keys_viewer;
 
 /*
@@ -53,10 +53,10 @@ void Colors_debug(void);
  * default.c
  */
 extern void Parse_options(int *argcp, char **argvp, char *realName, int *port,
-			  int *my_team, int *text, int *list,
-			  int *join, int *noLocalMotd, char *nickName, char *dispName,
-			  char *hostName, char *shut_msg);
-extern void defaultCleanup(void);	/* memory cleanup */
+						  int *my_team, int *text, int *list,
+						  int *join, int *noLocalMotd, char *nickName, char *dispName,
+						  char *hostName, char *shut_msg);
+extern void defaultCleanup(void); /* memory cleanup */
 
 #ifndef _WINDOWS
 extern void Get_xpilotrc_file(char *, unsigned);
@@ -67,7 +67,7 @@ extern char *Get_xpilotini_file(int level);
  * join.c
  */
 extern int Join(char *server_addr, char *server_name, int port,
-		char *real, char *nick, int my_team, char *display, unsigned version);
+				char *real, char *nick, int my_team, char *display, unsigned version);
 
 /*
  * metaclient.c
@@ -83,7 +83,7 @@ extern int OFF(char *optval);
 /*
  * paintdata.c
  */
-extern void paintdataCleanup(void);	/* memory cleanup */
+extern void paintdataCleanup(void); /* memory cleanup */
 
 /*
  * paintobjects.c
@@ -91,15 +91,14 @@ extern void paintdataCleanup(void);	/* memory cleanup */
 extern int Init_wreckage(void);
 extern int Init_asteroids(void);
 
-
 /*
  * query.c
  */
 #ifdef SOCKLIB_H
-extern int Query_all(sock_t * sockfd, int port, char *msg, int msglen);
+extern int Query_all(sock_t *sockfd, int port, char *msg, int msglen);
 #endif
 
-#ifdef	LIMIT_ACCESS
+#ifdef LIMIT_ACCESS
 extern bool Is_allowed(char *);
 #endif
 
@@ -119,12 +118,12 @@ extern void Simulate(void);
  */
 #ifdef CONNECTPARAM_H
 int Connect_to_server(int auto_connect, int list_servers,
-		      int auto_shutdown, char *shutdown_reason, Connect_param_t * conpar);
+					  int auto_shutdown, char *shutdown_reason, Connect_param_t *conpar);
 int Contact_servers(int count, char **servers,
-		    int auto_connect, int list_servers,
-		    int auto_shutdown, char *shutdown_message,
-		    int find_max, int *num_found,
-		    char **server_addresses, char **server_names, Connect_param_t * conpar);
+					int auto_connect, int list_servers,
+					int auto_shutdown, char *shutdown_message,
+					int find_max, int *num_found,
+					char **server_addresses, char **server_names, Connect_param_t *conpar);
 #endif
 
 /*
@@ -136,7 +135,7 @@ extern int micro_delay(unsigned usec);
  * welcome.c
  */
 #ifdef CONNECTPARAM_H
-int Welcome_screen(Connect_param_t * conpar);
+int Welcome_screen(Connect_param_t *conpar);
 #endif
 
 /*
@@ -155,10 +154,9 @@ extern void WinXCreateItemBitmaps();
  * winX - The Windows X emulator
  */
 #ifdef _WINDOWS
-#define	WinXFlush(__w)	WinXFlush(__w)
+#define WinXFlush(__w) WinXFlush(__w)
 #else
-#define	WinXFlush(__w)
+#define WinXFlush(__w)
 #endif
 
-
-#endif				/* PROTOCLIENT_H */
+#endif /* PROTOCLIENT_H */

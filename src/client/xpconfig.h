@@ -1,12 +1,12 @@
-/* 
+/*
  * BloodsPilot, a multiplayer space war game.
  *
  * Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,45 +27,45 @@
 #define XPCONFIG_H
 
 #ifdef _WINDOWS
-#				/* kps - what about this ???? */
-#  undef CONF_DATADIR
-#  define CONF_DATADIR			"lib/"
+#/* kps - what about this ???? */
+#undef CONF_DATADIR
+#define CONF_DATADIR "lib/"
 #endif
 
 #ifndef CONF_DATADIR
-#  error "CONF_DATADIR NOT DEFINED. GIVING UP."
+#error "CONF_DATADIR NOT DEFINED. GIVING UP."
 #endif
 
 #ifndef CONF_LOCALGURU
-#  define CONF_LOCALGURU		PACKAGE_BUGREPORT
+#define CONF_LOCALGURU PACKAGE_BUGREPORT
 #endif
 
 #ifndef CONF_DEFAULT_MAP
-#  define CONF_DEFAULT_MAP		"ndh.xp2"
+#define CONF_DEFAULT_MAP "ndh.xp2"
 #endif
 
 #ifndef CONF_TEXTUREDIR
-#  define CONF_TEXTUREDIR		CONF_DATADIR "textures/"
+#define CONF_TEXTUREDIR CONF_DATADIR "textures/"
 #endif
 
 #ifndef CONF_SOUNDDIR
-#  define CONF_SOUNDDIR			CONF_DATADIR "sound/"
+#define CONF_SOUNDDIR CONF_DATADIR "sound/"
 #endif
 
 #ifndef CONF_FONTDIR
-#  define CONF_FONTDIR			CONF_DATADIR "fonts/"
+#define CONF_FONTDIR CONF_DATADIR "fonts/"
 #endif
 
 #ifndef CONF_DEFAULTS_FILE_NAME
-#  define CONF_DEFAULTS_FILE_NAME	CONF_DATADIR "defaults.txt"
+#define CONF_DEFAULTS_FILE_NAME CONF_DATADIR "defaults.txt"
 #endif
 
 #ifndef CONF_SOUNDFILE
-#  define CONF_SOUNDFILE	  	CONF_SOUNDDIR "sounds.txt"
+#define CONF_SOUNDFILE CONF_SOUNDDIR "sounds.txt"
 #endif
 
 #ifndef CONF_SHIP_FILE
-#  define CONF_SHIP_FILE		CONF_DATADIR "shipshapes.txt"
+#define CONF_SHIP_FILE CONF_DATADIR "shipshapes.txt"
 #endif
 
 /*
@@ -79,7 +79,7 @@
  * how often the server should draw a frame.  (Hmm...)
  */
 
-#define CONF_UPDATES_PR_FRAME	1
+#define CONF_UPDATES_PR_FRAME 1
 
 /*
  * If COMPRESSED_MAPS is defined, the server will attempt to uncompress
@@ -88,24 +88,24 @@
  * CONF_ZCAT_EXT should define the proper compressed file extension.
  */
 #ifndef _WINDOWS
-#  define CONF_COMPRESSED_MAPS
+#define CONF_COMPRESSED_MAPS
 #else
 /* Couldn't find a popen(), also compress and gzip don't exist. */
-#  undef CONF_COMPRESSED_MAPS
+#undef CONF_COMPRESSED_MAPS
 #endif
-#define CONF_ZCAT_EXT			".gz"
-#define CONF_ZCAT_FORMAT 		"gzip -d -c < %s"
+#define CONF_ZCAT_EXT ".gz"
+#define CONF_ZCAT_FORMAT "gzip -d -c < %s"
 
 /*
- * Windows doesn't play with stdin/out well at all... 
- * So for the client i route the "debug" printfs to the debug stream 
- * The server gets 'real' messages routed to the messages window 
+ * Windows doesn't play with stdin/out well at all...
+ * So for the client i route the "debug" printfs to the debug stream
+ * The server gets 'real' messages routed to the messages window
  */
 #ifdef _WINDOWS
-#  ifdef _XPILOTNTSERVER_
-#    define xpprintf	xpprintfW
+#ifdef _XPILOTNTSERVER_
+#define xpprintf xpprintfW
 /* # define xpprintf _Trace  */
-#  endif
+#endif
 #endif
 
 /*
@@ -113,10 +113,10 @@
  * warning C4244: 'initializing' : conversion from 'double ' to 'int ',
  * possible loss of data a million times.  I used to fix each warning
  * added by the Unix people, but this makes for harder to read code (and
- * was tiring with each patch) 
+ * was tiring with each patch)
  */
-#ifdef	_WINDOWS
-#  pragma warning (disable : 4244 4761)
+#ifdef _WINDOWS
+#pragma warning(disable : 4244 4761)
 #endif
 
 void Conf_print(void);
@@ -132,4 +132,4 @@ char *Conf_zcat_format(void);
 extern char conf_ship_file_string[];
 extern char conf_soundfile_string[];
 
-#endif				/* XPCONFIG_H */
+#endif /* XPCONFIG_H */

@@ -1,12 +1,12 @@
-/* 
+/*
  * BloodsPilot, a multiplayer space war game.
  *
  * Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
- *      Ken Ronny Schouten   <ken@xpilot.org>
- *      Bert Gijsbers        <bert@xpilot.org>
- *      Dick Balaska         <dick@xpilot.org>
+ *      BjÃ¸rn Stabell
+ *      Ken Ronny Schouten
+ *      Bert Gijsbers
+ *      Dick Balaska
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,28 +25,28 @@
 
 /* $Id: xinit.h,v 1.18 2007/10/07 12:04:02 kps Exp $ */
 
-#ifndef	XINIT_H
-#define	XINIT_H
+#ifndef XINIT_H
+#define XINIT_H
 
 #ifndef CONST_H
 #include "const.h"
 #endif
 
-#define MAX_VISUAL_NAME	12
+#define MAX_VISUAL_NAME 12
 
-#define MIN_TOP_WIDTH	8
-#define MAX_TOP_WIDTH	(1920 + 2)
-#define DEF_TOP_WIDTH	(1280 + 2)
-#define MIN_TOP_HEIGHT	8
-#define MAX_TOP_HEIGHT	1440
-#define DEF_TOP_HEIGHT	1024
+#define MIN_TOP_WIDTH 8
+#define MAX_TOP_WIDTH (1920 + 2)
+#define DEF_TOP_WIDTH (1280 + 2)
+#define MIN_TOP_HEIGHT 8
+#define MAX_TOP_HEIGHT 1440
+#define DEF_TOP_HEIGHT 1024
 
 extern Atom ProtocolAtom, KillAtom;
-extern int wallColor;		/* Color index for wall drawing */
-extern int fuelColor;		/* Color index for fuel drawing */
-extern int shadowColor;		/* Color index for shadow drawing */
-extern int msgScanBallColor;	/* Color index for ball msg */
-extern int msgScanCoverColor;	/* Color index for safe msg */
+extern int wallColor;		  /* Color index for wall drawing */
+extern int fuelColor;		  /* Color index for fuel drawing */
+extern int shadowColor;		  /* Color index for shadow drawing */
+extern int msgScanBallColor;  /* Color index for ball msg */
+extern int msgScanCoverColor; /* Color index for safe msg */
 extern char sparkColors[MSG_LEN];
 extern int spark_color[MAX_COLORS];
 extern int ButtonHeight;
@@ -88,12 +88,12 @@ extern void Info(Window w);
 extern void Talk_resize(void);
 extern void Talk_cursor(bool visible);
 extern void Talk_map_window(bool map);
-extern int Talk_do_event(XEvent * event);
+extern int Talk_do_event(XEvent *event);
 extern int Talk_paste(char *data, size_t len, bool overwrite);
-extern int Talk_place_cursor(XButtonEvent * xbutton, bool pending);
-extern void Talk_window_cut(XButtonEvent * xbutton);
-extern bool Talk_cut_area_hit(XButtonEvent * xbutton);
-extern void Talk_cut_from_messages(XButtonEvent * xbutton);
+extern int Talk_place_cursor(XButtonEvent *xbutton, bool pending);
+extern void Talk_window_cut(XButtonEvent *xbutton);
+extern bool Talk_cut_area_hit(XButtonEvent *xbutton);
+extern void Talk_cut_from_messages(XButtonEvent *xbutton);
 extern void Clear_selection(void);
 extern int FatalError(Display *);
 extern void Draw_score_table(void);
