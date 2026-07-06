@@ -26,7 +26,7 @@
  */
 
 #include "const.h"
-#include "error.h"
+#include "xperror.h"
 #include "global.h"
 #include "option.h"
 #include "proto.h"

@@ -26,7 +26,7 @@
 /* $Id: dbuff.c,v 1.10 2007/09/27 23:31:05 kps Exp $ */
 
 #include "xpclient_x11.h"
-#include "error.h"
+#include "xperror.h"
 
 dbuff_state_t *dbuf_state; /* Holds current dbuff state */
 

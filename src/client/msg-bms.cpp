@@ -22,7 +22,7 @@
 
 #include "bit.h"
 #include "const.h"
-#include "error.h"
+#include "xperror.h"
 #include "global.h"
 #include "other.h"
 #include "proto.h"

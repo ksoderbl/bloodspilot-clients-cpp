@@ -22,7 +22,7 @@
  */
 
 #include "const.h"
-#include "error.h"
+#include "xperror.h"
 #include "portability.h"
 #include "query.h"
 

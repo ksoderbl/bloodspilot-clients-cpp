@@ -32,7 +32,7 @@
 #include "astershape.h"
 #include "wreckshape.h"
 #include "setup.h"
-#include "error.h"
+#include "xperror.h"
 #include "bit.h"
 #include "rules.h"
 #include "xinit.h"

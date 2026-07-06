@@ -21,10 +21,9 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: socklib.h,v 1.2 2007/09/27 22:19:46 kps Exp $ */
+#pragma once
 
-#ifndef SOCKLIB_H
-#define SOCKLIB_H
+#include <cstdlib>
 
 #define SOCK_HOSTNAME_LENGTH 256
 #define SOCK_FD_INVALID (-1)
@@ -110,5 +109,3 @@ int sock_set_receive_buffer_size(sock_t *sock, int size);
 int sock_set_send_buffer_size(sock_t *sock, int size);
 int sock_set_timeout(sock_t *sock, int seconds, int useconds);
 int sock_readable(sock_t *sock);
-
-#endif

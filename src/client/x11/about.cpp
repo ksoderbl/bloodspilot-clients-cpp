@@ -26,7 +26,7 @@
 /* $Id: about.c,v 1.13 2007/09/27 23:31:05 kps Exp $ */
 
 #include "xpclient_x11.h"
-#include "error.h"
+#include "xperror.h"
 #include "option.h"
 #include "proto.h"
 

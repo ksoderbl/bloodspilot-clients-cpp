@@ -26,7 +26,7 @@
 /* $Id: xpconfig.c,v 1.5 2007/09/27 22:19:46 kps Exp $ */
 
 #include "xpconfig.h"
-#include "error.h"
+#include "xperror.h"
 
 char *Conf_datadir(void)
 {

@@ -26,7 +26,7 @@
 /* $Id: bitmaps.c,v 1.8 2007/09/27 23:31:05 kps Exp $ */
 
 #include "xpclient_x11.h"
-#include "error.h"
+#include "xperror.h"
 #include "client.h"
 
 /* this gets rid of missing initializer warnings */

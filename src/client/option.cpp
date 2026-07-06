@@ -24,7 +24,7 @@
 #include "const.h"
 #include "portability.h"
 #include "proto.h"
-#include "error.h"
+#include "xperror.h"
 
 int num_options = 0;
 int max_options = 0;

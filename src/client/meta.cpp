@@ -27,7 +27,7 @@
 #include "metaserver.h"
 #include "sockbuf.h"
 #include "packet.h"
-#include "error.h"
+#include "xperror.h"
 #include "portability.h"
 #include "const.h"
 

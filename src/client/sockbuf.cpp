@@ -24,7 +24,7 @@
 /* $Id: sockbuf.c,v 1.3 2007/09/27 23:30:58 kps Exp $ */
 
 #include "const.h"
-#include "error.h"
+#include "xperror.h"
 #include "bit.h"
 #include "sockbuf.h"
 #include "socklib.h"

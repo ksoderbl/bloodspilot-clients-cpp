@@ -32,7 +32,7 @@
 #include "client.h"
 #include "setup.h"
 #include "rules.h"
-#include "error.h"
+#include "xperror.h"
 #include "bit.h"
 
 static int hudColor;	   /* Color index for HUD drawing */

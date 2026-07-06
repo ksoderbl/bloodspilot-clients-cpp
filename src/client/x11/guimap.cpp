@@ -29,7 +29,7 @@
 #include "setup.h"
 #include "global.h"
 #include "proto.h"
-#include "error.h"
+#include "xperror.h"
 #include "frame.h"
 #include "bit.h"
 #include "rules.h"

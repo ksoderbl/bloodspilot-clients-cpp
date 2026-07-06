@@ -27,7 +27,7 @@
 
 #include "gfx2d.h"
 #include "const.h"
-#include "error.h"
+#include "xperror.h"
 
 char *texturePath = NULL;	  /* Configured list of texture directories */
 char *realTexturePath = NULL; /* Real texture lookup path */

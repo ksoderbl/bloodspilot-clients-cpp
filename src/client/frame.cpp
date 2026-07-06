@@ -25,7 +25,7 @@
 
 #include "frame.h"
 #include "bit.h"
-#include "error.h"
+#include "xperror.h"
 #include "global.h"
 #include "other.h"
 #include "proto.h"

@@ -26,7 +26,7 @@
 /* $Id: colors.c,v 1.25 2007/11/23 12:53:21 kps Exp $ */
 
 #include "xpclient_x11.h"
-#include "error.h"
+#include "xperror.h"
 #include "option.h"
 #include "proto.h"
 

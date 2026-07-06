@@ -28,7 +28,7 @@
 /* $Id: widget.c,v 1.23 2007/12/01 16:57:19 kps Exp $ */
 
 #include "xpclient_x11.h"
-#include "error.h"
+#include "xperror.h"
 #include "option.h"
 
 typedef enum widget_type

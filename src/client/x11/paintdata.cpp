@@ -27,7 +27,7 @@
 
 #include "xpclient_x11.h"
 #include "client.h"
-#include "error.h"
+#include "xperror.h"
 
 typedef struct paintdata
 {

@@ -21,13 +21,32 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: socklib.c,v 1.4 2007/09/27 23:30:58 kps Exp $ */
+#include <cstring>
+#include <cstdlib>
+#include <cstdio>
+#include <csignal>
+#include <csetjmp>
+#include <cerrno>
+#include <ctime>
+#include <sys/types.h>
 
-#include "portability.h"
-#include "const.h"
+#include <unistd.h>
+#include <sys/param.h>
+#include <sys/ioctl.h>
+#include <sys/time.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+
+#include <fcntl.h>
 
 /* Socklib Includes And Definitions */
 #include "socklib.h"
+
+#include "portability.h"
+#include "const.h"
 
 /* Debug macro */
 #ifdef DEBUG

@@ -18,11 +18,9 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: clientrank.c,v 1.4 2007/09/27 23:30:58 kps Exp $ */
-
 #include "const.h"
 #include "clientrank.h"
-#include "error.h"
+#include "xperror.h"
 
 #define MAX_SCORES 500
 

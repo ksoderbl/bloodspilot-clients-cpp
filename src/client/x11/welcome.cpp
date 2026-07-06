@@ -33,7 +33,7 @@
 #include "xpclient_x11.h"
 #include "datagram.h"
 #include "meta.h"
-#include "error.h"
+#include "xperror.h"
 #include "proto.h"
 
 /*

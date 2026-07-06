@@ -26,8 +26,18 @@
  * This file contains function wrappers around OS specific services.
  */
 
+#include <cstdarg>
+#include <cstdlib>
+#include <cstring>
+#include <cstdio>
+#include <cmath>
+#include <cctype>
+
+#include <unistd.h>
+#include <pwd.h>
+
 #include "portability.h"
-#include "error.h"
+#include "xperror.h"
 
 /*
  * OS dependant implementation of usleep().
@@ -152,9 +162,9 @@ char *xp_safe_strdup(const char *old_string)
 #ifndef HAVE_STRLCPY
 size_t strlcpy(char *dest, const char *src, size_t size)
 {
-	register char *d = dest;
-	register const char *s = src;
-	register char *maxd = dest + (size - 1);
+	char *d = dest;
+	const char *s = src;
+	char *maxd = dest + (size - 1);
 
 	if (size > 0)
 	{
@@ -193,9 +203,9 @@ size_t strlcpy(char *dest, const char *src, size_t size)
 #ifndef HAVE_STRLCAT
 size_t strlcat(char *dest, const char *src, size_t size)
 {
-	register char *d = dest;
-	register const char *s = src;
-	register char *maxd = dest + (size - 1);
+	char *d = dest;
+	const char *s = src;
+	char *maxd = dest + (size - 1);
 	size_t dlen = 0;
 
 	if (size > 0)

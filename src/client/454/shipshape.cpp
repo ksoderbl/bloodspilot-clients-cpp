@@ -43,7 +43,7 @@
 #include "xpconfig.h"
 #include "const.h"
 #include "draw.h"
-#include "error.h"
+#include "xperror.h"
 
 static int debugShapeParsing = 0;
 static int verboseShapeParsing;

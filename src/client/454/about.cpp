@@ -47,7 +47,7 @@
 #include "xinit.h"
 #include "widget.h"
 #include "configure.h"
-#include "error.h"
+#include "xperror.h"
 #include "netclient.h"
 #include "dbuff.h"
 #include "protoclient.h"

@@ -19,7 +19,7 @@
  */
 
 #include "const.h"
-#include "error.h"
+#include "xperror.h"
 #include "gfx2d.h"
 #include "portability.h"
 #include "socklib.h"

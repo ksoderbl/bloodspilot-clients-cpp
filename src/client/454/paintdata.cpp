@@ -40,7 +40,7 @@
 #include "version.h"
 #include "xpconfig.h"
 #include "const.h"
-#include "error.h"
+#include "xperror.h"
 #include "bit.h"
 #include "client.h"
 #include "setup.h"

@@ -31,7 +31,7 @@
 #include "pack-ng.h"
 #include "global.h"
 #include "packet.h"
-#include "error.h"
+#include "xperror.h"
 #include "proto.h"
 #include "datagram.h"
 

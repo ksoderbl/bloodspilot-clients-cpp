@@ -26,7 +26,7 @@
 /* $Id: join.c,v 1.16 2007/10/30 15:38:41 kps Exp $ */
 
 #include "xpclient_x11.h"
-#include "error.h"
+#include "xperror.h"
 #include "proto.h"
 #include "frame.h"
 

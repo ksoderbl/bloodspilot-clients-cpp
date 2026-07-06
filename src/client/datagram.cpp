@@ -24,7 +24,7 @@
 /* $Id: datagram.c,v 1.2 2007/09/27 22:19:45 kps Exp $ */
 
 #include "datagram.h"
-#include "error.h"
+#include "xperror.h"
 
 int clientPortStart = 0; /* First UDP port for clients */
 int clientPortEnd = 0;	 /* Last one (these are for firewalls) */

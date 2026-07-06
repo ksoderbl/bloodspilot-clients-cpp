@@ -28,7 +28,7 @@
 #include "client.h"
 #include "bit.h"
 #include "rules.h"
-#include "error.h"
+#include "xperror.h"
 #include "proto.h"
 #include "const.h"
 #include "global.h"

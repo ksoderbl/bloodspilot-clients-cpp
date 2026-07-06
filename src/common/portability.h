@@ -22,11 +22,14 @@
  * <https://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 /*
  * Include portability related stuff in one file.
  */
-#ifndef PORTABILITY_H
-#define PORTABILITY_H
+#include <cstddef>
+
+#include <sys/time.h>
 
 #define PATHNAME_SEP '/'
 
@@ -91,5 +94,3 @@ static inline int timeval_sub(struct timeval *tv2, struct timeval *tv1)
 
 	return 1000000 * s + us;
 }
-
-#endif /* PORTABILITY_H */

@@ -21,8 +21,6 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: checknames.c,v 1.2 2007/09/27 22:19:45 kps Exp $ */
-
 #include "portability.h"
 #include "proto.h"
 

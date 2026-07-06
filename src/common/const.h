@@ -21,20 +21,10 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: const.h,v 1.24 2007/12/02 22:40:36 kps Exp $ */
+#pragma once
 
-#ifndef CONST_H
-#define CONST_H
-
-#ifndef SYSDEPS_H
-
-#endif
-#ifndef TYPES_H
 #include "types.h"
-#endif
-#ifndef PKTTYPES_H
 #include "pkttypes.h"
-#endif
 
 /* Not everyone has PI (or M_PI defined). */
 #ifndef M_PI
@@ -411,5 +401,3 @@ extern DFLOAT tbl_cos[];
 #define TALK_FAST_SPECIAL_TALK_CHAR '#'
 
 #define RECORD_HOST_NAME PACKAGE_STRING
-
-#endif

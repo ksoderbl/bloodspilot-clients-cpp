@@ -1,4 +1,4 @@
-/* 
+/*
  * Adapted from 'The UNIX Programming Environment' by Kernighan & Pike
  * and an example from the manualpage for vprintf by
  * Gaute Nessan, University of Tromsoe (gaute@staff.cs.uit.no).
@@ -6,8 +6,6 @@
  * Modified by Bjoern Stabell <bjoern@xpilot.org>.
  * Windows mods and memory leak detection by Dick Balaska <dick@xpilot.org>.
  */
-
-/* $Id: error.c,v 1.3 2007/09/27 22:19:46 kps Exp $ */
 
 #include "portability.h"
 
@@ -23,7 +21,7 @@
 /*
  * File local static data.
  */
-#define	MAX_PROG_LENGTH	32
+#define MAX_PROG_LENGTH 32
 static char progname[MAX_PROG_LENGTH];
 
 static const char *prog_basename(const char *prog)
@@ -39,13 +37,12 @@ static const char *prog_basename(const char *prog)
 #endif
 }
 
-
 /*
  * Functions.
  */
 void init_error(const char *prog)
 {
-	const char *p = prog_basename(prog);	/* Beautify argv[0] */
+	const char *p = prog_basename(prog); /* Beautify argv[0] */
 
 	strlcpy(progname, p, MAX_PROG_LENGTH);
 }
@@ -157,7 +154,7 @@ void dumpcore(const char *fmt, ...)
 
 	abort();
 }
-#endif				/* _WINDOWS */
+#endif /* _WINDOWS */
 
 #ifdef _WINDOWS
 static void Win_show_error(char *s)
@@ -168,7 +165,7 @@ static void Win_show_error(char *s)
 		return;
 	inerror = TRUE;
 	{
-#ifdef   _XPILOTNTSERVER_
+#ifdef _XPILOTNTSERVER_
 		/* putting up a message box on the server is a bad thing.
 		   It kinda halts the server, which is a bad thing to do for
 		   the simple info messages (nick in use) that call this routine

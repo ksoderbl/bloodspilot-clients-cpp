@@ -28,7 +28,7 @@
 #include "version.h"
 #include "xpconfig.h"
 #include "proto.h"
-#include "error.h"
+#include "xperror.h"
 #include "clientrank.h"
 
 char **Argv;

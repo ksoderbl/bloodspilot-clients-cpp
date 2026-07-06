@@ -25,7 +25,7 @@
 
 #include "proto.h"
 #include "const.h"
-#include "error.h"
+#include "xperror.h"
 #include "shipshape.h"
 
 static int debugShapeParsing = 0;

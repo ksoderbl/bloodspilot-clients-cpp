@@ -52,12 +52,10 @@
 ** $Id: randommt.c,v 1.2 2007/09/27 22:19:46 kps Exp $
 */
 
-
 /* Our exported interface: */
 void seedMT(unsigned int seed);
 unsigned int reloadMT(void);
 unsigned int randomMT(void);
-
 
 /*
 ** uint32 must be an unsigned integer type capable of holding at least 32
@@ -67,18 +65,17 @@ unsigned int randomMT(void);
 
 typedef unsigned int uint32;
 
-#define N              (624)	/* length of state vector */
-#define M              (397)	/* a period parameter */
-#define K              (0x9908B0DFU)	/* a magic constant */
-#define hiBit(u)       ((u) & 0x80000000U)	/* mask all but highest   bit of u */
-#define loBit(u)       ((u) & 0x00000001U)	/* mask all but lowest    bit of u */
-#define loBits(u)      ((u) & 0x7FFFFFFFU)	/* mask     the highest   bit of u */
-#define mixBits(u, v)  (hiBit(u)|loBits(v))	/* move hi bit of u to hi bit of v */
+#define N (624)								 /* length of state vector */
+#define M (397)								 /* a period parameter */
+#define K (0x9908B0DFU)						 /* a magic constant */
+#define hiBit(u) ((u) & 0x80000000U)		 /* mask all but highest   bit of u */
+#define loBit(u) ((u) & 0x00000001U)		 /* mask all but lowest    bit of u */
+#define loBits(u) ((u) & 0x7FFFFFFFU)		 /* mask     the highest   bit of u */
+#define mixBits(u, v) (hiBit(u) | loBits(v)) /* move hi bit of u to hi bit of v */
 
-static uint32 state[N + 1];	/* state vector + 1 extra to not violate ANSI C */
+static uint32 state[N + 1]; /* state vector + 1 extra to not violate ANSI C */
 static uint32 *next;		/* next random value is computed from here */
 static int left = -1;		/* can *next++ this many times before reloading */
-
 
 void seedMT(unsigned int seed)
 {
@@ -128,17 +125,17 @@ void seedMT(unsigned int seed)
 	 ** so-- that's why the only change I made is to restrict to odd seeds.
 	 */
 
-	register uint32 x = (seed | 1U) & 0xFFFFFFFFU, *s = state;
-	register int j;
+	uint32 x = (seed | 1U) & 0xFFFFFFFFU, *s = state;
+	int j;
 
-	for (left = 0, *s++ = x, j = N; --j; *s++ = (x *= 69069U) & 0xFFFFFFFFU);
+	for (left = 0, *s++ = x, j = N; --j; *s++ = (x *= 69069U) & 0xFFFFFFFFU)
+		;
 }
-
 
 unsigned int reloadMT(void)
 {
-	register uint32 *p0 = state, *p2 = state + 2, *pM = state + M, s0, s1;
-	register int j;
+	uint32 *p0 = state, *p2 = state + 2, *pM = state + M, s0, s1;
+	int j;
 
 	if (left < -1)
 		seedMT(4357U);
@@ -158,7 +155,6 @@ unsigned int reloadMT(void)
 	return (s1 ^ (s1 >> 18));
 }
 
-
 unsigned int randomMT(void)
 {
 	uint32 y;
@@ -172,7 +168,6 @@ unsigned int randomMT(void)
 	y ^= (y << 15) & 0xEFC60000U;
 	return (y ^ (y >> 18));
 }
-
 
 #ifdef MT_MAIN
 
@@ -194,7 +189,7 @@ int main(void)
 	/* print the first 2,002 random numbers seven to a line as an example */
 
 	for (j = 0; j < 2002; j++)
-		printf(" %10lu%s", (unsigned long) randomMT(), (j % 7) == 6 ? "\n" : "");
+		printf(" %10lu%s", (unsigned long)randomMT(), (j % 7) == 6 ? "\n" : "");
 
 	return (EXIT_SUCCESS);
 }

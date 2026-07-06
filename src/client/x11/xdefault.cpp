@@ -8,7 +8,7 @@
  *      Bert Gijsbers
  *      Dick Balaska
  *
- * Copyright (C) 2003-2004 Kristian S�derblom <kps@users.sourceforge.net>
+ * Copyright (C) 2003-2004 Kristian Söderblom
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@
 #include "xpclient_x11.h"
 #include "option.h"
 #include "proto.h"
-#include "error.h"
+#include "xperror.h"
 
 bool pre_exists = False;
 int pre_acc_num, new_acc_num = 0; /* pre are the Saved mouse settings */

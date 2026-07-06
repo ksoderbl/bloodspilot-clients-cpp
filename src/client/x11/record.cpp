@@ -30,7 +30,7 @@
 #include "setup.h"
 #include "option.h"
 #include "proto.h"
-#include "error.h"
+#include "xperror.h"
 #include "frame.h"
 
 /*

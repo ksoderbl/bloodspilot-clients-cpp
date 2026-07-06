@@ -30,7 +30,7 @@
 #include "proto.h"
 #include "frame.h"
 #include "setup.h"
-#include "error.h"
+#include "xperror.h"
 #include "packet.h"
 #include "datagram.h"
 #include "bit.h"

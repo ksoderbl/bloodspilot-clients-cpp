@@ -8,7 +8,7 @@
  *      Bert Gijsbers
  *      Dick Balaska
  *
- * Copyright (C) 2003 Kristian S�derblom <kps@users.sourceforge.net>
+ * Copyright (C) 2003 Kristian Söderblom
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

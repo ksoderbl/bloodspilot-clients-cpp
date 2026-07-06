@@ -29,7 +29,7 @@
 #endif
 
 #ifndef ERROR_H
-#include "error.h"
+#include "xperror.h"
 #endif
 
 static void Disable_emulate3buttons(bool disable, void *display);

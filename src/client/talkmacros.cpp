@@ -26,7 +26,7 @@
 /* $Id: talkmacros.c,v 1.10 2007/11/20 13:50:35 kps Exp $ */
 
 #include "bit.h"
-#include "error.h"
+#include "xperror.h"
 #include "frame.h"
 #include "global.h"
 #include "proto.h"

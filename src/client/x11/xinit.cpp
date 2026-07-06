@@ -26,7 +26,7 @@
 /* $Id: xinit.c,v 1.25 2007/11/23 14:34:07 kps Exp $ */
 
 #include "xpclient_x11.h"
-#include "error.h"
+#include "xperror.h"
 #include "version.h"
 #include "client.h"
 #include "icon.h"

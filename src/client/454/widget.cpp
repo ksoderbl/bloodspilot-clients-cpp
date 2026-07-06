@@ -48,7 +48,7 @@
 #include "paintdata.h"
 #include "xinit.h"
 #include "bit.h"
-#include "error.h"
+#include "xperror.h"
 #include "widget.h"
 #include "protoclient.h"
 #include "portability.h"

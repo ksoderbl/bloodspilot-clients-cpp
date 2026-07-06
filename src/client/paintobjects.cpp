@@ -30,7 +30,7 @@
 #include "global.h"
 #include "proto.h"
 #include "client.h"
-#include "error.h"
+#include "xperror.h"
 
 #define COLOR(i) (i / areas)
 #define BASE_X(i) (((i % x_areas) << 8) + ext_view_x_offset)

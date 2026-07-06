@@ -8,7 +8,7 @@
  *      Bert Gijsbers
  *      Dick Balaska
  *
- * Copyright (C) 2003-2004 Kristian S�derblom <kps@users.sourceforge.net>
+ * Copyright (C) 2003-2004 Kristian Söderblom
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-#include "error.h"
+#include "xperror.h"
 #include "option.h"
 #include "other.h"
 #include "pack.h"

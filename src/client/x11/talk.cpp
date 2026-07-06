@@ -26,7 +26,7 @@
 /* $Id: talk.c,v 1.21 2007/10/29 21:53:30 kps Exp $ */
 
 #include "xpclient_x11.h"
-#include "error.h"
+#include "xperror.h"
 #include "proto.h"
 
 /* Information window dimensions */
