@@ -1,17 +1,18 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(bloodspilot-clients VERSION 1.4.0 LANGUAGES C)
+project(bloodspilot-clients VERSION 1.4.0 LANGUAGES C CXX)
 
 include(GNUInstallDirs)
 include(CheckFunctionExists)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(BLOODSPILOT_BUILD_X11_CLIENT "Build the X11 client" ON)
 option(BLOODSPILOT_BUILD_454_CLIENT "Build the 4.5.4 style client" ON)
 option(BLOODSPILOT_BUILD_REPLAY "Build the replay program" ON)
 option(BLOODSPILOT_ENABLE_SOUND "Enable OpenAL sound support" OFF)
-
-set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Package-like values similar to autotools/config.h
 set(PACKAGE_NAME "BloodsPilot")
@@ -29,6 +30,8 @@ set(BLOODSPILOT_CONF_DATADIR "${BLOODSPILOT_PKGDATADIR}/")
 
 check_function_exists(strlcpy HAVE_STRLCPY)
 check_function_exists(strlcat HAVE_STRLCAT)
+check_function_exists(strcasecmp HAVE_STRCASECMP)
+check_function_exists(strncasecmp HAVE_STRNCASECMP)
 check_function_exists(gettimeofday HAVE_GETTIMEOFDAY)
 
 configure_file(
@@ -37,6 +40,7 @@ configure_file(
     @ONLY
 )
 
+find_package(PkgConfig REQUIRED)
 find_package(X11 REQUIRED)
 find_package(ZLIB QUIET)
 find_package(OpenGL QUIET)
@@ -67,22 +71,22 @@ endif()
 # )
 
 add_compile_options(
-    -Wall
-    -Wextra
-    -Wformat=2
-    -Wundef
-    -Wshadow
-    -Wpointer-arith
-    -Wcast-qual
-    -Wwrite-strings
-    -Wmissing-declarations
-    -Wuninitialized
-    -Winit-self
-    -Wredundant-decls
-    -Wstrict-prototypes
-    -Wmissing-prototypes
-    -Wold-style-definition
-    -Wno-unused-parameter
+    # -Wall
+    # -Wextra
+    # -Wformat=2
+    # -Wundef
+    # -Wshadow
+    # -Wpointer-arith
+    # -Wcast-qual
+    # -Wwrite-strings
+    # -Wmissing-declarations
+    # -Wuninitialized
+    # -Winit-self
+    # -Wredundant-decls
+    # -Wstrict-prototypes
+    # -Wmissing-prototypes
+    # -Wold-style-definition
+    # -Wno-unused-parameter
 )
 
 add_subdirectory(src)

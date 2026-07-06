@@ -1,12 +1,12 @@
 file(GLOB CLIENT_COMMON_SOURCES CONFIGURE_DEPENDS
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
 )
 
 # These are only compiled when sound is enabled.
 if(NOT BLOODSPILOT_ENABLE_SOUND)
     list(REMOVE_ITEM CLIENT_COMMON_SOURCES
-        "${CMAKE_CURRENT_SOURCE_DIR}/caudio.c"
-        "${CMAKE_CURRENT_SOURCE_DIR}/oalaudio.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/caudio.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/oalaudio.cpp"
     )
 endif()
 

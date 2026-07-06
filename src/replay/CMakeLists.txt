@@ -1,16 +1,16 @@
 file(GLOB REPLAY_SOURCES CONFIGURE_DEPENDS
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
 )
 
-add_executable(bloodspilot-replay ${REPLAY_SOURCES})
+add_executable(bloodspilot-cpp-replay ${REPLAY_SOURCES})
 
-target_include_directories(bloodspilot-replay
+target_include_directories(bloodspilot-cpp-replay
     PRIVATE
         ${PROJECT_SOURCE_DIR}/src/client
         ${PROJECT_BINARY_DIR}/generated
 )
 
-target_compile_definitions(bloodspilot-replay
+target_compile_definitions(bloodspilot-cpp-replay
     PRIVATE
         HAVE_CONFIG_H=1
         REPLAY=1
@@ -18,12 +18,12 @@ target_compile_definitions(bloodspilot-replay
         VERSION="${PROJECT_VERSION}"
 )
 
-target_link_libraries(bloodspilot-replay
+target_link_libraries(bloodspilot-cpp-replay
     PRIVATE
         X11::X11
         m
 )
 
-install(TARGETS bloodspilot-replay
+install(TARGETS bloodspilot-cpp-replay
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
