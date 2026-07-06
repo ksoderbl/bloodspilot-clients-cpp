@@ -1,0 +1,17 @@
+Ubuntu packages needed to compile bloodspilot2:
+
+make
+gcc
+libc6-dev
+zlib1g-dev (optional)
+libx11-dev
+libxxf86misc-dev (optional)
+
+libsdl-dev           (unless configuring with --disable-sdl-client)
+libsdl-ttf2.0-dev    (unless configuring with --disable-sdl-client)
+libsdl-image1.2-dev  (unless configuring with --disable-sdl-client)
+
+Useful for development:
+
+automake1.9
+autoconf

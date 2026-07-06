@@ -1,0 +1,195 @@
+2007-12-11  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* event.c: Lock next player with w and Page Down. Lock
+	next close with w. Fire shot with mousebutton1 or Down.
+
+	* default.c: Option newbie is removed because of the new
+	client and newbie player guides.
+	
+2007-12-02  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* event.c: Support basically arbitrary number of mouse buttons
+	(previously 5 were supported). For example, if you want to fire
+	shots with key x and with mouse button 456, you write in your
+	config: xpilot.keyFireShot: x mousebutton456
+
+2007-11-30  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/guimap.c: Draw walls in dark blue and filled by default.
+
+2007-11-29  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* event.c: Remove pointerButtonX options. Instead key names for
+	mouse buttons are used. E.g. instead of xpilot.pointerButton1:
+	keyFireShot the configuration is done by xpilot.keyFireShot:
+	mouseButton1.
+
+2007-11-23  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/: More sane handling of maxColors < 16: when drawing,
+	color indices that are >= maxColors are mapped to such that are
+	< maxColors.
+
+2007-11-01  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* default.c, x11/guimap.c: New options wallDrawMode and
+	decorDrawMode, which replace filledDecor, filledWorld,
+	outlineDecor, outlineWorld, showDecor, texturedDecor and
+	texturedWalls.	For wallDrawMode possible values are: 1: Grid
+	mode. Each wall block is painted.  2: Outline mode. Draws only
+	wall outlines. Fast.  3: Filled mode. Fills walls in a single
+	color.	4: Textured walls. Fills with textures if available.
+	Option decorDrawMode has the same possible values, and in
+	addition: 0: Don't draw.
+
+2007-10-30  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/paintmessages.c: Option ignoreColorCodes lets user disable
+	support for Q3 style color codes. Get rid of oldMessagesColor
+	option. All messages are painted in messagesColor only, except
+	when colored by ball messages scan or by color codes.
+
+2007-10-12  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* event.c: Default keys changed: keyTurnLeft to Left, keyTurnRight
+	to Right, keyThrust to Up, keyLockNext to Next (i.e. Page Down),
+	LeyLockPrev to Prior (i.e. Page Up), keyTalk to t, keyTeamTalk
+	to y, keyToggleScoreList to Tab, keyYes to F1, keyNo to F2.
+	Renamed function Find_option() to Get_option_by_name().
+	Get value of keyYes when pressing keyExit. If none is found,
+	set keyYes to F1.
+
+2007-10-11  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/paintmessages.c: Options talkMessagesLifeTime and
+	gameMessagesLifeTime which tell how long to show talk (top) and
+	game (bottom) messages.  * messages.c: New way of painting talk
+	messages. Instead of the old "Foo. [Bar]" format, the message
+	is shown as "Bar: Foo." and "Foo. [Bar]:[2]" is painted as "Bar:
+	2: Foo.".
+
+2007-10-08  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* event.c: Remove keyIdMode which toggles showing of player user
+	and host. Instead of this the player can use keyToggleScoreList
+	(default Tab).
+
+2007-10-06  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* default.c: The client supports nicks of up to 79 chars long and
+	sends exactly what the player specified to the server. Previously
+	the client would limit the nick to 15 characters and would
+	make certain other changes in the nick. For this feature to be
+	useful, the server also has to support long nicks and have less
+	restrictive rules about what nicks are allowed.  * x11/guimap.c:
+	Use function ColorDrawString to paint many of the in-game
+	text strings. Add shadows to most text on screen, painted in
+	shadowColor. This is useful when using textured or filled walls.
+
+2007-09-30  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/paintmessages.c: Implementation of multi-color
+	messages. Messages are colored using Quake III Arena style color
+	codes: http://wolfwiki.anime.net/index.php/Color_Codes
+
+2007-09-26  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/widget.c: Support Q3A color codes in color options
+	in xpilotrc, \get, \set, config window. This means that
+	e.g. xpilot.wallColor: ^4 works.
+
+2007-09-21  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/guimap.c: New scoreListColor option. Change default
+	visibility border color to dark gray.
+
+2007-09-21  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* event.c: Default recordfile is now bloodspilot.xpr and toggle
+	record button is F12.
+
+2007-09-18  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* shipshape.c: The client internally stores ship angles in
+	a float (radians). This system seems to support 69 million
+	different angles between 0 and 2*pi. The purpose is to later
+	extend the protocol and add support in the server for more than
+	128 different ship directions. Rotations are done in real time,
+	instead of using precomputed ship shapes.
+
+2007-09-16  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/painthud.c: Left adjust names in score list. Keeps them
+	farther away from the view.
+
+2007-09-11  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/: For color options, value 0 now means black and not "don't
+	draw". Color options can be set to value 'off', which means
+	"don't draw".
+
+2007-09-09  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/guimap.c: Paint enemy ships and self in life colors,
+	and teammates ship in blue with names below ships in life colors.
+
+2007-09-04  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* messages.c: Make messagesToStdout work as follows: 0: Don't.
+	1: Only player messages (top messages).  2: Player messages
+	and kill-/ballstats.  3: Player messages, kill-/ballstats and
+	server Default is 2.
+
+2007-09-03  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* event.c: Get rid of option keyPointerControl. Mouse control
+	is enabled by clicking the ship or its vicinity with left mouse
+	button. Mouse control is exited by pressing Escape.
+
+2007-09-02  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/guimap.c: Paint hud lock and bases with life colors (by
+	default yellow when one extra life is left, red on last life).
+
+2007-09-01  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/guiobjects.c: Don't paint the blue pause boxes on
+	bases. They can obscure ships and shots. That a player is paused
+	is still visible in the score list and in the base name string.
+
+2007-08-29  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/painthud.c: Remove hudLockColor option and oldstyle painting
+	of HUD lock dot, it is a useless distraction.
+
+2007-08-24  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/painthud.c: Added option hudRadarWallColor.
+
+	* x11/painthud.c: Print talk messages starting very close to
+	left border of window. Previously we had messages > 256 pixels
+	right of window left border.
+
+2007-08-23  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/painthud.c: Remove options hudHLineColor and
+	hudVLineColor. Remove options speedFactHUD and speedFactPTR.
+
+2007-08-22  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/painthud.c: Direction pointer (option dirPtrColor) drawing
+	is not any more affected by lag (RTT). Useful with dirPrediction.
+
+2007-08-17  Kristian Söderblom <kps@users.sourceforge.net>
+
+	* x11/painthud.c: Don't paint the old (xpilot.org/xpilot-ng)
+	radar in the upper left corner at all.
+
+	* all: Started merging BloodsPilot Client v1.3.7 with XPilot NG
+	Client v4.7.2.	Notable features in the BloodsPilot client were
+	a new way to paint the walls on the HUD Radar and a new score
+	list, which removed the need for a separate 256 pixel wide area
+	for radar and score list at the left side of the screen. Notable
+	features in the XPilot NG client were e.g. support for polygon
+	(NG) maps, and usability enhancements from Erik Andersson's
+	"marahacked" client, for example base warnings.

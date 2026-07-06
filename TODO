@@ -1,0 +1,253 @@
+
+done in 1.4.0:
+
+-remove RTT from dir ptr drawing (useful for dirPrediction)
+-filled world
+-hit area
+-dir ptr
+-click to enable mouse mode
+-lock should be better visible (use classic way)
+-weapon modifiers at left bottom of hud
+-keep altPower (not needed for bloods, but useful for ndh)
+-fix segfault on map fishtank.xp (memory allocation for
+ hud radar walls was broken if map width was bigger than
+ height)
+-Remove Lock, Modifiers and Fuel from ExtHUD, since they are
+ on the HUD. Would make additional room for stats in ExtHUD.
+-Some confusion with radarScale and hudRadarScale. They seem to
+ have different effect in current bpc-x11 and older (ng-)clients.
+ Scaling seems to be doubled in current bpc-x11. (1.3.8alpha2)
+ EXPLANATION: in bp client, hudRadar scale is invariant
+ of scaleFactor.
+-option hudRadarDotSize seems not working - removed because
+ server sends the dot sizes to client
+-Move the drawing of the hudWallRadar-basewarning to the normal
+ hudRadar (the flashing dot).
+ That makes it visible even if the hudWallRadar is toggled off.
+-scorelist should be toggleable. could begin just below the last line of 
+ maxMessages and probably extend upto the start of the servermessages
+ at the bottom (maxMessages)
+-use hudradarothercolor for any non-enemy, allies etc.
+-extend the drawing of the dirPointer to also draw the small
+ frontside line of the ship (move that from Mara's shipShapeHack to
+ the dirPointer code).  It helps to see the shipdirection better
+ (especially on small display).  Will also draw it if the ship is
+ cloaked or phased, which is nice and the shipShapeHack does not do.
+-problem: KP_enter not available on some laptops - solution:
+ use mouse button to enter mouse control mode, use Escape to exit;
+ remove keyPointerControl option
+-buttons to toggle ext hud radar (walls, bases on radar), score list,
+ "ext hud", messages
+-meta2 ip updated
+-The color config supports the text "off". It's more self explaining than
+ using color 0 (black) for "don't draw".
+-don't send team talkmacros if teamplay is off
+-don't clear talk window on Escape
+-make ball and cover indicator circles on ship bigger
+-don't put radar walls into recordings, they use too much space and
+ clutter the view
+-have abbreviated statsnames on ExtHUD, while still sending
+ the former unabbreviated stats to stdout (if selected).
+-make hudScale independent of scaleFactor
+-up to 48 colors in use for color options (16 xpilot colors + 32 "color code" colors)
+-recordings on poly maps record the style colors of polygons and edges
+-don't use xf86misc to check emulate3buttons due to problems on unstable debian
+
+done prior to 1.4.0:
+
+-what packages are required in ubuntu to compile
+ (problems with X headers, and possibly expat)
+-bloodspilot clients not available at sourceforge
+
+
+
+
+still todo:
+
+key to toggle hud behaviour ? (e.g. items on middle) ?
+
+kill/death streaks
+colors of ship names are confusing
+
+ < pgm> key config for 454 not compliant with ng
+
+
+
+22:30 < pgm> balls & shots & walls sometimes invisible(?)
+22:30 < pgm> use xev to find key names
+
+
+22:31 < pgm> problems with scalefactor in 454
+22:36 < pgm> shotsize
+
+
+
+
+-draw items just along the right border from bottom to top. possible exthud
+-could move to the left of the items (if any are displayed)
+-if windowheight is large enough that exthud and items fit,
+ then no need to indent exthud to the left of items.
+-items: i thought nearly like where they were in bp
+ just paint the items as far right as possible and the exthud indented
+ by the with of the items.
+ width (if the window is too small to paint exthud and items beneath each other)
+ not on the exthud infos, because you can not recognise the items then
+
+14:13 < Rotunda> kps, the messagebox in client should allow key auto-repeat
+14:13 < Rotunda> it's annoying to have to press one key several times e.g. to
+                 move the cursor
+
+15:08 < Rotunda> kps, handling of most signals should be changed as well
+15:08 < Rotunda> handling of SIGKILL cannot be changed, afaik
+15:08 < Rotunda> but for those which can, autorepeat should be restored
+15:09 < Rotunda> that eliminates the situation when the client  crashes,
+                 rendering the auto-repeat in X disabled
+
+- Problems with local 4.5.4 server running newdarkhell.xp.
+  After a while (maybe 10-15 mins) it stalls with
+  bpc-x11-1.3.8alpha: ERROR: send (1): (Connection refused)
+  bpc-x11-1.3.8alpha: ERROR: recv (1): (Connection refused)
+  bpc-x11-1.3.8alpha: WARNING: No response from server
+  _Server_ seemed to die/freeze. Did not occur again after the
+  segfault (wrong map size allocation) was fixed.
+
+- Scorelist could start one line higher and be also pushed down
+  when the "Quit | Menu" buttons are displayed (like messages).
+
+- Servermessages could be indented by the width of scorelist
+  if window is wide enough to still display the longest
+  (possible) message.
+  That would prevent painting the scorelist over the servermessages
+  if scorelist is very long (for example fishtank map).
+  Playermessages could be indented in the same way, so that
+  the scorelist could start at the top, left of the
+  playermessages.
+
+
+
+- Default of hudRadarWallColor (=15) is invisible on my display
+  (too dark).  Better use Color 13 (lighter grey).
+
+-----
+
+XPilot clients often exit on normal quit with an X11 error message:
+
+ X Error of failed request:  BadWindow (invalid Window parameter)
+   Major opcode of failed request:  2 (X_ChangeWindowAttributes)
+   Resource id in failed request:  0x80012c
+   Serial number of failed request:  2600340
+   Current serial number in output stream:  2600345
+
+and exit status = 1.  The first 2 lines are always the same,
+the last 3 differ (depend on length of game i guess).
+My X-Server is XFree86 Version 4.5.0 on NetBSD 3.0.1.
+
+---
+sort key configure widgets either by option name or key name
+
+
+- Find an algorithm to define the startpositions for drawing of
+  Messages, Servermessages, Scorelist and ExtHUD. Goal is to
+  minimize overlap while drawing as much info as fits.
+
+
+- I would like one baseWarningType to have flashing base name
+  and flashing time meter, without displaying a shipshape,
+  like in 1.3.7.
+  The warns displaying a ship (and to a lesser extend a damaged/
+  phased/cloaked ship) i find irritating. If I don't look really
+  carefull, it seems the ship is already respawned, though the
+  countdown is still ticking.
+
+- The new menu stays open if i open it holding down left mousebutton,
+  releasing it outside the menu and then return to play.
+
+- The temporary power- and turnspeed meters are deleted and
+  their values are now shown numerically in the ExtHUD (as well
+  as the packet meters).
+  Draw the power and turnspeed values in temporaryMeterColor
+  for some seconds if they changed. The delay used for their
+  meters in older clients was good, though i don't know
+  what value was taken there and if it was hardcoded. About
+  3 secs would seem sensible. Though the tempmeter was displayed
+  longer, the values can be emphasized shorter if they are
+  shown permanent.
+  Useful with keySwapSettings on newdarkhell.xp to swap to
+  lower power if low on fuel (and having many afterburners),
+  to keep the ship controlable.
+
+
+
+http://sourceforge.net/tracker/index.php?func=detail&aid=1785690&group_id=147895&atid=769892
+
+- You may like setting oldMessagesColor=0 to make the messages disappear
+  fast.  This reveals, that it is no clean/good idea, to use values or
+  options in places where they were not intended for -> oldMessagesColor
+  is also used for the ExtHUD and for the scorelist headlines.  They
+  have nothing in common with old messages in terms of function and
+  should therefore have either their own options, or hardcoded colors.
+
+  Maybe make options for normalTextColor, emphasizedTextColor and
+  unimportantTextColor.  These could be used more universally (e.g.
+  in scorelist, for ExtHUD, for texts in the config window etc.).
+
+
+
+- Create a discussion forum for players to state their opinion about
+  usefulness/improvements of options, functionality and other issues.
+  The need to create an account on sourceforge just to post in the
+  available forums is unacceptable to me (i guess it shall prevent
+  spamming/flaming).
+
+  Oh, just discovered the tracker on the bp-sf site.  That seems to
+  allow anonymous discussion.  Make links on the project web site
+  http://bloodspilot.sourceforge.net to the tracker
+  http://sourceforge.net/tracker/?group_id=147895 and to the
+  sf-project http://sourceforge.net/projects/bloodspilot
+  and invite people to state their opinion.
+  Should be a better place for discussion than doing it in the game,
+  that destroys the game.
+
+- Create a reusable text entry widget, that can be used for the
+  messagebox and in the config windows.
+  Can replace all those number displays with "<" and ">" arrows
+  beside, which make it complicated/inprecise to change values.
+  The arrows can still remain (for quick small changes).  Could
+  also be used in the key config.
+  Maybe the current messagebox widget can be adapted to achive
+  this.
+
+- For each config editor (General Config, Color Config and
+  Key Config) save the topmost option (-number) on exit.
+  Next time that config editor is reopened it can immediately
+  show the last used page (starting at that saved option).
+  Would also work if the window was resized in the meantime
+  (which the 4.5.4 client does not do, instead it starts at
+  the very first option after a resize).
+  Should improve usability (especially with many options or
+  small windowsize).
+
+- Make an option to switch the CapsLock key off if the
+  messagebox is opened or if the bloodspilot client window
+  looses input focus.  Should prevent UNWanted de-/
+  capitalization.
+
+http://sourceforge.net/tracker/index.php?func=detail&aid=1786043&group_id=147895&atid=769892
+
+- In Key Config, the button to change should be drawn
+activated (e.g. dark background) after it was clicked
+and remain activated until a keypress occurred.
+Then it should deactivate and update it's contents.
+Otherwise it seems to work. Backspace does clear all
+keys for the current function. Maybe that is intended.?
+One could add an Undo button to the
+"Close | Prev | Next" button row. It would restore
+the previous settings for the last changed button,
+but only if that is displayed on the current page.
+So that the player does not accidentally undo some
+wrong function binding.
+
+- Maybe create some Categorys in this SF-Tracker:
+one for the Client, one for the server.
+
+
