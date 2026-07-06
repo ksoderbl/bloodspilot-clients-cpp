@@ -14,13 +14,12 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 /* $Id: color-codes.c,v 1.5 2007/11/11 20:25:50 kps Exp $ */
 
-#include "sysdeps.h"
 #include "const.h"
 
 /*
@@ -30,37 +29,37 @@
  */
 static int q3_colors[] = {
 	0x3f3f3f, /* should be 0x000000, black   e.g. 0 P p */
-	0xff0000,		/* red     e.g. 1 Q q */
-	0x00ff00,		/* green   e.g. 2 R r */
-	0xffff00,		/* yellow  e.g. 3 S s */
-	0x0000ff,		/* blue    e.g. 4 T t */
-	0x00ffff,		/* cyan    e.g. 5 U u */
-	0xff00ff,		/* magenta e.g. 6 V v */
-	0xffffff,		/* white   e.g. 7 W w */
-	0xff7f00,		/* orange  e.g. 8 X x */
-	0x7f7f7f,		/* gray    e.g. 9 Y y */
-	0xbfbfbf,		/* e.g. : Z z */
-	0xbfbfbf,		/* e.g. ; [ { */
-	0x007f00,		/* e.g. < \ | */
-	0x7f7f00,		/* e.g. = ] } */
-	0x00007f,		/* e.g. > ^ ~ */
-	0x7f0000,		/* e.g. ? _   */
-	0x7f3f00,		/* e.g. @     */
-	0xff9919,		/* e.g. ! A a */
-	0x007f7f,		/* e.g. " B b */
-	0x7f007f,		/* e.g. # C c */
-	0x007fff,		/* e.g. $ D d */
-	0x7f00ff,		/* e.g. % E e */
-	0x3399cc,		/* e.g. & F f */
-	0xccffcc,		/* e.g. ' G g */
-	0x006633,		/* e.g. ( H h */
-	0xff0033,		/* e.g. ) I i */
-	0xb21919,		/* e.g. * J j */
-	0x993300,		/* e.g. + K k */
-	0xcc9933,		/* e.g. , L l */
-	0x999933,		/* e.g. - M m */
-	0xffffbf,		/* e.g. . N n */
-	0xffff7f		/* e.g. / O o */
+	0xff0000, /* red     e.g. 1 Q q */
+	0x00ff00, /* green   e.g. 2 R r */
+	0xffff00, /* yellow  e.g. 3 S s */
+	0x0000ff, /* blue    e.g. 4 T t */
+	0x00ffff, /* cyan    e.g. 5 U u */
+	0xff00ff, /* magenta e.g. 6 V v */
+	0xffffff, /* white   e.g. 7 W w */
+	0xff7f00, /* orange  e.g. 8 X x */
+	0x7f7f7f, /* gray    e.g. 9 Y y */
+	0xbfbfbf, /* e.g. : Z z */
+	0xbfbfbf, /* e.g. ; [ { */
+	0x007f00, /* e.g. < \ | */
+	0x7f7f00, /* e.g. = ] } */
+	0x00007f, /* e.g. > ^ ~ */
+	0x7f0000, /* e.g. ? _   */
+	0x7f3f00, /* e.g. @     */
+	0xff9919, /* e.g. ! A a */
+	0x007f7f, /* e.g. " B b */
+	0x7f007f, /* e.g. # C c */
+	0x007fff, /* e.g. $ D d */
+	0x7f00ff, /* e.g. % E e */
+	0x3399cc, /* e.g. & F f */
+	0xccffcc, /* e.g. ' G g */
+	0x006633, /* e.g. ( H h */
+	0xff0033, /* e.g. ) I i */
+	0xb21919, /* e.g. * J j */
+	0x993300, /* e.g. + K k */
+	0xcc9933, /* e.g. , L l */
+	0x999933, /* e.g. - M m */
+	0xffffbf, /* e.g. . N n */
+	0xffff7f  /* e.g. / O o */
 };
 
 int Index_by_color_code(int ascii_char)
@@ -82,9 +81,9 @@ int RGB_by_index(int ind)
 /* Inverse of index_by_color_code(). */
 char Color_code_by_index(int ind)
 {
-	assert(ind >= 0 && ind <= 31);	/* for now */
+	assert(ind >= 0 && ind <= 31); /* for now */
 	ind = ind & 31;
-	return (char) ('0' + ind);
+	return (char)('0' + ind);
 }
 
 /*
@@ -94,7 +93,8 @@ char Color_code_by_index(int ind)
  */
 int XPilot_color(int ind)
 {
-	switch (ind) {
+	switch (ind)
+	{
 	case 0:
 		return BLACK;
 	case 7:

@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2005 by
  *
- *      Lars Dießelberg       <marvn@users.sourceforge.net>
+ *      Lars Dieï¿½elberg       <marvn@users.sourceforge.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 #ifndef XHACKS_H
@@ -37,7 +37,7 @@ static void Disable_emulate3buttons(bool disable, void *display);
 /*
  * If disable==true, the function tries to deactivate the Emulate3Buttons
  * X server option if it was enabled. On some systems the request for setting
- * the Emulate3Buttons option to false is ignored, it tries only setting the 
+ * the Emulate3Buttons option to false is ignored, it tries only setting the
  * Emulate3Buttons-timeout to 0 then. In any case, it prints a warning for the
  * user. When disable==false is specified, the system's settings are reset
  * to its original state.
@@ -57,20 +57,22 @@ static void Disable_emulate3buttons(bool disable, void *display)
 	if (!disable)
 		return;
 
-	status = XF86MiscGetMouseSettings((Display *) display, &m);
-	if (status != 1) {
+	status = XF86MiscGetMouseSettings((Display *)display, &m);
+	if (status != 1)
+	{
 		warn("Failed to retrieve mouse settings from X server.");
 		return;
 	}
 
-	if (m.emulate3buttons) {
+	if (m.emulate3buttons)
+	{
 		warn("*** Emulate3Buttons is enabled.");
 		warn("*** This may cause lost and/or laggy mouse button events.");
 		warn("*** More info at: http://xpilot.sourceforge.net/faq.html");
 		return;
 	}
 #else
-/*#define XF86DEBUG*/
+	/*#define XF86DEBUG*/
 	static bool first_run = true;
 	static bool working = true;
 	static bool already_warned = false;
@@ -81,8 +83,9 @@ static void Disable_emulate3buttons(bool disable, void *display)
 	if (!working)
 		return;
 
-	status = XF86MiscGetMouseSettings((Display *) display, &m);
-	if (status != 1) {
+	status = XF86MiscGetMouseSettings((Display *)display, &m);
+	if (status != 1)
+	{
 		warn("Failed to retrieve mouse settings from X server.");
 		working = false;
 		return;
@@ -103,13 +106,16 @@ static void Disable_emulate3buttons(bool disable, void *display)
 	warn("flags           : 0x%x", m.flags);
 #endif
 
-	if (first_run) {
-		if (m.emulate3buttons) {
+	if (first_run)
+	{
+		if (m.emulate3buttons)
+		{
 			warn("*** Warning: Emulate3Buttons is enabled.");
 			orig_timeout = m.emulate3timeout;
 		}
-		else {
-			working = false;	/* Emulate3Buttons disabled from the start, so function is turned inactive */
+		else
+		{
+			working = false; /* Emulate3Buttons disabled from the start, so function is turned inactive */
 			return;
 		}
 	}
@@ -123,8 +129,9 @@ static void Disable_emulate3buttons(bool disable, void *display)
 	warn("wanted timeout  : %d", m.emulate3timeout);
 #endif
 
-	status = XF86MiscSetMouseSettings((Display *) display, &m);
-	if (status != 1) {
+	status = XF86MiscSetMouseSettings((Display *)display, &m);
+	if (status != 1)
+	{
 		warn("*** Warning: Failed to set X server mouse settings. Fix your X configuration, please.");
 		working = false;
 		return;
@@ -134,7 +141,7 @@ static void Disable_emulate3buttons(bool disable, void *display)
 	warn("status          : %d", status);
 #endif
 
-	XF86MiscGetMouseSettings((Display *) display, &m);
+	XF86MiscGetMouseSettings((Display *)display, &m);
 
 #ifdef XF86DEBUG
 	warn("--- 2nd get ---");
@@ -151,10 +158,12 @@ static void Disable_emulate3buttons(bool disable, void *display)
 	warn("flags           : 0x%x", m.flags);
 #endif
 
-	if (m.emulate3buttons != (!disable) && !already_warned) {
+	if (m.emulate3buttons != (!disable) && !already_warned)
+	{
 		warn("*** Warning: Failed to disable Emulate3Buttons. Just setting timeout to 0.");
 		already_warned = true;
-		if (m.emulate3timeout != (disable ? 0 : orig_timeout)) {
+		if (m.emulate3timeout != (disable ? 0 : orig_timeout))
+		{
 			warn("*** Warning: Can't set timeout. Giving up...");
 			working = false;
 		}

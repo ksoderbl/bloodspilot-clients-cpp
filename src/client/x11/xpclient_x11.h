@@ -1,7 +1,7 @@
-/* 
+/*
  * BloodsPilot, a multiplayer space war game.
  *
- * Copyright (C) 2003 Kristian Söderblom <kps@users.sourceforge.net>
+ * Copyright (C) 2003 Kristian Sï¿½derblom <kps@users.sourceforge.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,16 +14,14 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 /* $Id: xpclient_x11.h,v 1.5 2007/09/27 22:19:53 kps Exp $ */
 
 #ifndef XPCLIENT_X11_H
 #define XPCLIENT_X11_H
-
-#include "sysdeps.h"
 
 #include <X11/X.h>
 #include <X11/Xlib.h>
@@ -44,4 +42,4 @@
 #include "xinit.h"
 #include "xpaint.h"
 
-#endif				/* XPCLIENT_X11_H */
+#endif /* XPCLIENT_X11_H */

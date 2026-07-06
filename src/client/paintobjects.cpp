@@ -19,13 +19,12 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 /* $Id: paintobjects.c,v 1.10 2007/10/07 21:34:48 kps Exp $ */
 
-#include "sysdeps.h"
 #include "wreckshape.h"
 #include "frame.h"
 #include "global.h"

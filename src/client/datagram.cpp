@@ -17,13 +17,12 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 /* $Id: datagram.c,v 1.2 2007/09/27 22:19:45 kps Exp $ */
 
-#include "sysdeps.h"
 #include "datagram.h"
 #include "error.h"
 

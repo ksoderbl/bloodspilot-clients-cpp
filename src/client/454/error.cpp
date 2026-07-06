@@ -8,7 +8,6 @@
  * Windows mods and memory leak detection by Dick Balaska <dick@xpilot.org>.
  */
 
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -31,121 +30,120 @@ char error_version[] = VERSION;
  * error()		- perror() with printf functionality.
  */
 
-
-
 /*
  * File local static data.
  */
-#define	MAX_PROG_LENGTH	32
+#define MAX_PROG_LENGTH 32
 static char progname[MAX_PROG_LENGTH];
-
-
 
 static const char *prog_basename(const char *prog)
 {
 #ifndef _WINDOWS
-	char *p;
+    const char *p;
 
-	p = strrchr(prog, '/');
+    p = strrchr(prog, '/');
 
-	return (p != NULL) ? (p + 1) : prog;
+    return (p != NULL) ? (p + 1) : prog;
 #else
-	return "xpilot";
+    return "xpilot";
 #endif
 }
-
 
 /*
  * Functions.
  */
 void init_error(const char *prog)
 {
-	const char *p = prog_basename(prog);	/* Beautify arv[0] */
+    const char *p = prog_basename(prog); /* Beautify arv[0] */
 
-	strlcpy(progname, p, MAX_PROG_LENGTH);
+    strlcpy(progname, p, MAX_PROG_LENGTH);
 }
-
-
 
 /*
  * Ok, let's do it the ANSI C way.
  */
 void error(const char *fmt, ...)
 {
-	va_list ap;
-	int e = errno;
+    va_list ap;
+    int e = errno;
 
-	va_start(ap, fmt);
+    va_start(ap, fmt);
 
-	if (progname[0] != '\0') {
-		fprintf(stderr, "%s: ", progname);
-	}
+    if (progname[0] != '\0')
+    {
+        fprintf(stderr, "%s: ", progname);
+    }
 
-	vfprintf(stderr, fmt, ap);
+    vfprintf(stderr, fmt, ap);
 
-	if (e != 0) {
-		fprintf(stderr, ": (%s)", strerror(e));
-	}
-	fprintf(stderr, "\n");
+    if (e != 0)
+    {
+        fprintf(stderr, ": (%s)", strerror(e));
+    }
+    fprintf(stderr, "\n");
 
-	va_end(ap);
+    va_end(ap);
 }
 
 void warn(const char *fmt, ...)
 {
-	int len;
-	va_list ap;
+    int len;
+    va_list ap;
 
-	va_start(ap, fmt);
+    va_start(ap, fmt);
 
-	if (progname[0] != '\0') {
-		fprintf(stderr, "%s: ", progname);
-	}
+    if (progname[0] != '\0')
+    {
+        fprintf(stderr, "%s: ", progname);
+    }
 
-	vfprintf(stderr, fmt, ap);
+    vfprintf(stderr, fmt, ap);
 
-	len = strlen(fmt);
-	if (len == 0 || fmt[len - 1] != '\n') {
-		fprintf(stderr, "\n");
-	}
+    len = strlen(fmt);
+    if (len == 0 || fmt[len - 1] != '\n')
+    {
+        fprintf(stderr, "\n");
+    }
 
-	va_end(ap);
+    va_end(ap);
 }
 
 void fatal(const char *fmt, ...)
 {
-	va_list ap;
+    va_list ap;
 
-	va_start(ap, fmt);
+    va_start(ap, fmt);
 
-	if (progname[0] != '\0') {
-		fprintf(stderr, "%s: ", progname);
-	}
+    if (progname[0] != '\0')
+    {
+        fprintf(stderr, "%s: ", progname);
+    }
 
-	vfprintf(stderr, fmt, ap);
+    vfprintf(stderr, fmt, ap);
 
-	fprintf(stderr, "\n");
+    fprintf(stderr, "\n");
 
-	va_end(ap);
+    va_end(ap);
 
-	exit(1);
+    exit(1);
 }
 
 void dumpcore(const char *fmt, ...)
 {
-	va_list ap;
+    va_list ap;
 
-	va_start(ap, fmt);
+    va_start(ap, fmt);
 
-	if (progname[0] != '\0') {
-		fprintf(stderr, "%s: ", progname);
-	}
+    if (progname[0] != '\0')
+    {
+        fprintf(stderr, "%s: ", progname);
+    }
 
-	vfprintf(stderr, fmt, ap);
+    vfprintf(stderr, fmt, ap);
 
-	fprintf(stderr, "\n");
+    fprintf(stderr, "\n");
 
-	va_end(ap);
+    va_end(ap);
 
-	abort();
+    abort();
 }

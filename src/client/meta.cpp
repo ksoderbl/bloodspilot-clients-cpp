@@ -17,13 +17,12 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 /* $Id: meta.c,v 1.7 2007/11/28 18:27:51 kps Exp $ */
 
-#include "sysdeps.h"
 #include "meta.h"
 #include "metaserver.h"
 #include "sockbuf.h"

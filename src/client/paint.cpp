@@ -19,13 +19,11 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 /* $Id: paint.c,v 1.8 2007/10/11 11:32:48 kps Exp $ */
-
-#include "sysdeps.h"
 
 #include "bit.h"
 #include "frame.h"

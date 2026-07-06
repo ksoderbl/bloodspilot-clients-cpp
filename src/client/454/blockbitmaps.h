@@ -18,8 +18,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 #ifndef BLOCKBITMAPS_H
@@ -93,7 +93,7 @@ typedef struct
 /* XXX need comment about purpose of this structure. */
 typedef struct
 {
-	char *filename;
+	const char *filename;
 	int rotations;
 
 	int width, height;

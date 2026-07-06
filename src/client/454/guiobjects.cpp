@@ -18,8 +18,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 #include <stdlib.h>
@@ -806,8 +806,8 @@ static void Set_drawstyle_dashed(int ship_color, int cloak)
 static int set_shipshape(int world_x, int world_y, int dir, shipshape_t *ship, XPoint *points)
 {
 	int cnt;
-	register position_t *ship_point_pos;
-	register XPoint *xpts = points;
+	position_t *ship_point_pos;
+	XPoint *xpts = points;
 	int window_x;
 	int window_y;
 

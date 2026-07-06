@@ -14,13 +14,12 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 /* $Id: msg-bms.c,v 1.4 2007/10/18 11:31:13 kps Exp $ */
 
-#include "sysdeps.h"
 #include "bit.h"
 #include "const.h"
 #include "error.h"
@@ -32,8 +31,8 @@
 #include "types.h"
 #include "frame.h"
 
-static bool ball_shout;		/* Someone issued a ball warning? */
-static bool need_cover;		/* Someone wanted cover? */
+static bool ball_shout; /* Someone issued a ball warning? */
+static bool need_cover; /* Someone wanted cover? */
 
 /* Mara's ball message scan */
 msg_bms_t Msg_do_bms(const char *message)
@@ -59,27 +58,28 @@ msg_bms_t Msg_do_bms(const char *message)
 
 	/*check safe b4 ball */
 	if (strstr(message, safe_text1) ||
-	    strstr(message, safe_text2) || strstr(message, safe_text3)
-	    || strstr(message, safe_text4)) {
+		strstr(message, safe_text2) || strstr(message, safe_text3) || strstr(message, safe_text4))
+	{
 		return BmsSafe;
 	}
 
 	if (strstr(message, cover_text1) ||
-	    strstr(message, cover_text2) ||
-	    strstr(message, cover_text3) ||
-	    strstr(message, cover_text4) || strstr(message, cover_text5)
-	    || strstr(message, cover_text6)) {
+		strstr(message, cover_text2) ||
+		strstr(message, cover_text3) ||
+		strstr(message, cover_text4) || strstr(message, cover_text5) || strstr(message, cover_text6))
+	{
 		return BmsCover;
 	}
 
-	if (strstr(message, pop_text1) || strstr(message, pop_text2) || strstr(message, pop_text3)) {
+	if (strstr(message, pop_text1) || strstr(message, pop_text2) || strstr(message, pop_text3))
+	{
 		return BmsPop;
 	}
 
 	if (strstr(message, ball_text1) ||
-	    strstr(message, ball_text2) ||
-	    strstr(message, ball_text3) || strstr(message, ball_text4)
-	    || strstr(message, ball_text5)) {
+		strstr(message, ball_text2) ||
+		strstr(message, ball_text3) || strstr(message, ball_text4) || strstr(message, ball_text5))
+	{
 		return BmsBall;
 	}
 
@@ -93,7 +93,8 @@ static void Bms_clear(msg_bms_t type)
 {
 	int i;
 
-	for (i = 0; i < maxMessages; i++) {
+	for (i = 0; i < maxMessages; i++)
+	{
 		message_t *msg = Get_talk_message(i);
 
 		if (msg == NULL)
@@ -105,7 +106,8 @@ static void Bms_clear(msg_bms_t type)
 
 bool Bms_test_state(msg_bms_t bms)
 {
-	switch (bms) {
+	switch (bms)
+	{
 	case BmsBall:
 		return ball_shout;
 	case BmsCover:
@@ -122,7 +124,8 @@ bool Bms_test_state(msg_bms_t bms)
 
 void Bms_set_state(msg_bms_t bms)
 {
-	switch (bms) {
+	switch (bms)
+	{
 	case BmsBall:
 		ball_shout = true;
 		Bms_clear(BmsSafe);

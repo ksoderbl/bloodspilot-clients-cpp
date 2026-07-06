@@ -1,4 +1,4 @@
-/* 
+/*
  * BloodsPilot, a multiplayer space war game.
  *
  * Copyright (C) TODO Erik Andersson
@@ -14,13 +14,11 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 /* $Id: clientrank.c,v 1.4 2007/09/27 23:30:58 kps Exp $ */
-
-#include "sysdeps.h"
 
 #include "const.h"
 #include "clientrank.h"
@@ -59,15 +57,16 @@ static void swapi(int *i1, int *i2)
 	*i2 = i;
 }
 
-
 static void Time_Sort(void)
 {
 	int i;
 
-	for (i = 0; i < MAX_SCORES; i++) {
+	for (i = 0; i < MAX_SCORES; i++)
+	{
 		int j;
 
-		for (j = i + 1; j < MAX_SCORES; j++) {
+		for (j = i + 1; j < MAX_SCORES; j++)
+		{
 			if (scores[timesort[i]].timestamp < scores[timesort[j]].timestamp)
 				swapi(&timesort[i], &timesort[j]);
 		}
@@ -86,7 +85,8 @@ static void LegalizeName(char string[])
 	int i;
 
 	for (i = 0; i < length; i++)
-		switch (string[i]) {
+		switch (string[i])
+		{
 		case '<':
 		case '>':
 		case '\t':
@@ -100,82 +100,99 @@ static void LegalizeName(char string[])
 static void Rank_score(void)
 {
 	static const char header[] =
-	    "<html><head><title>Xpilot Clientrank - Evolved by Mara</title>\n"
-	    /* In order to save space/bandwidth, the table is saved as one */
-	    /* giant javascript file, instead of writing all the <TR>, <TD>, etc */
-	    "<SCRIPT language=\"Javascript\">\n<!-- Hide script\n"
-	    "function g(nick, kills, deaths, ratio) {\n"
-	    "document.write('<tr><td align=left><tt>', i, '</tt></td>');\n"
-	    "document.write('<td align=left><b>', nick, '</b></td>');\n"
-	    "document.write('<td align=right>', kills, '</td>');\n"
-	    "document.write('<td align=right>', deaths, '</td>');\n"
-	    "document.write('</td>');\n"
-	    "document.write('<td align=right>', ratio, '</td>');\n"
-	    "document.write('</tr>\\n');\n" "i = i + 1\n" "}\n// Hide script --></SCRIPT>\n"
-	    "</head><body>\n"
-	    /* Head of page */
-	    "<h1>XPilot Clientrank - Evolved by Mara</h1>"
-	    "<noscript>"
-	    "<blink><h1>YOU MUST HAVE JAVASCRIPT FOR THIS PAGE</h1></blink>"
-	    "Please go <A href=\"index_nojs.html\">here</A> for the non-js page"
-	    "</noscript>\n"
-	    "<table><tr><td></td>"
-	    "<td align=left><h1><u><b>Player</b></u></h1></td>"
-	    "<td align=right><h1><u><b>Kills</b></u></h1></td>"
-	    "<td align=right><h1><u><b>Deaths</b></u></h1></td>"
-	    "<td align=right><h1><u><b>Ratio</b></u></h1></td>"
-	    "</tr>\n" "<SCRIPT language=\"Javascript\">\n" "var i = 1\n";
+		"<html><head><title>Xpilot Clientrank - Evolved by Mara</title>\n"
+		/* In order to save space/bandwidth, the table is saved as one */
+		/* giant javascript file, instead of writing all the <TR>, <TD>, etc */
+		"<SCRIPT language=\"Javascript\">\n<!-- Hide script\n"
+		"function g(nick, kills, deaths, ratio) {\n"
+		"document.write('<tr><td align=left><tt>', i, '</tt></td>');\n"
+		"document.write('<td align=left><b>', nick, '</b></td>');\n"
+		"document.write('<td align=right>', kills, '</td>');\n"
+		"document.write('<td align=right>', deaths, '</td>');\n"
+		"document.write('</td>');\n"
+		"document.write('<td align=right>', ratio, '</td>');\n"
+		"document.write('</tr>\\n');\n"
+		"i = i + 1\n"
+		"}\n// Hide script --></SCRIPT>\n"
+		"</head><body>\n"
+		/* Head of page */
+		"<h1>XPilot Clientrank - Evolved by Mara</h1>"
+		"<noscript>"
+		"<blink><h1>YOU MUST HAVE JAVASCRIPT FOR THIS PAGE</h1></blink>"
+		"Please go <A href=\"index_nojs.html\">here</A> for the non-js page"
+		"</noscript>\n"
+		"<table><tr><td></td>"
+		"<td align=left><h1><u><b>Player</b></u></h1></td>"
+		"<td align=right><h1><u><b>Kills</b></u></h1></td>"
+		"<td align=right><h1><u><b>Deaths</b></u></h1></td>"
+		"<td align=right><h1><u><b>Ratio</b></u></h1></td>"
+		"</tr>\n"
+		"<SCRIPT language=\"Javascript\">\n"
+		"var i = 1\n";
 
 	static const char headernojs[] =
-	    "<html><head><title>XPilot Clientrank - Evolved by Mara</title>\n" "</head><body>\n"
-	    /* Head of page */
-	    "<h1>XPilot Clientrank</h1>"
-	    "<table><tr><td></td>"
-	    "<td align=left><h1><u><b>Player</b></u></h1></td>"
-	    "<td align=right><h1><u><b>Kills</b></u></h1></td>"
-	    "<td align=right><h1><u><b>Deaths</b></u></h1></td>"
-	    "<td align=right><h1><u><b>Ratio</b></u></h1></td>" "</tr>\n";
+		"<html><head><title>XPilot Clientrank - Evolved by Mara</title>\n"
+		"</head><body>\n"
+		/* Head of page */
+		"<h1>XPilot Clientrank</h1>"
+		"<table><tr><td></td>"
+		"<td align=left><h1><u><b>Player</b></u></h1></td>"
+		"<td align=right><h1><u><b>Kills</b></u></h1></td>"
+		"<td align=right><h1><u><b>Deaths</b></u></h1></td>"
+		"<td align=right><h1><u><b>Ratio</b></u></h1></td>"
+		"</tr>\n";
 
 	static const char footer[] =
-	    "</table>"
-	    "<i>Explanation for rank</i>:<br>"
-	    "The numbers are k/d/r, where<br>"
-	    "k = The number of times he has shot me<br>"
-	    "d = The number of time I have shot him<br>" "r = the quota between k and d<br>"
-	    "</body></html>";
+		"</table>"
+		"<i>Explanation for rank</i>:<br>"
+		"The numbers are k/d/r, where<br>"
+		"k = The number of times he has shot me<br>"
+		"d = The number of time I have shot him<br>"
+		"r = the quota between k and d<br>"
+		"</body></html>";
 
 	int i;
 
-	for (i = 0; i < MAX_SCORES; i++) {
+	for (i = 0; i < MAX_SCORES; i++)
+	{
 		kdsort[i] = i;
 		kd[i] =
-		    (scores[i].deaths !=
-		     0.0) ? ((double) (scores[i].kills) / (double) (scores[i].deaths)) : 0.0;
+			(scores[i].deaths !=
+			 0.0)
+				? ((double)(scores[i].kills) / (double)(scores[i].deaths))
+				: 0.0;
 	}
 
-	for (i = 0; i < MAX_SCORES; i++) {
+	for (i = 0; i < MAX_SCORES; i++)
+	{
 		int j;
 
-		for (j = i + 1; j < MAX_SCORES; j++) {
-			if (kd[i] < kd[j]) {
+		for (j = i + 1; j < MAX_SCORES; j++)
+		{
+			if (kd[i] < kd[j])
+			{
 				swapi(&kdsort[i], &kdsort[j]);
 				swapd(&kd[i], &kd[j]);
 			}
 		}
 	}
 
-	if (strlen(clientRankHTMLFile) > 0) {
+	if (strlen(clientRankHTMLFile) > 0)
+	{
 		FILE *const file = fopen(clientRankHTMLFile, "w");
 
-		if (file != NULL && fseek(file, 2000, SEEK_SET) == 0) {
+		if (file != NULL && fseek(file, 2000, SEEK_SET) == 0)
+		{
 			fprintf(file, "%s", header);
-			for (i = 0; i < MAX_SCORES; i++) {
-				if (scores[kdsort[i]].nick[0] != '\0') {
+			for (i = 0; i < MAX_SCORES; i++)
+			{
+				if (scores[kdsort[i]].nick[0] != '\0')
+				{
 					LegalizeName(scores[kdsort[i]].nick);
 					fprintf(file, "g(\"%s\", %u, %u, %.3f);\n",
-						scores[kdsort[i]].nick,
-						scores[kdsort[i]].kills, scores[kdsort[i]].deaths,
-						kd[i]);
+							scores[kdsort[i]].nick,
+							scores[kdsort[i]].kills, scores[kdsort[i]].deaths,
+							kd[i]);
 				}
 			}
 			fprintf(file, "</script>");
@@ -184,25 +201,29 @@ static void Rank_score(void)
 		}
 	}
 
-	if (strlen(clientRankHTMLNOJSFile) > 0) {
+	if (strlen(clientRankHTMLNOJSFile) > 0)
+	{
 		FILE *const file = fopen(clientRankHTMLNOJSFile, "w");
 
-		if (file != NULL && fseek(file, 2000, SEEK_SET) == 0) {
+		if (file != NULL && fseek(file, 2000, SEEK_SET) == 0)
+		{
 			fprintf(file, "%s", headernojs);
-			for (i = 0; i < MAX_SCORES; i++) {
-				if (scores[kdsort[i]].nick[0] != '\0') {
+			for (i = 0; i < MAX_SCORES; i++)
+			{
+				if (scores[kdsort[i]].nick[0] != '\0')
+				{
 					LegalizeName(scores[kdsort[i]].nick);
 					fprintf(file,
-						"<tr><td align=left><tt>%d</tt>"
-						"<td align=left><b>%s</b>"
-						"<td align=right>%u"
-						"<td align=right>%u"
-						"<td align=right>%.3f"
-						"</tr>\n",
-						i + 1,
-						scores[kdsort[i]].nick,
-						scores[kdsort[i]].kills, scores[kdsort[i]].deaths,
-						kd[i]);
+							"<tr><td align=left><tt>%d</tt>"
+							"<td align=left><b>%s</b>"
+							"<td align=right>%u"
+							"<td align=right>%u"
+							"<td align=right>%.3f"
+							"</tr>\n",
+							i + 1,
+							scores[kdsort[i]].nick,
+							scores[kdsort[i]].kills, scores[kdsort[i]].deaths,
+							kd[i]);
 				}
 			}
 			fprintf(file, footer);
@@ -211,10 +232,11 @@ static void Rank_score(void)
 	}
 
 	if (strlen(clientRankHTMLFile) == 0 && strlen(clientRankHTMLNOJSFile) == 0)
-		warn("You have not specified clientRankHTMLFile or " "clientRankHTMLNOJSFile.");
+		warn("You have not specified clientRankHTMLFile or "
+			 "clientRankHTMLNOJSFile.");
 }
 
-static void Init_scorenode(ScoreNode * node, const char nick[])
+static void Init_scorenode(ScoreNode *node, const char nick[])
 {
 	strcpy(node->nick, nick);
 	node->kills = 0;
@@ -229,12 +251,14 @@ void Init_saved_scores(void)
 {
 	int i = 0;
 
-	if (strlen(clientRankFile) > 0) {
+	if (strlen(clientRankFile) > 0)
+	{
 		FILE *file = fopen(clientRankFile, "r");
 
-		if (file != NULL) {
+		if (file != NULL)
+		{
 			const int actual = fread(scores, sizeof(ScoreNode),
-						 MAX_SCORES, file);
+									 MAX_SCORES, file);
 			if (actual != MAX_SCORES)
 				warn("Error when reading score file!\n");
 
@@ -245,7 +269,8 @@ void Init_saved_scores(void)
 		client_Scoring = true;
 	}
 
-	while (i < MAX_SCORES) {
+	while (i < MAX_SCORES)
+	{
 		Init_scorenode(&scores[i], "");
 		scores[i].timestamp = 0;
 		timesort[i] = i;
@@ -260,7 +285,8 @@ static int Get_saved_score(char *nick)
 	int oldest = 0;
 	int i;
 
-	for (i = 0; i < MAX_SCORES; i++) {
+	for (i = 0; i < MAX_SCORES; i++)
+	{
 		if (strcmp(nick, scores[i].nick) == 0)
 			return i;
 		if (scores[i].timestamp < scores[oldest].timestamp)
@@ -272,11 +298,11 @@ static int Get_saved_score(char *nick)
 	return oldest;
 }
 
-
 static int Find_player(char *nick)
 {
 	int i;
-	for (i = 0; i < 10; i++) {
+	for (i = 0; i < 10; i++)
+	{
 		/*if (scores[recent[i]].timestamp > 0) { */
 		if (strcmp(nick, scores[recent[i]].nick) == 0)
 			return i;
@@ -287,7 +313,6 @@ static int Find_player(char *nick)
 	oldest_cache = (oldest_cache + 1) / 10;
 	return i;
 }
-
 
 void Add_rank_Kill(char *nick)
 {
@@ -319,16 +344,16 @@ int Get_deaths(char *nick)
 	return scores[recent[i]].deaths;
 }
 
-
 /* Save the scores to disk (not the webpage). */
 void Print_saved_scores(void)
 {
 	FILE *file = NULL;
 
 	Rank_score();
-	if (strlen(clientRankFile) > 0 && (file = fopen(clientRankFile, "w")) != NULL) {
+	if (strlen(clientRankFile) > 0 && (file = fopen(clientRankFile, "w")) != NULL)
+	{
 		const int actual = fwrite(scores, sizeof(ScoreNode),
-					  MAX_SCORES, file);
+								  MAX_SCORES, file);
 		if (actual != MAX_SCORES)
 			warn("Error when writing score file!\n");
 

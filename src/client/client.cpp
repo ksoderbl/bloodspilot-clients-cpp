@@ -19,13 +19,11 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
+ * <https://www.gnu.org/licenses/>.
  */
 
 /* $Id: client.c,v 1.24 2007/11/12 00:13:17 kps Exp $ */
-
-#include "sysdeps.h"
 
 #include "client.h"
 #include "bit.h"
