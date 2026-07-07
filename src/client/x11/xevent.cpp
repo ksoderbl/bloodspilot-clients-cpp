@@ -41,8 +41,6 @@ keys_t Lookup_key(XEvent *event, KeySym ks, bool reset)
 {
 	keys_t ret = Generic_lookup_key((xp_keysym_t)ks, reset);
 
-	UNUSED_PARAM(event);
-
 #ifdef DEVELOPMENT
 	if (reset && ret == KEY_DUMMY)
 	{

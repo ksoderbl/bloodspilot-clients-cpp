@@ -1,7 +1,7 @@
 /*
  * BloodsPilot, a multiplayer space war game.
  *
- * Copyright (C) 2003 Darel Cullen <darelcullen@users.sourceforge.net>
+ * Copyright (C) 2003 Darel Cullen
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

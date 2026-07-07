@@ -126,7 +126,6 @@ extern double tbl_cos[];
         } while (0)
 
 /* Use this to remove unused parameter warning. */
-#define UNUSED_PARAM(x) x = x
 
 /* Do NOT change these! */
 #define OLD_MAX_CHECKS 26

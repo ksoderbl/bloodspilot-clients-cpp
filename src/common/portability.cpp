@@ -26,6 +26,8 @@
  * This file contains function wrappers around OS specific services.
  */
 
+#include "config.h"
+
 #include <cstdarg>
 #include <cstdlib>
 #include <cstring>
@@ -58,12 +60,12 @@ int micro_delay(unsigned usec)
 #if 0 /* SYSV */
 	poll((struct poll *) 0, (size_t) 0, usec / 1000);	/* ms RES */
 #endif
-	struct timeval timeout;
-	timeout.tv_usec = usec % (unsigned long)1000000;
-	timeout.tv_sec = usec / (unsigned long)1000000;
-	(void)select(0, NULL, NULL, NULL, &timeout);
+    struct timeval timeout;
+    timeout.tv_usec = usec % (unsigned long)1000000;
+    timeout.tv_sec = usec / (unsigned long)1000000;
+    (void)select(0, NULL, NULL, NULL, &timeout);
 
-	return 0;
+    return 0;
 }
 
 /*
@@ -75,17 +77,17 @@ int micro_delay(unsigned usec)
 #ifndef HAVE_STRCASECMP
 int strcasecmp(const char *str1, const char *str2)
 {
-	int c1, c2;
+    int c1, c2;
 
-	do
-	{
-		c1 = *str1++;
-		c2 = *str2++;
-		c1 = tolower(c1);
-		c2 = tolower(c2);
-	} while (c1 == c2 && c1 != 0);
+    do
+    {
+        c1 = *str1++;
+        c2 = *str2++;
+        c1 = tolower(c1);
+        c2 = tolower(c2);
+    } while (c1 == c2 && c1 != 0);
 
-	return (c1 - c2);
+    return (c1 - c2);
 }
 #endif
 
@@ -95,282 +97,213 @@ int strcasecmp(const char *str1, const char *str2)
 #ifndef HAVE_STRNCASECMP
 int strncasecmp(const char *str1, const char *str2, size_t n)
 {
-	int c1, c2;
+    int c1, c2;
 
-	do
-	{
-		if (n-- <= 0)
-		{
-			return 0;
-		}
-		c1 = *str1++;
-		c2 = *str2++;
-		c1 = tolower(c1);
-		c2 = tolower(c2);
-	} while (c1 == c2 && c1 != 0);
+    do
+    {
+        if (n-- <= 0)
+        {
+            return 0;
+        }
+        c1 = *str1++;
+        c2 = *str2++;
+        c1 = tolower(c1);
+        c2 = tolower(c2);
+    } while (c1 == c2 && c1 != 0);
 
-	return (c1 - c2);
+    return (c1 - c2);
 }
 #endif
 
 #ifndef HAVE_STRDUP
 char *strdup(const char *old_string)
 {
-	char *new_string;
-	size_t string_length;
+    char *new_string;
+    size_t string_length;
 
-	string_length = strlen(old_string);
-	new_string = (char *)malloc(string_length + 1);
-	if (new_string)
-	{
-		memcpy(new_string, old_string, string_length + 1);
-	}
+    string_length = strlen(old_string);
+    new_string = (char *)malloc(string_length + 1);
+    if (new_string)
+    {
+        memcpy(new_string, old_string, string_length + 1);
+    }
 
-	return new_string;
+    return new_string;
 }
 #endif
 
 char *xp_safe_strdup(const char *old_string)
 {
-	char *new_string;
+    char *new_string;
 
-	new_string = strdup(old_string);
-	if (new_string == NULL)
-	{
-		fatal("Not enough memory.");
-	}
+    new_string = strdup(old_string);
+    if (new_string == NULL)
+    {
+        fatal("Not enough memory.");
+    }
 
-	return new_string;
+    return new_string;
 }
 
 /*
-	NAME
-	strlcpy
-	ARGS
-	char *dest
-	const char *src
-	size_t size
-	DESC
-	Copy src to dest.
-	Dest may hold at most size - 1 characters
-	and will always be NUL terminated,
-	except if size equals zero.
-	Return strlen(src).
-	There was not enough room in dest if the
-	return value is bigger or equal than size.
+    NAME
+    strlcpy
+    ARGS
+    char *dest
+    const char *src
+    size_t size
+    DESC
+    Copy src to dest.
+    Dest may hold at most size - 1 characters
+    and will always be NUL terminated,
+    except if size equals zero.
+    Return strlen(src).
+    There was not enough room in dest if the
+    return value is bigger or equal than size.
 */
 #ifndef HAVE_STRLCPY
 size_t strlcpy(char *dest, const char *src, size_t size)
 {
-	char *d = dest;
-	const char *s = src;
-	char *maxd = dest + (size - 1);
+    char *d = dest;
+    const char *s = src;
+    char *maxd = dest + (size - 1);
 
-	if (size > 0)
-	{
-		while (*s && d < maxd)
-		{
-			*d = *s;
-			s++;
-			d++;
-		}
-		*d = '\0';
-	}
-	while (*s)
-	{
-		s++;
-	}
-	return (s - src);
+    if (size > 0)
+    {
+        while (*s && d < maxd)
+        {
+            *d = *s;
+            s++;
+            d++;
+        }
+        *d = '\0';
+    }
+    while (*s)
+    {
+        s++;
+    }
+    return (s - src);
 }
 #endif
 
 /*
-	NAME
-	strlcat
-	ARGS
-	char *dest
-	const char *src
-	size_t size
-	DESC
-	Append src to dest.
-	Dest may hold at most size - 1 characters
-	and will always be NUL terminated,
-	except if size equals zero.
-	Return strlen(src) + strlen(dest).
-	There was not enough room in dest if the
-	return value is bigger or equal than size.
+    NAME
+    strlcat
+    ARGS
+    char *dest
+    const char *src
+    size_t size
+    DESC
+    Append src to dest.
+    Dest may hold at most size - 1 characters
+    and will always be NUL terminated,
+    except if size equals zero.
+    Return strlen(src) + strlen(dest).
+    There was not enough room in dest if the
+    return value is bigger or equal than size.
 */
 #ifndef HAVE_STRLCAT
 size_t strlcat(char *dest, const char *src, size_t size)
 {
-	char *d = dest;
-	const char *s = src;
-	char *maxd = dest + (size - 1);
-	size_t dlen = 0;
+    char *d = dest;
+    const char *s = src;
+    char *maxd = dest + (size - 1);
+    size_t dlen = 0;
 
-	if (size > 0)
-	{
-		while (*d && d < maxd)
-		{
-			d++;
-		}
-		dlen = (d - dest);
-		while (*s && d < maxd)
-		{
-			*d = *s;
-			s++;
-			d++;
-		}
-		*d = '\0';
-	}
-	while (*s)
-	{
-		s++;
-	}
-	return dlen + (s - src);
+    if (size > 0)
+    {
+        while (*d && d < maxd)
+        {
+            d++;
+        }
+        dlen = (d - dest);
+        while (*s && d < maxd)
+        {
+            *d = *s;
+            s++;
+            d++;
+        }
+        *d = '\0';
+    }
+    while (*s)
+    {
+        s++;
+    }
+    return dlen + (s - src);
 }
 #endif
 
 void *xp_safe_malloc(size_t size)
 {
-	void *p;
+    void *p;
 
-	p = (void *)malloc(size);
-	if (p == NULL)
-	{
-		fatal("Not enough memory.");
-	}
+    p = (void *)malloc(size);
+    if (p == NULL)
+    {
+        fatal("Not enough memory.");
+    }
 
-	return p;
+    return p;
 }
 
 void *xp_safe_realloc(void *oldptr, size_t size)
 {
-	void *p;
+    void *p;
 
-	p = (void *)realloc(oldptr, size);
-	if (p == NULL)
-	{
-		fatal("Not enough memory.");
-	}
+    p = (void *)realloc(oldptr, size);
+    if (p == NULL)
+    {
+        fatal("Not enough memory.");
+    }
 
-	return p;
+    return p;
 }
 
 void *xp_safe_calloc(size_t nmemb, size_t size)
 {
-	void *p;
+    void *p;
 
-	p = (void *)calloc(nmemb, size);
-	if (p == NULL)
-	{
-		fatal("Not enough memory.");
-	}
+    p = (void *)calloc(nmemb, size);
+    if (p == NULL)
+    {
+        fatal("Not enough memory.");
+    }
 
-	return p;
+    return p;
 }
 
 void xp_safe_free(void *p)
 {
-	if (p)
-	{
-		free(p);
-	}
+    if (p)
+    {
+        free(p);
+    }
 }
 
 int Get_process_id(void)
 {
-#if defined(_WINDOWS)
-	return _getpid();
-#else
-	return getpid();
-#endif
+    return getpid();
 }
 
 void Get_login_name(char *buf, size_t size)
 {
-#if defined(_WINDOWS)
-	long nsize = size;
-	GetUserName(buf, &nsize);
-	buf[size - 1] = '\0';
-#else
-	/* Unix */
-	struct passwd *p;
+    /* Unix */
+    struct passwd *p;
 
-	setpwent();
-	if ((p = getpwuid(geteuid())) != NULL)
-		strlcpy(buf, p->pw_name, size);
-	else
-		strlcpy(buf, "nameless", size);
-	endpwent();
-#endif
+    setpwent();
+    if ((p = getpwuid(geteuid())) != NULL)
+        strlcpy(buf, p->pw_name, size);
+    else
+        strlcpy(buf, "nameless", size);
+    endpwent();
 }
 
 int xpprintf(const char *fmt, ...)
 {
-	int result;
-	va_list argp;
-	va_start(argp, fmt);
-	result = vprintf(fmt, argp);
-	va_end(argp);
-#ifdef _WINDOWS
-	fflush(stdout);
-#endif
-	return result;
+    int result;
+    va_list argp;
+    va_start(argp, fmt);
+    result = vprintf(fmt, argp);
+    va_end(argp);
+    return result;
 }
-
-#if 0
-bool is_this_windows(void)
-{
-#ifdef _WINDOWS
-	return true;
-#else
-	return false;
-#endif
-}
-#endif
-
-/*
- * Round to nearest integer.
- */
-#ifdef _WINDOWS
-double rint(double x)
-{
-	return floor((x < 0.0) ? (x - 0.5) : (x + 0.5));
-}
-
-#ifdef NEED_GETTIMEOFDAY
-int gettimeofday(struct timeval *tv, struct timezone *tz)
-{
-	FILETIME ft;
-	LARGE_INTEGER li;
-	__int64 t;
-	static int tzflag;
-
-	if (tv)
-	{
-		GetSystemTimeAsFileTime(&ft);
-		li.LowPart = ft.dwLowDateTime;
-		li.HighPart = ft.dwHighDateTime;
-		t = li.QuadPart;	/* In 100-nanosecond intervals */
-		t -= EPOCHFILETIME; /* Offset to the Epoch time */
-		t /= 10;			/* In microseconds */
-		tv->tv_sec = (long)(t / 1000000);
-		tv->tv_usec = (long)(t % 1000000);
-	}
-
-	if (tz)
-	{
-		if (!tzflag)
-		{
-			_tzset();
-			tzflag++;
-		}
-		tz->tz_minuteswest = _timezone / 60;
-		tz->tz_dsttime = _daylight;
-	}
-
-	return 0;
-}
-#endif
-#endif

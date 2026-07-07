@@ -1,7 +1,7 @@
 /*
  * BloodsPilot, a multiplayer space war game.
  *
- * Copyright (C) 2001 Juha Lindstr�m <juhal@users.sourceforge.net>
+ * Copyright (C) 2001 Juha Lindström
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

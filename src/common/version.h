@@ -9,8 +9,8 @@
  *      Dick Balaska
  *      Uoti Urpala          <uau@users.sourceforge.net>
  *      Juha Lindstr�m       <juhal@users.sourceforge.net>
- *      Kristian S�derblom   <kps@users.sourceforge.net>
- *      Erik Andersson       <maximan@users.sourceforge.net>
+ *      Kristian Söderblom
+ *      Erik Andersson
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

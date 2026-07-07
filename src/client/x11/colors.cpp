@@ -1184,7 +1184,6 @@ void Init_spark_colors(void)
 
 static bool Set_sparkColors(xp_option_t *opt, const char *val)
 {
-	UNUSED_PARAM(opt);
 	strlcpy(sparkColors, val, sizeof sparkColors);
 	Init_spark_colors();
 	/* might fail to set what we wanted, but return ok nonetheless */
@@ -1193,7 +1192,6 @@ static bool Set_sparkColors(xp_option_t *opt, const char *val)
 
 static bool Set_maxColors(xp_option_t *opt, int val)
 {
-	UNUSED_PARAM(opt);
 	if (val < 8)
 		maxColors = 4;
 	else if (val < 16)

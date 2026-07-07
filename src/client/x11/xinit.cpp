@@ -93,66 +93,66 @@ static char myClass[] = "XPilot";
  */
 static struct
 {
-	uint8_t *data;
-	const char *keysText;
+    uint8_t *data;
+    const char *keysText;
 } itemBitmapData[NUM_ITEMS] = {
-	{itemEnergyPack_bits, "Extra energy/fuel"},
-	{itemWideangleShot_bits, "Extra front cannons"},
-	{itemRearShot_bits, "Extra rear cannon"},
-	{itemAfterburner_bits, "Afterburner; makes your engines more powerful"},
-	{itemCloakingDevice_bits,
-	 "Cloaking device; "
-	 "makes you almost invisible, both on radar and on screen"},
-	{itemSensorPack_bits, "Sensor; "
-						  "enables you to see cloaked opponents more easily"},
-	{itemTransporter_bits, "Transporter; enables you to steal equipment from "
-						   "other players"},
-	{itemTank_bits,
-	 "Tank; "
-	 "makes refueling quicker, increases maximum fuel "
-	 "capacity and can be jettisoned to confuse enemies"},
-	{itemMinePack_bits, "Mine; "
-						"can be dropped as a bomb or as a stationary mine"},
-	{itemRocketPack_bits,
-	 "Rocket; can be utilized as smart missile, "
-	 "heatseeking missile, nuclear missile or just a "
-	 "plain unguided missile (torpedo)"},
-	{itemEcm_bits,
-	 "ECM (Electronic Counter Measures); "
-	 "can be used to disturb electronic equipment, for instance "
-	 "can it be used to confuse smart missiles and reprogram "
-	 "robots to seek certain players"},
-	{itemLaser_bits,
-	 "Laser; "
-	 "limited range laser beam, costs a lot of fuel, "
-	 "having more laser items increases the range of the laser, "
-	 "they can be irrepairably damaged by ECMs"},
-	{itemEmergencyThrust_bits,
-	 "Emergency Thrust; "
-	 "gives emergency thrust capabilities for a limited period"},
-	{itemTractorBeam_bits,
-	 "Tractor Beam; "
-	 "gives mutual attractive force to currently locked on ship, "
-	 "this means the heavier your ship, the less likely you will move "
-	 "when being tractored or using a tractor"},
-	{itemAutopilot_bits,
-	 "Autopilot; "
-	 "when on, the ship will turn and thrust against the "
-	 "direction of travel"},
-	{itemEmergencyShield_bits,
-	 "EmergencyShield; "
-	 "gives emergency shield capabilities for a limited period"},
-	{itemDeflector_bits, "Deflector; "
-						 "pushes hostile objects away from your ship"},
-	{itemHyperJump_bits, "Hyperjump; "
-						 "enables you to teleport to a random map location"},
-	{itemPhasingDevice_bits,
-	 "Phasing Device; "
-	 "lets you fly through anything for a limited period"},
-	{itemMirror_bits, "Mirror; "
-					  "reflects laser beams"},
-	{itemArmor_bits, "Armor; "
-					 "absorbs shots in the absence of shields"},
+    {itemEnergyPack_bits, "Extra energy/fuel"},
+    {itemWideangleShot_bits, "Extra front cannons"},
+    {itemRearShot_bits, "Extra rear cannon"},
+    {itemAfterburner_bits, "Afterburner; makes your engines more powerful"},
+    {itemCloakingDevice_bits,
+     "Cloaking device; "
+     "makes you almost invisible, both on radar and on screen"},
+    {itemSensorPack_bits, "Sensor; "
+                          "enables you to see cloaked opponents more easily"},
+    {itemTransporter_bits, "Transporter; enables you to steal equipment from "
+                           "other players"},
+    {itemTank_bits,
+     "Tank; "
+     "makes refueling quicker, increases maximum fuel "
+     "capacity and can be jettisoned to confuse enemies"},
+    {itemMinePack_bits, "Mine; "
+                        "can be dropped as a bomb or as a stationary mine"},
+    {itemRocketPack_bits,
+     "Rocket; can be utilized as smart missile, "
+     "heatseeking missile, nuclear missile or just a "
+     "plain unguided missile (torpedo)"},
+    {itemEcm_bits,
+     "ECM (Electronic Counter Measures); "
+     "can be used to disturb electronic equipment, for instance "
+     "can it be used to confuse smart missiles and reprogram "
+     "robots to seek certain players"},
+    {itemLaser_bits,
+     "Laser; "
+     "limited range laser beam, costs a lot of fuel, "
+     "having more laser items increases the range of the laser, "
+     "they can be irrepairably damaged by ECMs"},
+    {itemEmergencyThrust_bits,
+     "Emergency Thrust; "
+     "gives emergency thrust capabilities for a limited period"},
+    {itemTractorBeam_bits,
+     "Tractor Beam; "
+     "gives mutual attractive force to currently locked on ship, "
+     "this means the heavier your ship, the less likely you will move "
+     "when being tractored or using a tractor"},
+    {itemAutopilot_bits,
+     "Autopilot; "
+     "when on, the ship will turn and thrust against the "
+     "direction of travel"},
+    {itemEmergencyShield_bits,
+     "EmergencyShield; "
+     "gives emergency shield capabilities for a limited period"},
+    {itemDeflector_bits, "Deflector; "
+                         "pushes hostile objects away from your ship"},
+    {itemHyperJump_bits, "Hyperjump; "
+                         "enables you to teleport to a random map location"},
+    {itemPhasingDevice_bits,
+     "Phasing Device; "
+     "lets you fly through anything for a limited period"},
+    {itemMirror_bits, "Mirror; "
+                      "reflects laser beams"},
+    {itemArmor_bits, "Armor; "
+                     "absorbs shots in the absence of shields"},
 };
 
 Pixmap itemBitmaps[NUM_ITEMS]; /* Bitmaps for the items */
@@ -172,7 +172,7 @@ static int menu_button;
 
 const char *Item_get_text(int i)
 {
-	return itemBitmapData[i].keysText;
+    return itemBitmapData[i].keysText;
 }
 
 /*
@@ -182,17 +182,17 @@ const char *Item_get_text(int i)
  */
 static XFontStruct *Set_font(Display *display, GC gc, const char *fontName, const char *resName)
 {
-	XFontStruct *font;
+    XFontStruct *font;
 
-	if ((font = XLoadQueryFont(display, fontName)) == NULL)
-	{
-		error("Couldn't find font '%s' for %s, using default font", fontName, resName);
-		font = XQueryFont(display, XGContextFromGC(gc));
-	}
-	else
-		XSetFont(display, gc, font->fid);
+    if ((font = XLoadQueryFont(display, fontName)) == NULL)
+    {
+        error("Couldn't find font '%s' for %s, using default font", fontName, resName);
+        font = XQueryFont(display, XGContextFromGC(gc));
+    }
+    else
+        XSetFont(display, gc, font->fid);
 
-	return font;
+    return font;
 }
 
 /*
@@ -203,53 +203,53 @@ extern int Argc;
 
 static void Init_disp_prop(Display *d, Window win, unsigned w, unsigned h, int x, int y, int flags)
 {
-	XClassHint xclh;
-	XWMHints xwmh;
-	XSizeHints xsh;
+    XClassHint xclh;
+    XWMHints xwmh;
+    XSizeHints xsh;
 
-	xwmh.flags = InputHint | StateHint | IconPixmapHint;
-	xwmh.input = True;
-	xwmh.initial_state = NormalState;
-	xwmh.icon_pixmap =
-		XCreateBitmapFromData(d, win, (char *)icon_bits, icon_width, icon_height);
+    xwmh.flags = InputHint | StateHint | IconPixmapHint;
+    xwmh.input = True;
+    xwmh.initial_state = NormalState;
+    xwmh.icon_pixmap =
+        XCreateBitmapFromData(d, win, (char *)icon_bits, icon_width, icon_height);
 
-	xsh.flags = (flags | PMinSize | PMaxSize | PBaseSize | PResizeInc);
-	xsh.width = w;
-	xsh.base_width = xsh.min_width = MIN_TOP_WIDTH;
-	xsh.max_width = MAX_TOP_WIDTH;
-	xsh.width_inc = 1;
-	xsh.height = h;
-	xsh.base_height = xsh.min_height = MIN_TOP_HEIGHT;
-	xsh.max_height = MAX_TOP_HEIGHT;
-	xsh.height_inc = 1;
-	xsh.x = x;
-	xsh.y = y;
+    xsh.flags = (flags | PMinSize | PMaxSize | PBaseSize | PResizeInc);
+    xsh.width = w;
+    xsh.base_width = xsh.min_width = MIN_TOP_WIDTH;
+    xsh.max_width = MAX_TOP_WIDTH;
+    xsh.width_inc = 1;
+    xsh.height = h;
+    xsh.base_height = xsh.min_height = MIN_TOP_HEIGHT;
+    xsh.max_height = MAX_TOP_HEIGHT;
+    xsh.height_inc = 1;
+    xsh.x = x;
+    xsh.y = y;
 
-	xclh.res_name = NULL;	  /* NULL: Automatically uses Argv[0], */
-	xclh.res_class = myClass; /* stripped of directory prefixes. */
+    xclh.res_name = NULL;     /* NULL: Automatically uses Argv[0], */
+    xclh.res_class = myClass; /* stripped of directory prefixes. */
 
-	/*
-	 * Set the above properties.
-	 */
-	XSetWMProperties(d, win, NULL, NULL, Argv, Argc, &xsh, &xwmh, &xclh);
+    /*
+     * Set the above properties.
+     */
+    XSetWMProperties(d, win, NULL, NULL, Argv, Argc, &xsh, &xwmh, &xclh);
 
-	/*
-	 * Now initialize icon and window title name.
-	 */
-	XStoreName(d, win, PACKAGE_STRING);
-	XSetIconName(d, win, PACKAGE_STRING);
+    /*
+     * Now initialize icon and window title name.
+     */
+    XStoreName(d, win, PACKAGE_STRING);
+    XSetIconName(d, win, PACKAGE_STRING);
 
-	if (d != dpy)
-		return;
+    if (d != dpy)
+        return;
 
-	/*
-	 * Specify IO error handler and the WM_DELETE_WINDOW atom in
-	 * an attempt to catch 'nasty' quits.
-	 */
-	ProtocolAtom = XInternAtom(d, "WM_PROTOCOLS", False);
-	KillAtom = XInternAtom(d, "WM_DELETE_WINDOW", False);
-	XSetWMProtocols(d, win, &KillAtom, 1);
-	XSetIOErrorHandler(FatalError);
+    /*
+     * Specify IO error handler and the WM_DELETE_WINDOW atom in
+     * an attempt to catch 'nasty' quits.
+     */
+    ProtocolAtom = XInternAtom(d, "WM_PROTOCOLS", False);
+    KillAtom = XInternAtom(d, "WM_DELETE_WINDOW", False);
+    XSetWMProtocols(d, win, &KillAtom, 1);
+    XSetIOErrorHandler(FatalError);
 }
 
 /*
@@ -259,175 +259,175 @@ static void Init_disp_prop(Display *d, Window win, unsigned w, unsigned h, int x
  */
 int Init_top(void)
 {
-	int top_x, top_y;
-	int i;
-	int x, y;
-	unsigned w, h;
-	unsigned long values;
-	int top_flags;
-	XGCValues xgc;
-	XSetWindowAttributes sattr;
-	unsigned long mask;
+    int top_x, top_y;
+    int i;
+    int x, y;
+    unsigned w, h;
+    unsigned long values;
+    int top_flags;
+    XGCValues xgc;
+    XSetWindowAttributes sattr;
+    unsigned long mask;
 
-	if (topWindow)
-		fatal("Init_top called twice");
+    if (topWindow)
+        fatal("Init_top called twice");
 
-	if (Colors_init() == -1)
-		return -1;
+    if (Colors_init() == -1)
+        return -1;
 
-	/*
-	 * Get toplevel geometry.
-	 */
-	top_flags = 0;
-	if (geometry != NULL && geometry[0] != '\0')
-		mask = XParseGeometry(geometry, &x, &y, &w, &h);
-	else
-		mask = 0;
+    /*
+     * Get toplevel geometry.
+     */
+    top_flags = 0;
+    if (geometry != NULL && geometry[0] != '\0')
+        mask = XParseGeometry(geometry, &x, &y, &w, &h);
+    else
+        mask = 0;
 
-	if ((mask & WidthValue) != 0)
-	{
-		top_width = w;
-		top_flags |= USSize;
-	}
-	else
-	{
-		top_width = DEF_TOP_WIDTH;
-		top_flags |= PSize;
-	}
-	LIMIT(top_width, MIN_TOP_WIDTH, MAX_TOP_WIDTH);
-	if ((mask & HeightValue) != 0)
-	{
-		top_height = h;
-		top_flags |= USSize;
-	}
-	else
-	{
-		top_height = DEF_TOP_HEIGHT;
-		top_flags |= PSize;
-	}
-	LIMIT(top_height, MIN_TOP_HEIGHT, MAX_TOP_HEIGHT);
-	if ((mask & XValue) != 0)
-	{
-		if ((mask & XNegative) != 0)
-			top_x = DisplayWidth(dpy, DefaultScreen(dpy)) - top_width + x;
-		else
-			top_x = x;
-		top_flags |= USPosition;
-	}
-	else
-	{
-		top_x = (DisplayWidth(dpy, DefaultScreen(dpy)) - top_width) / 2;
-		top_flags |= PPosition;
-	}
-	if ((mask & YValue) != 0)
-	{
-		if ((mask & YNegative) != 0)
-			top_y = DisplayHeight(dpy, DefaultScreen(dpy)) - top_height + y;
-		else
-			top_y = y;
-		top_flags |= USPosition;
-	}
-	else
-	{
-		top_y = (DisplayHeight(dpy, DefaultScreen(dpy)) - top_height) / 2;
-		top_flags |= PPosition;
-	}
-	if (geometry != NULL)
-	{
-		free(geometry);
-		geometry = NULL;
-	}
+    if ((mask & WidthValue) != 0)
+    {
+        top_width = w;
+        top_flags |= USSize;
+    }
+    else
+    {
+        top_width = DEF_TOP_WIDTH;
+        top_flags |= PSize;
+    }
+    LIMIT(top_width, MIN_TOP_WIDTH, MAX_TOP_WIDTH);
+    if ((mask & HeightValue) != 0)
+    {
+        top_height = h;
+        top_flags |= USSize;
+    }
+    else
+    {
+        top_height = DEF_TOP_HEIGHT;
+        top_flags |= PSize;
+    }
+    LIMIT(top_height, MIN_TOP_HEIGHT, MAX_TOP_HEIGHT);
+    if ((mask & XValue) != 0)
+    {
+        if ((mask & XNegative) != 0)
+            top_x = DisplayWidth(dpy, DefaultScreen(dpy)) - top_width + x;
+        else
+            top_x = x;
+        top_flags |= USPosition;
+    }
+    else
+    {
+        top_x = (DisplayWidth(dpy, DefaultScreen(dpy)) - top_width) / 2;
+        top_flags |= PPosition;
+    }
+    if ((mask & YValue) != 0)
+    {
+        if ((mask & YNegative) != 0)
+            top_y = DisplayHeight(dpy, DefaultScreen(dpy)) - top_height + y;
+        else
+            top_y = y;
+        top_flags |= USPosition;
+    }
+    else
+    {
+        top_y = (DisplayHeight(dpy, DefaultScreen(dpy)) - top_height) / 2;
+        top_flags |= PPosition;
+    }
+    if (geometry != NULL)
+    {
+        free(geometry);
+        geometry = NULL;
+    }
 
-	/*
-	 * Create toplevel window (we need this first so that we can create GCs)
-	 */
-	mask = 0;
-	/*old debug: sattr.background_pixel = Get_color_pixel(WHITE); */
-	sattr.background_pixel = Get_color_pixel(BLACK);
-	mask |= CWBackPixel;
-	sattr.border_pixel = Get_color_pixel(WHITE);
-	mask |= CWBorderPixel;
-	if (colormap != 0)
-	{
-		sattr.colormap = colormap;
-		mask |= CWColormap;
-	}
-	if (ignoreWindowManager)
-	{
-		sattr.override_redirect = True;
-		mask |= CWOverrideRedirect;
-	}
-	topWindow = XCreateWindow(dpy,
-							  DefaultRootWindow(dpy),
-							  top_x, top_y,
-							  top_width, top_height, 0, (int)dispDepth, InputOutput, visual,
-							  mask, &sattr);
-	XSelectInput(dpy, topWindow,
-				 KeyPressMask | KeyReleaseMask | FocusChangeMask | StructureNotifyMask);
-	Init_disp_prop(dpy, topWindow, top_width, top_height, top_x, top_y, top_flags);
-	if (kdpy)
-	{
-		int scr = DefaultScreen(kdpy);
-		keyboardWindow = XCreateSimpleWindow(kdpy,
-											 DefaultRootWindow(kdpy),
-											 top_x, top_y, top_width, top_height, 0, 0,
-											 BlackPixel(dpy, scr));
-		XSelectInput(kdpy, keyboardWindow, KeyPressMask | KeyReleaseMask | FocusChangeMask);
-		Init_disp_prop(kdpy, keyboardWindow, top_width, top_height, top_x, top_y,
-					   top_flags);
-	}
+    /*
+     * Create toplevel window (we need this first so that we can create GCs)
+     */
+    mask = 0;
+    /*old debug: sattr.background_pixel = Get_color_pixel(WHITE); */
+    sattr.background_pixel = Get_color_pixel(BLACK);
+    mask |= CWBackPixel;
+    sattr.border_pixel = Get_color_pixel(WHITE);
+    mask |= CWBorderPixel;
+    if (colormap != 0)
+    {
+        sattr.colormap = colormap;
+        mask |= CWColormap;
+    }
+    if (ignoreWindowManager)
+    {
+        sattr.override_redirect = True;
+        mask |= CWOverrideRedirect;
+    }
+    topWindow = XCreateWindow(dpy,
+                              DefaultRootWindow(dpy),
+                              top_x, top_y,
+                              top_width, top_height, 0, (int)dispDepth, InputOutput, visual,
+                              mask, &sattr);
+    XSelectInput(dpy, topWindow,
+                 KeyPressMask | KeyReleaseMask | FocusChangeMask | StructureNotifyMask);
+    Init_disp_prop(dpy, topWindow, top_width, top_height, top_x, top_y, top_flags);
+    if (kdpy)
+    {
+        int scr = DefaultScreen(kdpy);
+        keyboardWindow = XCreateSimpleWindow(kdpy,
+                                             DefaultRootWindow(kdpy),
+                                             top_x, top_y, top_width, top_height, 0, 0,
+                                             BlackPixel(dpy, scr));
+        XSelectInput(kdpy, keyboardWindow, KeyPressMask | KeyReleaseMask | FocusChangeMask);
+        Init_disp_prop(kdpy, keyboardWindow, top_width, top_height, top_x, top_y,
+                       top_flags);
+    }
 
-	/*
-	 * Create item bitmaps
-	 */
-	for (i = 0; i < NUM_ITEMS; i++)
-		itemBitmaps[i] = XCreateBitmapFromData(dpy, topWindow, (char *)itemBitmapData[i].data,
-											   ITEM_SIZE, ITEM_SIZE);
+    /*
+     * Create item bitmaps
+     */
+    for (i = 0; i < NUM_ITEMS; i++)
+        itemBitmaps[i] = XCreateBitmapFromData(dpy, topWindow, (char *)itemBitmapData[i].data,
+                                               ITEM_SIZE, ITEM_SIZE);
 
-	/*
-	 * Creates and initializes the graphic contexts.
-	 */
-	xgc.line_width = 0;
-	xgc.line_style = LineSolid;
-	xgc.cap_style = CapButt;
-	xgc.join_style = JoinMiter; /* I think this is fastest, is it? */
-	xgc.graphics_exposures = False;
-	values = GCLineWidth | GCLineStyle | GCCapStyle | GCJoinStyle | GCGraphicsExposures;
+    /*
+     * Creates and initializes the graphic contexts.
+     */
+    xgc.line_width = 0;
+    xgc.line_style = LineSolid;
+    xgc.cap_style = CapButt;
+    xgc.join_style = JoinMiter; /* I think this is fastest, is it? */
+    xgc.graphics_exposures = False;
+    values = GCLineWidth | GCLineStyle | GCCapStyle | GCJoinStyle | GCGraphicsExposures;
 
-	messageGC = XCreateGC(dpy, topWindow, values, &xgc);
-	buttonGC = XCreateGC(dpy, topWindow, values, &xgc);
-	scoreListGC = XCreateGC(dpy, topWindow, values, &xgc);
-	textGC = XCreateGC(dpy, topWindow, values, &xgc);
-	talkGC = XCreateGC(dpy, topWindow, values, &xgc);
-	motdGC = XCreateGC(dpy, topWindow, values, &xgc);
-	gameGC = XCreateGC(dpy, topWindow, values, &xgc);
-	XSetBackground(dpy, gameGC, Get_color_pixel(BLACK));
+    messageGC = XCreateGC(dpy, topWindow, values, &xgc);
+    buttonGC = XCreateGC(dpy, topWindow, values, &xgc);
+    scoreListGC = XCreateGC(dpy, topWindow, values, &xgc);
+    textGC = XCreateGC(dpy, topWindow, values, &xgc);
+    talkGC = XCreateGC(dpy, topWindow, values, &xgc);
+    motdGC = XCreateGC(dpy, topWindow, values, &xgc);
+    gameGC = XCreateGC(dpy, topWindow, values, &xgc);
+    XSetBackground(dpy, gameGC, Get_color_pixel(BLACK));
 
-	/*
-	 * Set fonts
-	 */
-	gameFont = Set_font(dpy, gameGC, gameFontName, "gameFont");
-	messageFont = Set_font(dpy, messageGC, messageFontName, "messageFont");
-	scoreListFont = Set_font(dpy, scoreListGC, scoreListFontName, "scoreListFont");
-	buttonFont = Set_font(dpy, buttonGC, buttonFontName, "buttonFont");
-	textFont = Set_font(dpy, textGC, textFontName, "textFont");
-	talkFont = Set_font(dpy, talkGC, talkFontName, "talkFont");
-	motdFont = Set_font(dpy, motdGC, motdFontName, "motdFont");
+    /*
+     * Set fonts
+     */
+    gameFont = Set_font(dpy, gameGC, gameFontName, "gameFont");
+    messageFont = Set_font(dpy, messageGC, messageFontName, "messageFont");
+    scoreListFont = Set_font(dpy, scoreListGC, scoreListFontName, "scoreListFont");
+    buttonFont = Set_font(dpy, buttonGC, buttonFontName, "buttonFont");
+    textFont = Set_font(dpy, textGC, textFontName, "textFont");
+    talkFont = Set_font(dpy, talkGC, talkFontName, "talkFont");
+    motdFont = Set_font(dpy, motdGC, motdFontName, "motdFont");
 
-	XSetState(dpy, gameGC,
-			  WhitePixel(dpy, DefaultScreen(dpy)), BlackPixel(dpy, DefaultScreen(dpy)), GXcopy,
-			  AllPlanes);
-	XSetState(dpy, messageGC, WhitePixel(dpy, DefaultScreen(dpy)),
-			  BlackPixel(dpy, DefaultScreen(dpy)), GXcopy, AllPlanes);
-	XSetState(dpy, buttonGC, WhitePixel(dpy, DefaultScreen(dpy)),
-			  BlackPixel(dpy, DefaultScreen(dpy)), GXcopy, AllPlanes);
-	XSetState(dpy, scoreListGC, WhitePixel(dpy, DefaultScreen(dpy)),
-			  BlackPixel(dpy, DefaultScreen(dpy)), GXcopy, AllPlanes);
+    XSetState(dpy, gameGC,
+              WhitePixel(dpy, DefaultScreen(dpy)), BlackPixel(dpy, DefaultScreen(dpy)), GXcopy,
+              AllPlanes);
+    XSetState(dpy, messageGC, WhitePixel(dpy, DefaultScreen(dpy)),
+              BlackPixel(dpy, DefaultScreen(dpy)), GXcopy, AllPlanes);
+    XSetState(dpy, buttonGC, WhitePixel(dpy, DefaultScreen(dpy)),
+              BlackPixel(dpy, DefaultScreen(dpy)), GXcopy, AllPlanes);
+    XSetState(dpy, scoreListGC, WhitePixel(dpy, DefaultScreen(dpy)),
+              BlackPixel(dpy, DefaultScreen(dpy)), GXcopy, AllPlanes);
 
-	if (dbuf_state->type == COLOR_SWITCH)
-		XSetPlaneMask(dpy, gameGC, dbuf_state->drawing_planes);
+    if (dbuf_state->type == COLOR_SWITCH)
+        XSetPlaneMask(dpy, gameGC, dbuf_state->drawing_planes);
 
-	return 0;
+    return 0;
 }
 
 /*
@@ -436,154 +436,142 @@ int Init_top(void)
  */
 int Init_playing_windows(void)
 {
-	unsigned w, h;
-	Pixmap pix;
-	GC cursorGC;
+    unsigned w, h;
+    Pixmap pix;
+    GC cursorGC;
 
-	if (!topWindow)
-	{
-		if (Init_top())
-			return -1;
-	}
+    if (!topWindow)
+    {
+        if (Init_top())
+            return -1;
+    }
 
-	Scale_dashes();
+    Scale_dashes();
 
-	draw_width = top_width - drawWindowXOffset;
-	draw_height = top_height;
-	drawWindow = XCreateSimpleWindow(dpy, topWindow,
-									 drawWindowXOffset, 0, draw_width, draw_height, 0, 0,
-									 Get_color_pixel(BLACK));
-	radar_score_mapped = true;
+    draw_width = top_width - drawWindowXOffset;
+    draw_height = top_height;
+    drawWindow = XCreateSimpleWindow(dpy, topWindow,
+                                     drawWindowXOffset, 0, draw_width, draw_height, 0, 0,
+                                     Get_color_pixel(BLACK));
+    radar_score_mapped = true;
 
-	/* Create buttons */
+    /* Create buttons */
 #define BUTTON_WIDTH 126
-	ButtonHeight = buttonFont->ascent + buttonFont->descent + 2 * BTN_BORDER;
+    ButtonHeight = buttonFont->ascent + buttonFont->descent + 2 * BTN_BORDER;
 
-	button_form = Widget_create_form(0, topWindow, 0, 0, 256, ButtonHeight + 2, 0);
-	Widget_create_activate(button_form,
-						   0 + 0 * BUTTON_WIDTH, 0, BUTTON_WIDTH, ButtonHeight, 1, "QUIT",
-						   Quit_callback, NULL);
-	menu_button =
-		Widget_create_menu(button_form, 1 + 1 * BUTTON_WIDTH, 0, BUTTON_WIDTH, ButtonHeight, 1,
-						   "MENU");
-	Widget_add_pulldown_entry(menu_button, "KEYS", Keys_callback, NULL);
-	Widget_add_pulldown_entry(menu_button, "GENERAL CONFIG", Config_callback, NULL);
-	Widget_add_pulldown_entry(menu_button, "COLOR CONFIG", Colors_callback, NULL);
+    button_form = Widget_create_form(0, topWindow, 0, 0, 256, ButtonHeight + 2, 0);
+    Widget_create_activate(button_form,
+                           0 + 0 * BUTTON_WIDTH, 0, BUTTON_WIDTH, ButtonHeight, 1, "QUIT",
+                           Quit_callback, NULL);
+    menu_button =
+        Widget_create_menu(button_form, 1 + 1 * BUTTON_WIDTH, 0, BUTTON_WIDTH, ButtonHeight, 1,
+                           "MENU");
+    Widget_add_pulldown_entry(menu_button, "KEYS", Keys_callback, NULL);
+    Widget_add_pulldown_entry(menu_button, "GENERAL CONFIG", Config_callback, NULL);
+    Widget_add_pulldown_entry(menu_button, "COLOR CONFIG", Colors_callback, NULL);
 
-	/* kps - disabled for 1.4.0, not ready yet. */
+    /* kps - disabled for 1.4.0, not ready yet. */
 #if 0
 	Widget_add_pulldown_entry(menu_button, "KEY CONFIG", Key_config_callback, NULL);
 #endif
 
-	Widget_add_pulldown_entry(menu_button, "SERVER MOTD", Motd_callback, NULL);
-	Widget_map_sub(button_form);
-	button_form_mapped = true;
+    Widget_add_pulldown_entry(menu_button, "SERVER MOTD", Motd_callback, NULL);
+    Widget_map_sub(button_form);
+    button_form_mapped = true;
 
-	/*
-	 * Selecting the events we can handle.
-	 */
-	XSelectInput(dpy, drawWindow, ButtonPressMask | ButtonReleaseMask);
+    /*
+     * Selecting the events we can handle.
+     */
+    XSelectInput(dpy, drawWindow, ButtonPressMask | ButtonReleaseMask);
 
-	/*
-	 * Initialize misc. pixmaps if we're not color switching.
-	 * (This could be in dbuff_init_buffer completely IMHO, -- Metalite)
-	 */
-	switch (dbuf_state->type)
-	{
+    /*
+     * Initialize misc. pixmaps if we're not color switching.
+     * (This could be in dbuff_init_buffer completely IMHO, -- Metalite)
+     */
+    switch (dbuf_state->type)
+    {
 
-	case PIXMAP_COPY:
-		drawPixmap = XCreatePixmap(dpy, drawWindow, draw_width, draw_height, dispDepth);
-		break;
+    case PIXMAP_COPY:
+        drawPixmap = XCreatePixmap(dpy, drawWindow, draw_width, draw_height, dispDepth);
+        break;
 
-	case MULTIBUFFER:
-		dbuff_init_buffer(dbuf_state);
-		break;
+    case MULTIBUFFER:
+        dbuff_init_buffer(dbuf_state);
+        break;
 
-	case COLOR_SWITCH:
-		drawPixmap = drawWindow;
-		break;
+    case COLOR_SWITCH:
+        drawPixmap = drawWindow;
+        break;
 
-	default:
-		assert(0 && "Init_playing_windows: unknown dbuf state type.");
-		break;
-	}
+    default:
+        assert(0 && "Init_playing_windows: unknown dbuf state type.");
+        break;
+    }
 
-	XAutoRepeatOff(dpy); /* We don't want any autofire, yet! */
-	if (kdpy)
-		XAutoRepeatOff(kdpy);
+    XAutoRepeatOff(dpy); /* We don't want any autofire, yet! */
+    if (kdpy)
+        XAutoRepeatOff(kdpy);
 
-	/*
-	 * Define a blank cursor for use with pointer control
-	 */
-	XQueryBestCursor(dpy, drawWindow, 1, 1, &w, &h);
-	pix = XCreatePixmap(dpy, drawWindow, w, h, 1);
-	cursorGC = XCreateGC(dpy, pix, 0, NULL);
-	XSetForeground(dpy, cursorGC, 0);
-	XFillRectangle(dpy, pix, cursorGC, 0, 0, w, h);
-	XFreeGC(dpy, cursorGC);
-	pointerControlCursor =
-		XCreatePixmapCursor(dpy, pix, pix, Get_color(BLACK), Get_color(BLACK), 0, 0);
-	XFreePixmap(dpy, pix);
+    /*
+     * Define a blank cursor for use with pointer control
+     */
+    XQueryBestCursor(dpy, drawWindow, 1, 1, &w, &h);
+    pix = XCreatePixmap(dpy, drawWindow, w, h, 1);
+    cursorGC = XCreateGC(dpy, pix, 0, NULL);
+    XSetForeground(dpy, cursorGC, 0);
+    XFillRectangle(dpy, pix, cursorGC, 0, 0, w, h);
+    XFreeGC(dpy, cursorGC);
+    pointerControlCursor =
+        XCreatePixmapCursor(dpy, pix, pix, Get_color(BLACK), Get_color(BLACK), 0, 0);
+    XFreePixmap(dpy, pix);
 
-	Check_windows();
+    Check_windows();
 
-	/*
-	 * Maps the windows, makes the visible. Voila!
-	 */
-	XMapSubwindows(dpy, topWindow);
-	XMapWindow(dpy, topWindow);
-	XSync(dpy, False);
+    /*
+     * Maps the windows, makes the visible. Voila!
+     */
+    XMapSubwindows(dpy, topWindow);
+    XMapWindow(dpy, topWindow);
+    XSync(dpy, False);
 
-	if (kdpy)
-	{
-		XMapWindow(kdpy, keyboardWindow);
-		XSync(kdpy, False);
-	}
+    if (kdpy)
+    {
+        XMapWindow(kdpy, keyboardWindow);
+        XSync(kdpy, False);
+    }
 
-	Init_spark_colors();
+    Init_spark_colors();
 
-	return 0;
+    return 0;
 }
 
 static int Config_callback(int widget_desc, void *data, const char **str)
 {
-	UNUSED_PARAM(widget_desc);
-	UNUSED_PARAM(data);
-	UNUSED_PARAM(str);
-	Config(true, CONFIG_DEFAULT);
-	return 0;
+    Config(true, CONFIG_DEFAULT);
+    return 0;
 }
 
 static int Colors_callback(int widget_desc, void *data, const char **str)
 {
-	UNUSED_PARAM(widget_desc);
-	UNUSED_PARAM(data);
-	UNUSED_PARAM(str);
-	Config(true, CONFIG_COLORS);
-	return 0;
+    Config(true, CONFIG_COLORS);
+    return 0;
 }
 
 static int Key_config_callback(int widget_desc, void *data, const char **str)
 {
-	UNUSED_PARAM(widget_desc);
-	UNUSED_PARAM(data);
-	UNUSED_PARAM(str);
-	Config(true, CONFIG_KEYS);
-	return 0;
+    Config(true, CONFIG_KEYS);
+    return 0;
 }
 
 static int Quit_callback(int widget_desc, void *data, const char **str)
 {
-	UNUSED_PARAM(widget_desc);
-	UNUSED_PARAM(data);
-	UNUSED_PARAM(str);
-	quitting = true;
-	return 0;
+    quitting = true;
+    return 0;
 }
 
 void Raise_window(void)
 {
-	XMapRaised(dpy, topWindow);
+    XMapRaised(dpy, topWindow);
 }
 
 /*
@@ -591,34 +579,34 @@ void Raise_window(void)
  */
 static void Resize_subwindows(void)
 {
-	draw_width = top_width - drawWindowXOffset;
-	draw_height = top_height;
-	Check_view_dimensions();
-	Net_flush();
-	XResizeWindow(dpy, drawWindow, draw_width, draw_height);
-	if (dbuf_state->type == PIXMAP_COPY)
-	{
-		XFreePixmap(dpy, drawPixmap);
-		drawPixmap = XCreatePixmap(dpy, drawWindow, draw_width, draw_height, dispDepth);
-	}
-	Talk_resize();
-	Config_resize();
+    draw_width = top_width - drawWindowXOffset;
+    draw_height = top_height;
+    Check_view_dimensions();
+    Net_flush();
+    XResizeWindow(dpy, drawWindow, draw_width, draw_height);
+    if (dbuf_state->type == PIXMAP_COPY)
+    {
+        XFreePixmap(dpy, drawPixmap);
+        drawPixmap = XCreatePixmap(dpy, drawWindow, draw_width, draw_height, dispDepth);
+    }
+    Talk_resize();
+    Config_resize();
 }
 
 void Resize(Window w, unsigned width, unsigned height)
 {
-	if (w != topWindow)
-		return;
+    if (w != topWindow)
+        return;
 
-	/* ignore illegal resizes */
-	LIMIT(width, MIN_TOP_WIDTH, MAX_TOP_WIDTH);
-	LIMIT(height, MIN_TOP_HEIGHT, MAX_TOP_HEIGHT);
-	top_width = width;
-	top_height = height;
-	if (!drawWindow)
-		return;
+    /* ignore illegal resizes */
+    LIMIT(width, MIN_TOP_WIDTH, MAX_TOP_WIDTH);
+    LIMIT(height, MIN_TOP_HEIGHT, MAX_TOP_HEIGHT);
+    top_width = width;
+    top_height = height;
+    if (!drawWindow)
+        return;
 
-	Resize_subwindows();
+    Resize_subwindows();
 }
 
 /*
@@ -626,47 +614,47 @@ void Resize(Window w, unsigned width, unsigned height)
  */
 void Check_windows(void)
 {
-	static int current_draw_window_x_offset = -1;
-	static bool current_config_mapped = false;
-	static bool current_pointer_control = false;
-	bool want_small_draw_window = false;
+    static int current_draw_window_x_offset = -1;
+    static bool current_config_mapped = false;
+    static bool current_pointer_control = false;
+    bool want_small_draw_window = false;
 
-	if (current_draw_window_x_offset == drawWindowXOffset && current_config_mapped == config_mapped && current_pointer_control == pointerControl)
-		return;
+    if (current_draw_window_x_offset == drawWindowXOffset && current_config_mapped == config_mapped && current_pointer_control == pointerControl)
+        return;
 
-	if (config_mapped)
-		want_small_draw_window = true;
-	if (pointerControl)
-		want_small_draw_window = false;
+    if (config_mapped)
+        want_small_draw_window = true;
+    if (pointerControl)
+        want_small_draw_window = false;
 
-	if (want_small_draw_window)
-	{
-		drawWindowXOffset = 256;
-	}
-	else
-	{
-		drawWindowXOffset = 0;
-	}
+    if (want_small_draw_window)
+    {
+        drawWindowXOffset = 256;
+    }
+    else
+    {
+        drawWindowXOffset = 0;
+    }
 
-	if (pointerControl)
-	{
-		Config(false, CONFIG_NONE);
-		Widget_unmap(button_form);
-		button_form_mapped = false;
-	}
-	else
-	{
-		Widget_map(button_form);
-		button_form_mapped = true;
-	}
+    if (pointerControl)
+    {
+        Config(false, CONFIG_NONE);
+        Widget_unmap(button_form);
+        button_form_mapped = false;
+    }
+    else
+    {
+        Widget_map(button_form);
+        button_form_mapped = true;
+    }
 
-	XMoveWindow(dpy, drawWindow, drawWindowXOffset, 0);
-	Resize_subwindows();
+    XMoveWindow(dpy, drawWindow, drawWindowXOffset, 0);
+    Resize_subwindows();
 
-	/* Remember current values. */
-	current_draw_window_x_offset = drawWindowXOffset;
-	current_config_mapped = config_mapped;
-	current_pointer_control = pointerControl;
+    /* Remember current values. */
+    current_draw_window_x_offset = drawWindowXOffset;
+    current_config_mapped = config_mapped;
+    current_pointer_control = pointerControl;
 }
 
 /*
@@ -674,55 +662,54 @@ void Check_windows(void)
  */
 void Platform_specific_cleanup(void)
 {
-	/* Here we restore the mouse to its former self */
-	/* the option may have been toggled in game to  */
-	/* off so we cant trust that                    */
+    /* Here we restore the mouse to its former self */
+    /* the option may have been toggled in game to  */
+    /* off so we cant trust that                    */
 
-	if (dpy != NULL)
-	{
-		if (pre_exists)
-			XChangePointerControl(dpy, True, True, pre_acc_num, pre_acc_denom,
-								  pre_threshold);
-		XAutoRepeatOn(dpy);
-		Colors_cleanup();
-		XCloseDisplay(dpy);
-		dpy = NULL;
-		if (kdpy)
-		{
-			XAutoRepeatOn(kdpy);
-			XCloseDisplay(kdpy);
-			kdpy = NULL;
-		}
-	}
-	Widget_cleanup();
+    if (dpy != NULL)
+    {
+        if (pre_exists)
+            XChangePointerControl(dpy, True, True, pre_acc_num, pre_acc_denom,
+                                  pre_threshold);
+        XAutoRepeatOn(dpy);
+        Colors_cleanup();
+        XCloseDisplay(dpy);
+        dpy = NULL;
+        if (kdpy)
+        {
+            XAutoRepeatOn(kdpy);
+            XCloseDisplay(kdpy);
+            kdpy = NULL;
+        }
+    }
+    Widget_cleanup();
 }
 
 int FatalError(Display *display)
 {
-	UNUSED_PARAM(display);
-	Client_exit(0);
-	/* make complier not warn */
-	return 0;
+    Client_exit(0);
+    /* make complier not warn */
+    return 0;
 }
 
 void Scale_dashes(void)
 {
-	if (dpy == NULL)
-		return;
+    if (dpy == NULL)
+        return;
 
-	dashes[0] = WINSCALE(8);
-	if (dashes[0] < 1)
-		dashes[0] = 1;
-	dashes[1] = WINSCALE(4);
-	if (dashes[1] < 1)
-		dashes[1] = 1;
+    dashes[0] = WINSCALE(8);
+    if (dashes[0] < 1)
+        dashes[0] = 1;
+    dashes[1] = WINSCALE(4);
+    if (dashes[1] < 1)
+        dashes[1] = 1;
 
-	cdashes[0] = WINSCALE(3);
-	if (cdashes[0] < 1)
-		cdashes[0] = 1;
-	cdashes[1] = WINSCALE(9);
-	if (cdashes[1] < 1)
-		cdashes[1] = 1;
+    cdashes[0] = WINSCALE(3);
+    if (cdashes[0] < 1)
+        cdashes[0] = 1;
+    cdashes[1] = WINSCALE(9);
+    if (cdashes[1] < 1)
+        cdashes[1] = 1;
 
-	XSetDashes(dpy, gameGC, 0, dashes, NUM_DASHES);
+    XSetDashes(dpy, gameGC, 0, dashes, NUM_DASHES);
 }
