@@ -21,14 +21,11 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: pack.h,v 1.5 2007/10/07 15:50:43 kps Exp $ */
+#pragma once
 
-#ifndef PACK_H
-#define PACK_H
+#include "types.h"
 
-#ifndef PACK_NG_H
 #include "pack-ng.h"
-#endif
 
 #define CAP_LETTER(c) ((c) = ((c) >= 'a' && (c) <= 'z') ? (c) - 'a' + 'A' : (c))
 
@@ -162,5 +159,3 @@ extern int protocolVersion;
 #define E_VERSION 0x0C      /* Incompatible version */
 #define E_NOENT 0x0D        /* No such variable */
 #define E_UNDEFINED 0x0E    /* Operation undefined */
-
-#endif

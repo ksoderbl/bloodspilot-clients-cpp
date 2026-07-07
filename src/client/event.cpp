@@ -34,7 +34,7 @@
 #include "option.h"
 
 static BITV_DECL(keyv, NUM_KEYS);
-static unsigned char keyv_new[NUM_KEYS];
+static uint8_t keyv_new[NUM_KEYS];
 int max_mouse_button = 0;
 
 static int Key_get_count(keys_t key);

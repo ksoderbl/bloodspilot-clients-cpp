@@ -21,19 +21,25 @@
  * <https://www.gnu.org/licenses/>.
  */
 
+#include "config.h"
+
+#include <cctype>
+#include <cstdint>
+
+#include "pack.h"
 #include "portability.h"
 #include "proto.h"
 
 int Check_user_name(char *name)
 {
-	unsigned char *str;
+	uint8_t *str;
 
 	name[MAX_NAME_LEN - 1] = '\0';
 	if (!*name)
 	{
 		return NAME_ERROR;
 	}
-	str = (unsigned char *)name;
+	str = (uint8_t *)name;
 	for (; *str; str++)
 	{
 		if (!isgraph(*str))
@@ -47,7 +53,7 @@ int Check_user_name(char *name)
 
 void Fix_user_name(char *name)
 {
-	unsigned char *str;
+	uint8_t *str;
 
 	name[MAX_NAME_LEN - 1] = '\0';
 	if (!*name)
@@ -55,7 +61,7 @@ void Fix_user_name(char *name)
 		strlcpy(name, "X", sizeof(name));
 		return;
 	}
-	str = (unsigned char *)name;
+	str = (uint8_t *)name;
 	for (; *str; str++)
 	{
 		if (!isgraph(*str))
@@ -67,14 +73,14 @@ void Fix_user_name(char *name)
 
 int Check_nick_name(char *name)
 {
-	unsigned char *str;
+	uint8_t *str;
 
 	name[MAX_NAME_LEN - 1] = '\0';
 	if (!*name)
 	{
 		return NAME_ERROR;
 	}
-	str = (unsigned char *)name;
+	str = (uint8_t *)name;
 	if (!isupper(*str))
 	{
 		return NAME_ERROR;
@@ -97,7 +103,7 @@ int Check_nick_name(char *name)
 
 void Fix_nick_name(char *name)
 {
-	unsigned char *str;
+	uint8_t *str;
 
 	name[MAX_NAME_LEN - 1] = '\0';
 	if (!*name)
@@ -106,7 +112,7 @@ void Fix_nick_name(char *name)
 		sprintf(name, "X%d", n++);
 		return;
 	}
-	str = (unsigned char *)name;
+	str = (uint8_t *)name;
 	if (!isupper(*str))
 	{
 		if (islower(*str))
@@ -133,7 +139,7 @@ void Fix_nick_name(char *name)
 }
 
 /* isalnum() depends on locale. */
-static int is_alpha_numeric(unsigned char c)
+static int is_alpha_numeric(uint8_t c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return 1;
@@ -146,10 +152,10 @@ static int is_alpha_numeric(unsigned char c)
 
 int Check_host_name(char *name)
 {
-	unsigned char *str;
+	uint8_t *str;
 
 	name[MAX_HOST_LEN - 1] = '\0';
-	str = (unsigned char *)name;
+	str = (uint8_t *)name;
 	if (!is_alpha_numeric(*str))
 	{
 		return NAME_ERROR;
@@ -176,10 +182,10 @@ int Check_host_name(char *name)
 
 void Fix_host_name(char *name)
 {
-	unsigned char *str;
+	uint8_t *str;
 
 	name[MAX_HOST_LEN - 1] = '\0';
-	str = (unsigned char *)name;
+	str = (uint8_t *)name;
 	if (!is_alpha_numeric(*str))
 	{
 		strlcpy(name, "xxx.xxx", sizeof(name));
@@ -208,10 +214,10 @@ void Fix_host_name(char *name)
  */
 int Check_disp_name(char *name)
 {
-	unsigned char *str;
+	uint8_t *str;
 
 	name[MAX_NAME_LEN] = '\0';
-	str = (unsigned char *)name;
+	str = (uint8_t *)name;
 	for (; *str; str++)
 	{
 		if (!isgraph(*str))
@@ -224,10 +230,10 @@ int Check_disp_name(char *name)
 
 void Fix_disp_name(char *name)
 {
-	unsigned char *str;
+	uint8_t *str;
 
 	name[MAX_NAME_LEN] = '\0';
-	str = (unsigned char *)name;
+	str = (uint8_t *)name;
 	for (; *str; str++)
 	{
 		if (!isgraph(*str))

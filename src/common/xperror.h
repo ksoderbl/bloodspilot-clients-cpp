@@ -30,10 +30,9 @@
  * Bert Gijsbers <bert@xpilot.org> added warn, fatal, coredump.
  */
 
-/* $Id: error.h,v 1.3 2007/09/27 22:19:46 kps Exp $ */
+#pragma once
 
-#ifndef ERROR_H
-#define ERROR_H
+#include <cstdarg>
 
 extern void xpinfo(const char *fmt, ...);
 extern void warn(const char *fmt, ...);
@@ -41,14 +40,4 @@ extern void error(const char *fmt, ...);
 extern void fatal(const char *fmt, ...);
 extern void dumpcore(const char *fmt, ...);
 
-#ifdef _WINDOWS
-#ifdef _DEBUG
-#define Trace _Trace
-#else
-#define Trace
-#endif
-#endif
-
 extern void init_error(const char *prog);
-
-#endif /* ERROR_H */

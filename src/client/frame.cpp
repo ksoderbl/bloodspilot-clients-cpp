@@ -21,7 +21,9 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: frame.c,v 1.19 2007/11/04 16:03:35 kps Exp $ */
+#include <cstdio>
+#include <cstring>
+#include <ctime>
 
 #include "frame.h"
 #include "bit.h"

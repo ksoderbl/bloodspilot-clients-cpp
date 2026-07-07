@@ -21,27 +21,20 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: global.h,v 1.35 2007/11/23 10:47:09 kps Exp $ */
+#pragma once
 
-#ifndef GLOBAL_H
-#define GLOBAL_H
+#include <cstdint>
 
-#ifndef TYPES_H
 #include "types.h"
-#endif
-#ifndef ITEM_H
 #include "item.h"
-#endif
-#ifndef OTHER_H
 #include "other.h"
-#endif
 
 extern int RadarWidth;
 extern int RadarHeight;
 
 extern bool UpdateRadar; /* radar update because of polystyle changes? */
 
-extern unsigned char *map_edge_descriptor_array;
+extern uint8_t *map_edge_descriptor_array;
 
 extern xp_args_t xpArgs;
 extern Connect_param_t connectParam;
@@ -273,5 +266,3 @@ extern char sounds[MAX_CHARS];      /* audio mappings */
 extern char audioServer[MAX_CHARS]; /* audio server */
 extern int maxVolume;               /* maximum volume (in percent) */
 #endif                              /* SOUND */
-
-#endif

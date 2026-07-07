@@ -6,8 +6,9 @@ add_executable(bloodspilot-cpp-client-x11 ${X11_CLIENT_SOURCES})
 
 target_include_directories(bloodspilot-cpp-client-x11
     PRIVATE
-        ${PROJECT_SOURCE_DIR}/src/client
-        ${PROJECT_BINARY_DIR}/generated
+        ${CMAKE_SOURCE_DIR}/src/common
+        ${CMAKE_SOURCE_DIR}/src/client
+        ${CMAKE_BINARY_DIR}/generated
 )
 
 target_compile_definitions(bloodspilot-cpp-client-x11
@@ -19,7 +20,7 @@ target_compile_definitions(bloodspilot-cpp-client-x11
 
 target_link_libraries(bloodspilot-cpp-client-x11
     PRIVATE
-        bloodspilot_client_common
+        xpclient
         X11::X11
         m
 )

@@ -84,7 +84,7 @@ static int Get_contact_message(sockbuf_t *sbuf, const char *contact_server,
 	int len;
 	int server_version;
 	unsigned magic;
-	unsigned char reply_to, status;
+	uint8_t reply_to, status;
 	int readable = 0;
 
 	sock_set_timeout(&sbuf->sock, 2, 0);
@@ -233,11 +233,6 @@ static bool Process_commands(sockbuf_t *ibuf,
 	long key = 0;
 	time_t qsent = 0;
 	static char localhost[] = "127.0.0.1";
-
-#ifdef _WINDOWS
-	auto_connect = TRUE; /* I want to join */
-	auto_shutdown = FALSE;
-#endif
 
 	if (auto_connect && !list_servers && !auto_shutdown)
 		xpprintf("*** Connected to %s\n", conpar->server_name);

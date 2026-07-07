@@ -8,7 +8,10 @@
 #define PACKAGE_URL "@PACKAGE_URL@"
 #define VERSION "@VERSION@"
 
+#cmakedefine HAVE_STRDUP 1
 #cmakedefine HAVE_STRLCPY 1
 #cmakedefine HAVE_STRLCAT 1
+#cmakedefine HAVE_STRCASECMP 1
+#cmakedefine HAVE_STRNCASECMP 1
 #cmakedefine HAVE_GETTIMEOFDAY 1
 #cmakedefine HAVE_ZLIB_H 1

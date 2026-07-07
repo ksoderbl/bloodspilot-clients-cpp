@@ -252,7 +252,7 @@ static void RWriteTile(Pixmap tile)
 	{
 		struct tile_list *next;
 		Pixmap tile;
-		unsigned char tile_id;
+		uint8_t tile_id;
 	} tile_list_t;
 	static tile_list_t *list = NULL;
 	tile_list_t *lptr;

@@ -3,7 +3,7 @@
  *
  * Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
+ *      Bjørn Stabell
  *      Ken Ronny Schouten
  *      Bert Gijsbers
  *      Dick Balaska
@@ -38,14 +38,14 @@
 static int get_short(char **ptr)
 {
 	*ptr += 2;
-	return ((signed char)*(*ptr - 2) << 8) + (unsigned char)(*(*ptr - 1));
+	return ((signed char)*(*ptr - 2) << 8) + (uint8_t)(*(*ptr - 1));
 }
 
 /* Unsigned version */
 static unsigned int get_ushort(char **ptr)
 {
 	*ptr += 2;
-	return ((unsigned char)*(*ptr - 2) << 8) + (unsigned char)*(*ptr - 1);
+	return ((uint8_t)*(*ptr - 2) << 8) + (uint8_t)*(*ptr - 1);
 }
 
 static int get_32bit(char **ptr)

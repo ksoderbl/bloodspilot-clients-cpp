@@ -3,7 +3,7 @@
  *
  * Copyright (C) 1991-2001 by
  *
- *      Bjørn Stabell        <bjoern@xpilot.org>
+ *      Bjørn Stabell
  *      Ken Ronny Schouten
  *      Bert Gijsbers
  *      Dick Balaska
@@ -23,7 +23,7 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: blockmap.c,v 1.1 2007/11/03 18:49:25 kps Exp $ */
+#include <cstring>
 
 #include "bit.h"
 #include "rules.h"
@@ -192,7 +192,7 @@ int init_blockmap(void)
 /*
  * Convert a 'space' map block into a dot.
  */
-static void Map_make_dot(unsigned char *data)
+static void Map_make_dot(uint8_t *data)
 {
 	if (*data == SETUP_SPACE)
 		*data = SETUP_SPACE_DOT;
@@ -215,7 +215,7 @@ static void Map_make_dot(unsigned char *data)
 void Map_dots(void)
 {
 	int i, x, y, start;
-	unsigned char dot[256];
+	uint8_t dot[256];
 
 	/*
 	 * Lookup table to recognize dots.
@@ -369,7 +369,7 @@ static void Map_restore(int startx, int starty, int width, int height)
 	}
 }
 
-static unsigned char blue[256];
+static uint8_t blue[256];
 
 static void Make_blue_array(void)
 {
@@ -558,12 +558,12 @@ static int Get_map_index(int x, int y, int x_offset, int y_offset)
 	return x * Setup->y + y;
 }
 
-unsigned char *map_edge_descriptor_array = NULL; /* kps - should be freed */
+uint8_t *map_edge_descriptor_array = NULL; /* kps - should be freed */
 
 int Map_edges(void)
 {
 	int x, y, map_index, map_index2, m, m2;
-	unsigned char *tmparray;
+	uint8_t *tmparray;
 
 #if 0
 	for (y = Setup->y - 1; y >= 0; y--) {
@@ -592,7 +592,7 @@ int Map_edges(void)
 
 	/* q = REC_RD  w = REC_LD  a = REC_RU  s = REC_LU */
 
-	tmparray = XCALLOC(unsigned char, (Setup->x * Setup->y));
+	tmparray = XCALLOC(uint8_t, (Setup->x * Setup->y));
 	if (tmparray == NULL)
 		return -1;
 

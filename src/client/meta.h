@@ -1,5 +1,5 @@
 /*
- * BloodsPilot, a multiplayer space war game.  Copyright (C) 1991-2001 by
+ * XPilot, a multiplayer gravity war game.  Copyright (C) 1991-2004 by
  *
  *      Bjørn Stabell
  *      Ken Ronny Schouten
@@ -20,22 +20,14 @@
  * along with this program; if not, see
  * <https://www.gnu.org/licenses/>.
  */
+#pragma once
 
-#ifndef META_H
-#define META_H
+#include <cstdint>
+#include <string>
+#include <vector>
 
-#ifndef CONST_H
-#include "const.h"
-#endif
-#ifndef LIST_H
-#include "list.h"
-#endif
-#ifndef PACK_H
 #include "pack.h"
-#endif
-#ifndef SOCKLIB_H
 #include "socklib.h"
-#endif
 
 /*
  * max number of servers we can find on the local network.
@@ -46,22 +38,18 @@
  * Some constants for describing access to the meta servers.
  * XXX These are also defined in some other file.
  */
-#define NUM_METAS 2
+#define NUM_METAS 1
+#define META_HOST "meta.xpilot.org"
+#define META_HOST_TWO "meta2.xpilot.org"
+#define META_IP "45.55.104.252"
+#define META_IP_TWO "194.28.50.74"
 #define META_PROG_PORT 4401
-#define META_USER_PORT 4400
 #define NUM_META_DATA_FIELDS 18
-#define META_INIT_SOCK {-2, {0, 0}, 0, {0, 0, 0}, NULL, NULL}
 
 #define PING_UNKNOWN 10000 /* never transmitted a ping to it */
 #define PING_NORESP 9999   /* never responded to our ping */
 #define PING_SLOW 9998	   /* responded to first ping after \
 							* we had already retried (ie slow!) */
-
-/*
- * Access the data field of one of the servers
- * which is listed by the meta servers.
- */
-#define SI_DATA(it) ((server_info_t *)LI_DATA(it))
 
 /********************** Data Structures *********************/
 
@@ -72,34 +60,54 @@
  */
 struct ServerInfo
 {
-	char *version,
-		*hostname,
-		*users_str,
-		*mapname,
-		*mapsize,
-		*author,
-		*status,
-		*bases_str,
-		*fps_str,
-		*playlist, *sound, *teambases_str, *timing, *ip_str, *freebases, *queue_str, *domain,
-		pingtime_str[5];
-	unsigned port, ip, users, bases, fps, uptime, teambases, queue, pingtime;
-	struct timeval start;
-	unsigned char serial;
+	std::string version;
+	std::string hostname;
+	std::string users_str;
+	std::string mapname;
+	std::string mapsize;
+	std::string author;
+	std::string status;
+	std::string bases_str;
+	std::string fps_str;
+	std::string playlist;
+	std::string sound;
+	std::string teambases_str;
+	std::string timing;
+	std::string ip_str;
+	std::string freebases;
+	std::string queue_str;
+	std::string domain;
+	std::string pingtime_str;
+
+	unsigned port = 0;
+	unsigned ip = 0;
+	unsigned users = 0;
+	unsigned bases = 0;
+	unsigned fps = 0;
+	unsigned uptime = 0;
+	unsigned teambases = 0;
+	unsigned queue = 0;
+	unsigned pingtime = PING_UNKNOWN;
+	struct timeval start{};
+	uint8_t serial = 0;
 };
 
-extern list_t server_list;
-extern time_t server_list_creation_time;
-extern list_iter_t server_it;
-
 typedef struct ServerInfo server_info_t;
+using server_list_t = std::vector<server_info_t *>;
+using server_list_iter_t = server_list_t::iterator;
 
 /*
  * Here we hold the servers which are listed by the meta servers.
  * We record the time we contacted Meta so as to not overload Meta.
  * server_it is an iterator pointing at the first server for the next page.
  */
+extern server_list_t server_list;
+extern time_t server_list_creation_time;
+extern server_list_iter_t server_it;
 
+/*
+ * States a connection to a meta server can be in.
+ */
 enum MetaState
 {
 	MetaConnecting = 0,
@@ -111,7 +119,6 @@ enum MetaState
  * Structure describing a meta server.
  * Hostname, IP address, and socket filedescriptor.
  */
-
 struct Meta
 {
 	char name[MAX_HOST_LEN];
@@ -131,6 +138,4 @@ void Add_meta_line(char *meta_line);
 void Meta_connect(int *connections_ptr, int *maxfd_ptr);
 void Meta_dns_lookup(void);
 void Ping_servers(void);
-int Get_meta_data(char *errorstr);
-
-#endif
+int Get_meta_data(void);

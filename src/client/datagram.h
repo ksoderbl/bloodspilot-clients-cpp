@@ -21,15 +21,10 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: datagram.h,v 1.2 2007/09/27 22:19:45 kps Exp $ */
+#pragma once
 
-#ifndef DATAGRAM_H
-#define DATAGRAM_H
-
-#ifndef SOCKLIB_H
 /* need sock_t */
 #include "socklib.h"
-#endif
 
 /*
  * datagram.c
@@ -40,5 +35,3 @@ extern int clientPortEnd;   /* Last one (these are for firewalls) */
 int create_dgram_addr_socket(sock_t *sock, char *dotaddr, int port);
 int create_dgram_socket(sock_t *sock, int port);
 void close_dgram_socket(sock_t *sock);
-
-#endif

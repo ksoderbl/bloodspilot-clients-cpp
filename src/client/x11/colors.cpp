@@ -100,7 +100,7 @@ int spark_color[MAX_COLORS];
  */
 static struct rgb_cube_size
 {
-	unsigned char r, g, b;
+	uint8_t r, g, b;
 } rgb_cube_sizes[] = {
 	{6, 6, 5}, /* 180 */
 	{

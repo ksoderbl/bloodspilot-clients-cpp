@@ -256,7 +256,7 @@ void Paint_world(void)
 	int type;
 	int dot;
 	int fill_top_left = -1, fill_top_right = -1, fill_bottom_left = -1, fill_bottom_right = -1;
-	unsigned char *mapptr, *mapbase;
+	uint8_t *mapptr, *mapbase;
 	static double oldHRLimit = -1.0;
 
 	if (!BIT(Setup->mode, WRAP_PLAY))

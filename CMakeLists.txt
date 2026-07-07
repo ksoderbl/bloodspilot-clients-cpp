@@ -28,6 +28,7 @@ set(VERSION "${PROJECT_VERSION}")
 set(BLOODSPILOT_PKGDATADIR "${CMAKE_INSTALL_FULL_DATADIR}/${PROJECT_NAME}")
 set(BLOODSPILOT_CONF_DATADIR "${BLOODSPILOT_PKGDATADIR}/")
 
+check_function_exists(strdup HAVE_STRDUP)
 check_function_exists(strlcpy HAVE_STRLCPY)
 check_function_exists(strlcat HAVE_STRLCAT)
 check_function_exists(strcasecmp HAVE_STRCASECMP)

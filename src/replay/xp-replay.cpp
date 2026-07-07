@@ -72,12 +72,12 @@ struct rGC
 	unsigned long mask; /* XGCValues mask */
 	unsigned long foreground;
 	unsigned long background;
-	unsigned char line_width;
-	unsigned char line_style;
-	unsigned char dash_offset;
-	unsigned char function;
-	unsigned char fill_style;
-	unsigned char num_dashes;
+	uint8_t line_width;
+	uint8_t line_style;
+	uint8_t dash_offset;
+	uint8_t function;
+	uint8_t fill_style;
+	uint8_t num_dashes;
 	char *dash_list;
 	int ts_x_origin;
 	int ts_y_origin;
@@ -113,7 +113,7 @@ struct rString
 {
 	short x;
 	short y;
-	unsigned char font;
+	uint8_t font;
 	size_t length;
 	char *string;
 };
@@ -122,13 +122,13 @@ struct rPolygon
 {
 	XPoint *points;
 	unsigned short npoints;
-	unsigned char shape;
-	unsigned char mode;
+	uint8_t shape;
+	uint8_t mode;
 };
 
 struct rSymbol
 {
-	unsigned char type;
+	uint8_t type;
 	short x;
 	short y;
 };
@@ -161,7 +161,7 @@ struct rSegments
 
 struct rDamage
 {
-	unsigned char damaged;
+	uint8_t damaged;
 };
 
 union shapep
@@ -207,7 +207,7 @@ typedef struct tile_list
 {
 	struct tile_list *next;
 	Pixmap tile;
-	unsigned char tile_id;
+	uint8_t tile_id;
 	int flag;
 } tile_list_t;
 
@@ -246,7 +246,7 @@ struct xprc
 	char *servername;			/* hostname of server */
 	int fps;					/* frames per second of game */
 	char *recorddate;			/* date of game played */
-	unsigned char maxColors;	/* number of colors used */
+	uint8_t maxColors;			/* number of colors used */
 	XColor *colors;				/* pointer to color info */
 	unsigned long *pixels;		/* pointer to my pixel values */
 	char *gameFontName;			/* name of font used */
@@ -334,7 +334,7 @@ static void saveStartToEndXPR(void *);
 
 static struct button_init
 {
-	unsigned char *data;
+	uint8_t *data;
 	char color;
 	unsigned width;
 	unsigned height;
@@ -506,9 +506,9 @@ void *MyMalloc(size_t size, enum MemTypes mt)
 /*
  * Read one 8-bit byte from the recorded input stream.
  */
-static inline unsigned char RReadByte(FILE *fp)
+static inline uint8_t RReadByte(FILE *fp)
 {
-	return (unsigned char)(getc(fp));
+	return (uint8_t)(getc(fp));
 }
 
 /*
@@ -593,7 +593,7 @@ static inline char *RReadString(FILE *fp)
 static int RReadHeader(struct xprc *rc)
 {
 	char magic[5];
-	unsigned char minor, major, fps;
+	uint8_t minor, major, fps;
 	char dot, nl;
 	int i;
 
@@ -633,7 +633,7 @@ static int RReadHeader(struct xprc *rc)
 	if (rc->fps == 0)
 		rc->fps = fps;
 	rc->recorddate = RReadString(rc->fp);
-	rc->maxColors = (unsigned char)getc(rc->fp);
+	rc->maxColors = (uint8_t)getc(rc->fp);
 	rc->colors = (XColor *)MyMalloc(rc->maxColors * sizeof(XColor), MEM_MISC);
 	for (i = 0; i < rc->maxColors; i++)
 	{
@@ -670,9 +670,9 @@ static Pixmap RReadTile(struct xprc *rc)
 	int x, y;
 	unsigned depth;
 	XImage *img;
-	unsigned char ch;
+	uint8_t ch;
 	Pixmap tile;
-	unsigned char tile_id;
+	uint8_t tile_id;
 
 	ch = RReadByte(rc->fp);
 	tile_id = RReadByte(rc->fp);
@@ -1369,7 +1369,7 @@ static Atom ProtocolAtom;
 static Atom KillAtom;
 
 static Pixmap itemBitmaps[NUM_ITEMS]; /* Bitmaps for the items */
-static unsigned char *itemData[NUM_ITEMS] = {
+static uint8_t *itemData[NUM_ITEMS] = {
 	itemEnergyPack_bits,
 	itemWideangleShot_bits,
 	itemRearShot_bits,
@@ -2155,7 +2155,7 @@ static void redrawError(struct errorwin *ewin)
 	}
 }
 
-static void BuildGamma(unsigned char tbl[256], double gamma_val)
+static void BuildGamma(uint8_t tbl[256], double gamma_val)
 {
 	int i, v;
 	double one_over_gamma, ind;
@@ -2180,7 +2180,7 @@ static void BuildGamma(unsigned char tbl[256], double gamma_val)
 	}
 }
 
-static void GammaCorrect(unsigned char *data, int size, unsigned char tbl[256])
+static void GammaCorrect(uint8_t *data, int size, uint8_t tbl[256])
 {
 	while (size)
 	{
@@ -2190,17 +2190,17 @@ static void GammaCorrect(unsigned char *data, int size, unsigned char tbl[256])
 	}
 }
 
-static void ScalePPM(unsigned char *rgbdata, unsigned cols, unsigned rows, double scale,
+static void ScalePPM(uint8_t *rgbdata, unsigned cols, unsigned rows, double scale,
 					 double gamma_val, FILE *fp)
 {
 #define SCALE 4096
 #define HALFSCALE 2048
 
-	unsigned char *xelrow;
-	unsigned char *tempxelrow;
-	unsigned char *newxelrow;
-	unsigned char *xP;
-	unsigned char *nxP;
+	uint8_t *xelrow;
+	uint8_t *tempxelrow;
+	uint8_t *newxelrow;
+	uint8_t *xP;
+	uint8_t *nxP;
 	size_t rowsread, newrows, newcols;
 	unsigned row, col;
 	int needtoreadrow;
@@ -2214,7 +2214,7 @@ static void ScalePPM(unsigned char *rgbdata, unsigned cols, unsigned rows, doubl
 	long fraccoltofill, fraccolleft;
 	int needcol;
 	size_t size_tempxelrow, size_newxelrow, size_rsgsbs;
-	unsigned char gammatbl[256];
+	uint8_t gammatbl[256];
 
 	if (gamma_val > 0)
 		BuildGamma(gammatbl, gamma_val);
@@ -2228,8 +2228,8 @@ static void ScalePPM(unsigned char *rgbdata, unsigned cols, unsigned rows, doubl
 	size_newxelrow = 3 * newcols;
 	size_tempxelrow = 3 * cols;
 	size_rsgsbs = cols * sizeof(long);
-	newxelrow = (unsigned char *)MyMalloc(size_newxelrow, MEM_MISC);
-	tempxelrow = (unsigned char *)MyMalloc(size_tempxelrow, MEM_MISC);
+	newxelrow = (uint8_t *)MyMalloc(size_newxelrow, MEM_MISC);
+	tempxelrow = (uint8_t *)MyMalloc(size_tempxelrow, MEM_MISC);
 	rs = (long *)MyMalloc(size_rsgsbs, MEM_MISC);
 	gs = (long *)MyMalloc(size_rsgsbs, MEM_MISC);
 	bs = (long *)MyMalloc(size_rsgsbs, MEM_MISC);
@@ -2396,7 +2396,7 @@ static void SaveFramesPPM(struct xprc *rc)
 	int i, x, y;
 	int done = 0;
 	FILE *fp;
-	unsigned char *ptr, *line, *rgbdata;
+	uint8_t *ptr, *line, *rgbdata;
 	char buf[256];
 
 	if (!begin)
@@ -2432,13 +2432,13 @@ static void SaveFramesPPM(struct xprc *rc)
 	}
 	if (rc->scale > 0)
 	{
-		rgbdata = (unsigned char *)
+		rgbdata = (uint8_t *)
 			MyMalloc((size_t)(3 * rc->view_width * rc->view_height), MEM_MISC);
 		line = NULL;
 	}
 	else
 	{
-		line = (unsigned char *)
+		line = (uint8_t *)
 			MyMalloc((size_t)(3 * rc->view_width), MEM_MISC);
 		rgbdata = NULL;
 	}
@@ -3335,7 +3335,7 @@ static void TestInput(struct xprc *rc)
 {
 	int fd = fileno(rc->fp);
 	struct stat st;
-	unsigned char ch0, ch1, ch2;
+	uint8_t ch0, ch1, ch2;
 	char buf[1024];
 
 	rc->seekable = False;

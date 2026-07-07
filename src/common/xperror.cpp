@@ -7,13 +7,15 @@
  * Windows mods and memory leak detection by Dick Balaska <dick@xpilot.org>.
  */
 
-#include "portability.h"
-
 #include <cerrno>
 #include <cstdio>
 #include <cstring>
 #include <cstdarg>
 #include <cstdlib>
+
+#include "xperror.h"
+
+#include "portability.h"
 
 /*
  * This file defines several entry points:

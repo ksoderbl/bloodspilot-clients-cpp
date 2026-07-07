@@ -61,9 +61,7 @@ pointer_move_t pointer_moves[MAX_POINTER_MOVES];
 int pointer_move_next;
 long last_keyboard_ack;
 bool dirPrediction;
-#ifdef _WINDOWS
-int received_self = FALSE;
-#endif
+
 /*
  * Local variables.
  */
@@ -1638,9 +1636,6 @@ int Receive_self(void)
 				num_items, currentTank, (double)sFuelSum, (double)sFuelMax, rbuf.len,
 				(int)sStat);
 
-#ifdef _WINDOWS
-	received_self = TRUE;
-#endif
 	return 1;
 }
 
@@ -2011,7 +2006,7 @@ int Receive_fastradar(void)
 {
 	int n, i, r = 1;
 	int x, y, size;
-	unsigned char *ptr;
+	uint8_t *ptr;
 
 	rbuf.ptr++; /* skip PKT_FASTRADAR packet id */
 
@@ -2020,7 +2015,7 @@ int Receive_fastradar(void)
 	n = (*rbuf.ptr++ & 0xFF);
 	if (rbuf.ptr - rbuf.buf + (n * 3) > rbuf.len)
 		return 0;
-	ptr = (unsigned char *)rbuf.ptr;
+	ptr = (uint8_t *)rbuf.ptr;
 	for (i = 0; i < n; i++)
 	{
 		x = *ptr++;
@@ -2538,7 +2533,7 @@ int Send_turnresistance_s(double turnres_s)
 
 int Receive_quit(void)
 {
-	unsigned char pkt;
+	uint8_t pkt;
 	sockbuf_t *sbuf;
 	char reason[MAX_CHARS];
 
@@ -2560,7 +2555,7 @@ int Receive_quit(void)
 int Receive_audio(void)
 {
 	int n;
-	unsigned char pkt, type, vol;
+	uint8_t pkt, type, vol;
 
 	if ((n = Packet_scanf(&rbuf, "%c%c%c", &pkt, &type, &vol)) <= 0)
 		return n;
@@ -2574,7 +2569,7 @@ int Receive_audio(void)
 int Receive_talk_ack(void)
 {
 	int n;
-	unsigned char pkt;
+	uint8_t pkt;
 	long talk_ack;
 
 	if ((n = Packet_scanf(&cbuf, "%c%ld", &pkt, &talk_ack)) <= 0)

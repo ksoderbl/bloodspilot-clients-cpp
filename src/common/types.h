@@ -21,23 +21,10 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: types.h,v 1.24 2007/12/02 22:40:36 kps Exp $ */
-
-#ifndef TYPES_H
-#define TYPES_H
-
-#ifndef SYSDEPS_H
-
-#endif
-#ifndef KEYS_H
+#pragma once
 #include "keys.h"
-#endif
-#ifndef PACK_H
 #include "pack.h"
-#endif
-#ifndef SOCKLIB_H
 #include "socklib.h"
-#endif
 
 /* Do not change - should be in const.h, but needed below. */
 #define MAX_CHARS 80
@@ -266,5 +253,3 @@ typedef struct
 	xp_keysym_t keysym;
 	keys_t key;
 } xp_keydefs_t;
-
-#endif

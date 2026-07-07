@@ -23,6 +23,8 @@
 
 #pragma once
 
+#include <cmath>
+
 #include "types.h"
 #include "pkttypes.h"
 
@@ -221,9 +223,6 @@ extern DFLOAT tbl_cos[];
 		}               \
 	} while (0)
 
-/* Use this to remove unused parameter warning. */
-#define UNUSED_PARAM(x) x = x
-
 /* Do NOT change these! */
 #define MAX_CHECKS 26
 #define OLD_MAX_CHECKS 26
@@ -264,21 +263,6 @@ extern DFLOAT tbl_cos[];
 
 #define DEBRIS_TYPES (8 * 4 * 4)
 
-#ifndef FALSE
-#define FALSE 0
-#endif
-#ifndef TRUE
-#define TRUE 1
-#endif
-#ifndef false
-#define false 0
-#endif
-#ifndef true
-#define true 1
-#endif
-
-#ifndef _WINDOWS
-
 #ifdef DEBUG
 #define D(x) \
 	x;       \
@@ -286,17 +270,6 @@ extern DFLOAT tbl_cos[];
 #else
 #define D(x)
 #endif
-
-#else /* _WINDOWS */
-
-#ifdef _DEBUG
-#define DEBUG 1
-#define D(x) x
-#else
-#define D(x)
-#endif
-
-#endif /* _WINDOWS */
 
 /* paint constants begin */
 #define MAX_COLORS 16						 /* Max. switched colors ever */

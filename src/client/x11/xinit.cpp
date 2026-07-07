@@ -93,7 +93,7 @@ static char myClass[] = "XPilot";
  */
 static struct
 {
-	unsigned char *data;
+	uint8_t *data;
 	const char *keysText;
 } itemBitmapData[NUM_ITEMS] = {
 	{itemEnergyPack_bits, "Extra energy/fuel"},

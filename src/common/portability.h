@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include "config.h"
+
 /*
  * Include portability related stuff in one file.
  */
@@ -63,8 +65,6 @@ void xp_safe_free(void *p);
 
 #define ServerExit() exit(1);
 
-#define IFWINDOWS(x)
-#define IFNWINDOWS(x) x
 #define PATHNAME_SEP '/'
 
 /*

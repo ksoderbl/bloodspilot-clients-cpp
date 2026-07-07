@@ -22,8 +22,11 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-#ifndef BIT_H
-#define BIT_H
+#pragma once
+
+#include <cstdint>
+
+typedef uint8_t bitv_t;
 
 #define SET_BIT(w, bit) ((w) |= (bit))
 #define CLR_BIT(w, bit) ((w) &= ~(bit))
@@ -36,7 +39,3 @@
 #define BITV_CLR(X, N) ((X)[(N) / BITV_SIZE] &= ~(1 << (N) % BITV_SIZE))
 #define BITV_ISSET(X, N) ((X)[(N) / BITV_SIZE] & (1 << (N) % BITV_SIZE))
 #define BITV_TOGGLE(X, N) ((X)[(N) / BITV_SIZE] ^= 1 << (N) % BITV_SIZE)
-
-typedef unsigned char bitv_t;
-
-#endif

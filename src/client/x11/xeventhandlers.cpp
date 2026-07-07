@@ -54,7 +54,7 @@ static void Selection_paste(Window win, unsigned prop, int Delete)
 {
 	long nread;
 	unsigned long bytes_after, nitems;
-	unsigned char *data;
+	uint8_t *data;
 	Atom actual_type;
 	int actual_fmt;
 
@@ -128,14 +128,14 @@ static void Selection_send(const XSelectionRequestEvent *rq)
 		target_list[1] = (Atom32)XA_STRING;
 		XChangeProperty(dpy, rq->requestor, rq->property, rq->target,
 						(8 * sizeof(target_list[0])), PropModeReplace,
-						(unsigned char *)target_list,
+						(uint8_t *)target_list,
 						(sizeof(target_list) / sizeof(target_list[0])));
 		ev.xselection.property = rq->property;
 	}
 	else if (rq->target == XA_STRING)
 	{
 		XChangeProperty(dpy, rq->requestor, rq->property,
-						rq->target, 8, PropModeReplace, (unsigned char *)selection.txt,
+						rq->target, 8, PropModeReplace, (uint8_t *)selection.txt,
 						(int)selection.len);
 		ev.xselection.property = rq->property;
 	}

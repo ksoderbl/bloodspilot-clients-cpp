@@ -22,6 +22,7 @@
  */
 
 #include "const.h"
+#include "types.h"
 
 /*
  * Please don't change any of these maxima.
@@ -90,5 +91,3 @@ static inline position_t Ship_get_point_position(shipshape_t *ship, int ind, dou
 	}
 	return ship->rotated.pts[ind];
 }
-
-#endif

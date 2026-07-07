@@ -25,8 +25,13 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: default.c,v 1.37 2007/12/11 21:44:56 kps Exp $ */
+#include <assert.h>
+#include <cstring>
+#include <cstdlib>
 
+#include "config.h"
+
+#include "portability.h"
 #include "global.h"
 #include "option.h"
 #include "proto.h"
@@ -42,9 +47,6 @@ static double hudScale; /* Scale for HUD drawing */
 
 static bool Set_nickName(xp_option_t *opt, const char *value)
 {
-	UNUSED_PARAM(opt);
-	assert(value);
-
 	/*
 	 * This is a hack. User name will be used as nickname,
 	 * look in Set_userName().
@@ -81,7 +83,6 @@ static bool Set_nickName(xp_option_t *opt, const char *value)
 
 static const char *Get_nickName(xp_option_t *opt)
 {
-	UNUSED_PARAM(opt);
 	return connectParam.nick_name;
 }
 
@@ -103,7 +104,6 @@ void Make_sure_we_have_a_nick(void)
 
 static bool Set_team(xp_option_t *opt, int value)
 {
-	UNUSED_PARAM(opt);
 	if (value >= 0 && value < MAX_TEAMS)
 		connectParam.team = value;
 	else
@@ -114,7 +114,6 @@ static bool Set_team(xp_option_t *opt, int value)
 
 static bool Set_texturePath(xp_option_t *opt, const char *value)
 {
-	UNUSED_PARAM(opt);
 	XFREE(texturePath);
 	texturePath = xp_safe_strdup(value);
 	if (realTexturePath == NULL)
@@ -123,7 +122,6 @@ static bool Set_texturePath(xp_option_t *opt, const char *value)
 }
 static const char *Get_texturePath(xp_option_t *opt)
 {
-	UNUSED_PARAM(opt);
 	return texturePath;
 }
 
@@ -239,7 +237,6 @@ static void tryToSetShipShape(void)
  */
 static bool Set_shipShape(xp_option_t *opt, const char *value)
 {
-	UNUSED_PARAM(opt);
 	XFREE(shipShapeSetting);
 	shipShapeSetting = xp_safe_strdup(value);
 	tryToSetShipShape();
@@ -249,13 +246,11 @@ static bool Set_shipShape(xp_option_t *opt, const char *value)
 
 static const char *Get_shipShape(xp_option_t *opt)
 {
-	UNUSED_PARAM(opt);
 	return shipShapeSetting;
 }
 
 static bool Set_shipShapeFile(xp_option_t *opt, const char *value)
 {
-	UNUSED_PARAM(opt);
 	XFREE(shipShapeFile);
 	shipShapeFile = xp_safe_strdup(value);
 	tryToSetShipShape();
@@ -265,13 +260,11 @@ static bool Set_shipShapeFile(xp_option_t *opt, const char *value)
 
 static const char *Get_shipShapeFile(xp_option_t *opt)
 {
-	UNUSED_PARAM(opt);
 	return shipShapeFile;
 }
 
 static bool Set_power(xp_option_t *opt, double val)
 {
-	UNUSED_PARAM(opt);
 	Send_power(val);
 	power = val;
 	controlTime = CONTROL_TIME;
@@ -279,7 +272,6 @@ static bool Set_power(xp_option_t *opt, double val)
 }
 static bool Set_turnSpeed(xp_option_t *opt, double val)
 {
-	UNUSED_PARAM(opt);
 	Send_turnspeed(val);
 	turnspeed = val;
 	controlTime = CONTROL_TIME;
@@ -287,7 +279,6 @@ static bool Set_turnSpeed(xp_option_t *opt, double val)
 }
 static bool Set_turnResistance(xp_option_t *opt, double val)
 {
-	UNUSED_PARAM(opt);
 	Send_turnresistance(val);
 	turnresistance = val;
 	return true;
@@ -295,7 +286,6 @@ static bool Set_turnResistance(xp_option_t *opt, double val)
 
 static bool Set_altPower(xp_option_t *opt, double val)
 {
-	UNUSED_PARAM(opt);
 	Send_power_s(val);
 	power_s = val;
 	controlTime = CONTROL_TIME;
@@ -303,7 +293,6 @@ static bool Set_altPower(xp_option_t *opt, double val)
 }
 static bool Set_altTurnSpeed(xp_option_t *opt, double val)
 {
-	UNUSED_PARAM(opt);
 	Send_turnspeed_s(val);
 	turnspeed_s = val;
 	controlTime = CONTROL_TIME;
@@ -311,7 +300,6 @@ static bool Set_altTurnSpeed(xp_option_t *opt, double val)
 }
 static bool Set_altTurnResistance(xp_option_t *opt, double val)
 {
-	UNUSED_PARAM(opt);
 	Send_turnresistance_s(val);
 	turnresistance_s = val;
 	return true;
@@ -319,21 +307,18 @@ static bool Set_altTurnResistance(xp_option_t *opt, double val)
 
 static bool Set_autoShield(xp_option_t *opt, bool val)
 {
-	UNUSED_PARAM(opt);
 	Set_auto_shield(val);
 	return true;
 }
 
 static bool Set_toggleShield(xp_option_t *opt, bool val)
 {
-	UNUSED_PARAM(opt);
 	Set_toggle_shield(val);
 	return true;
 }
 
 static bool Set_maxFPS(xp_option_t *opt, int val)
 {
-	UNUSED_PARAM(opt);
 	maxFPS = val;
 	Check_client_fps();
 	return true;
@@ -341,7 +326,6 @@ static bool Set_maxFPS(xp_option_t *opt, int val)
 
 static bool Set_maxMouseTurnsPS(xp_option_t *opt, int val)
 {
-	UNUSED_PARAM(opt);
 	maxMouseTurnsPS = val;
 	if (maxMouseTurnsPS > 0)
 	{
@@ -355,7 +339,6 @@ static bool Set_maxMouseTurnsPS(xp_option_t *opt, int val)
 
 static bool Set_sparkProb(xp_option_t *opt, double val)
 {
-	UNUSED_PARAM(opt);
 	sparkProb = val;
 	spark_rand = (int)(sparkProb * MAX_SPARK_RAND + 0.5);
 	Check_view_dimensions();
@@ -364,7 +347,6 @@ static bool Set_sparkProb(xp_option_t *opt, double val)
 
 static bool Set_hudScale(xp_option_t *opt, double value)
 {
-	UNUSED_PARAM(opt);
 	hudScale = value;
 	hudSize = (int)(MIN_HUD_SIZE * hudScale);
 	return true;
@@ -372,7 +354,6 @@ static bool Set_hudScale(xp_option_t *opt, double value)
 
 static bool Set_backgroundPointDist(xp_option_t *opt, int val)
 {
-	UNUSED_PARAM(opt);
 	backgroundPointDist = val;
 	if (oldServer)
 		Map_dots();
@@ -381,7 +362,6 @@ static bool Set_backgroundPointDist(xp_option_t *opt, int val)
 
 static bool Set_backgroundPointSize(xp_option_t *opt, int val)
 {
-	UNUSED_PARAM(opt);
 	backgroundPointSize = val;
 	if (oldServer)
 		Map_dots();
@@ -391,7 +371,6 @@ static bool Set_backgroundPointSize(xp_option_t *opt, int val)
 #if 0
 static bool Set_slidingRadar(xp_option_t * opt, bool val)
 {
-	UNUSED_PARAM(opt);
 	slidingRadar = val;
 	Paint_sliding_radar();
 	return true;
@@ -400,7 +379,6 @@ static bool Set_slidingRadar(xp_option_t * opt, bool val)
 
 static bool Set_wallDrawMode(xp_option_t *opt, int val)
 {
-	UNUSED_PARAM(opt);
 	wallDrawMode = val;
 	if (Setup)
 	{
@@ -421,7 +399,6 @@ static bool Set_wallDrawMode(xp_option_t *opt, int val)
 
 static bool Set_decorDrawMode(xp_option_t *opt, int val)
 {
-	UNUSED_PARAM(opt);
 	decorDrawMode = val;
 	if (!Setup)
 		return true;
@@ -433,7 +410,6 @@ static bool Set_decorDrawMode(xp_option_t *opt, int val)
 
 static bool Set_dirPrediction(xp_option_t *opt, bool val)
 {
-	UNUSED_PARAM(opt);
 	if (val)
 	{
 		if (!dirPrediction)
