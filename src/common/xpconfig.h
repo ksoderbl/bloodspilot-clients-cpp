@@ -23,8 +23,7 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-#ifndef XPCONFIG_H
-#define XPCONFIG_H
+#pragma once
 
 #ifdef _WINDOWS
 #/* kps - what about this ???? */
@@ -131,5 +130,3 @@ char *Conf_zcat_format(void);
 
 extern char conf_ship_file_string[];
 extern char conf_soundfile_string[];
-
-#endif /* XPCONFIG_H */

@@ -23,7 +23,11 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: client.c,v 1.24 2007/11/12 00:13:17 kps Exp $ */
+#include <cstdio>
+#include <cstring>
+
+#include <assert.h>
+#include <sys/time.h>
 
 #include "client.h"
 #include "bit.h"

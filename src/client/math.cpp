@@ -27,8 +27,8 @@
 #include "proto.h"
 #include "const.h"
 
-DFLOAT tbl_sin[TABLE_SIZE];
-DFLOAT tbl_cos[TABLE_SIZE];
+double tbl_sin[TABLE_SIZE];
+double tbl_cos[TABLE_SIZE];
 
 int ON(const char *optval)
 {
@@ -51,9 +51,9 @@ int mod(int x, int y)
 	return x;
 }
 
-DFLOAT findDir(DFLOAT x, DFLOAT y)
+double findDir(double x, double y)
 {
-	DFLOAT angle;
+	double angle;
 
 	if (x != 0.0 || y != 0.0)
 		angle = atan2(y, x) / (2 * PI);

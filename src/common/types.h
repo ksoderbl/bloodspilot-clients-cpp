@@ -22,6 +22,9 @@
  */
 
 #pragma once
+
+#include <cstdint>
+
 #include "keys.h"
 #include "pack.h"
 #include "socklib.h"
@@ -31,31 +34,9 @@
 #define TALK_MAX_CHARS MAX_CHARS
 #define MSG_LEN 256
 
-/*
- * On some systems an enum is smaller than an int.
- * On others bool is already a builtin type.
- * Using preprocessor macros to circumvent both situations.
- */
-#define false 0
-#define true 1
-
-#ifndef _XPMONNT_
-#define bool int
-#endif
-
-/*
- * Windows does all its FPU work in doubles.  Using floats gives warnings
- * and causes everything to be promoted to doubles anyway...
- */
-#ifndef _WINDOWS
-typedef float DFLOAT;
-#else
-typedef double DFLOAT;
-#endif
-
 typedef struct
 {
-	DFLOAT x, y;
+	double x, y;
 } vector_t;
 typedef vector_t position_t;
 typedef struct
@@ -67,11 +48,6 @@ typedef struct
 {
 	int x, y, w, h;
 } irec_t;
-
-#ifdef _WINDOWS
-#define strncasecmp(__s, __t, __l) strnicmp(__s, __t, __l)
-#define strcasecmp(__s, __t) stricmp(__s, __t)
-#endif
 
 typedef struct
 {
@@ -101,9 +77,9 @@ typedef struct
 
 typedef struct
 {
-	int pos;			   /* Block index */
-	short dead_time;	   /* Frames inactive */
-	unsigned short damage; /* Damage to target */
+	int pos;		 /* Block index */
+	short dead_time; /* Frames inactive */
+	uint16_t damage; /* Damage to target */
 } target_t;
 
 typedef struct
@@ -114,7 +90,7 @@ typedef struct
 
 typedef struct
 {
-	DFLOAT life_time;
+	double life_time;
 	int score, x, y, count, hud_msg_len, hud_msg_width, msg_width, msg_len;
 	char msg[10], hud_msg[MAX_CHARS + 10];
 } score_object_t;

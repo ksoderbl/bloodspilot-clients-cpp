@@ -21,21 +21,16 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: other.h,v 1.4 2007/10/11 11:32:48 kps Exp $ */
+#pragma once
 
-#ifndef OTHER_H
-#define OTHER_H
+#include <cstring>
 
-#ifndef TYPES_H
 #include "types.h"
-#endif
-#ifndef SHIPSHAPE_H
 #include "shipshape.h"
-#endif
 
 typedef struct
 {
-	DFLOAT ratio;
+	double ratio;
 	short id;
 	short team;
 	int score;
@@ -106,5 +101,3 @@ static inline void Check_abbrev_nick_name(other_t *other, int max_chars_in_names
 #endif
 	other->max_chars_in_names = max_chars_in_names;
 }
-
-#endif

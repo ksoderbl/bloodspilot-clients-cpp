@@ -351,7 +351,7 @@ void Client_score_table(void)
 	struct team_score team[MAX_TEAMS];
 	other_t *other, **order;
 	int i, j, k, l, best = -1, pos = 0;
-	DFLOAT ratio, best_ratio = -1e7;
+	double ratio, best_ratio = -1e7;
 	bool playing = (self && !strchr("PW", self->mychar));
 
 	/*printf("--- client score table\n"); */

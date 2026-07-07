@@ -25,10 +25,12 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: messages.c,v 1.37 2007/11/30 17:28:05 kps Exp $ */
+#include <cstdio>
+#include <cstring>
 
 #include "bit.h"
 #include "const.h"
+#include "portability.h"
 #include "xperror.h"
 #include "global.h"
 #include "other.h"

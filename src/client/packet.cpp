@@ -37,7 +37,7 @@ int Packet_printf(sockbuf_t *sbuf, const char *fmt, ...)
 	int i, cval, ival, count, failure = 0, max_str_size;
 	unsigned uval;
 	short sval;
-	unsigned short usval;
+	uint16_t usval;
 	long lval;
 	unsigned long ulval;
 	char *str, *end, *buf, *stop;
@@ -233,7 +233,7 @@ int Packet_scanf(sockbuf_t *sbuf, const char *fmt, ...)
 	int i, j, k, *iptr, count = 0, failure = 0, max_str_size;
 	unsigned *uptr;
 	short *sptr;
-	unsigned short *usptr;
+	uint16_t *usptr;
 	long *lptr;
 	unsigned long *ulptr;
 	char *cptr, *str;
@@ -347,7 +347,7 @@ int Packet_scanf(sockbuf_t *sbuf, const char *fmt, ...)
 					*sptr |= (sbuf->ptr[j++] & 0xFF);
 					break;
 				case 'u':
-					usptr = va_arg(ap, unsigned short *);
+					usptr = va_arg(ap, uint16_t *);
 					*usptr = (sbuf->ptr[j++] & 0xFF) << 8;
 					*usptr |= (sbuf->ptr[j++] & 0xFF);
 					break;

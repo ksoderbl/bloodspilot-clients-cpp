@@ -18,7 +18,8 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: msg-parser.c,v 1.7 2007/10/14 22:31:01 kps Exp $ */
+#include <assert.h>
+#include <cstring>
 
 #include "bit.h"
 #include "const.h"
@@ -70,7 +71,7 @@ const char *client_or_server[] = {
 /* recursive parser for messages */
 static bool Msg_match_fmt(const char *msg, const char *fmt, msgnames_t *mn)
 {
-	char *fp;
+	const char *fp;
 	int i;
 	size_t len;
 

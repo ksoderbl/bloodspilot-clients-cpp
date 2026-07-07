@@ -25,6 +25,9 @@
  * <https://www.gnu.org/licenses/>.
  */
 
+#include <cstdio>
+#include <cstring>
+
 #include "bit.h"
 #include "const.h"
 #include "xperror.h"

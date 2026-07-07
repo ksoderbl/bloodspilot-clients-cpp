@@ -26,7 +26,7 @@
 #include <cstring>
 #include <cstdint>
 
-#include "proto.h"
+// #include "proto.h"
 #include "const.h"
 #include "xperror.h"
 #include "shipshape.h"

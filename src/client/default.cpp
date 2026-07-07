@@ -28,6 +28,7 @@
 #include <assert.h>
 #include <cstring>
 #include <cstdlib>
+#include <cstdio>
 
 #include "config.h"
 

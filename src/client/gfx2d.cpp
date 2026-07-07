@@ -23,6 +23,11 @@
  * <https://www.gnu.org/licenses/>.
  */
 
+#include <cstdio>
+#include <cstdint>
+#include <cstring>
+
+#include "portability.h"
 #include "gfx2d.h"
 #include "const.h"
 #include "xperror.h"

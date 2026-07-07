@@ -37,8 +37,9 @@
 #include "xpconfig.h"
 
 #include "const.h"
-#include "net.h"
-#include "commonproto.h"
+// #include "net.h"
+#include "sockbuf.h"
+// #include "commonproto.h"
 #include "xperror.h"
 
 static struct Meta metas[NUM_METAS] = {

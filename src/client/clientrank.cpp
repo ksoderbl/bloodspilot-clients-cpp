@@ -18,6 +18,10 @@
  * <https://www.gnu.org/licenses/>.
  */
 
+#include <cstdio>
+#include <cstring>
+#include <ctime>
+
 #include "const.h"
 #include "clientrank.h"
 #include "xperror.h"

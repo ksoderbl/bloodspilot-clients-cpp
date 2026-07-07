@@ -218,7 +218,7 @@ void Store_guiobject_options(void);
 int ON(const char *optval);
 int OFF(const char *optval);
 int mod(int x, int y);
-DFLOAT findDir(DFLOAT x, DFLOAT y);
+double findDir(double x, double y);
 double rfrac(void);
 void Make_table(void);
 

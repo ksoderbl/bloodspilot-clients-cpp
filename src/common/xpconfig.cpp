@@ -23,7 +23,7 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: xpconfig.c,v 1.5 2007/09/27 22:19:46 kps Exp $ */
+#include "config.h"
 
 #include "xpconfig.h"
 #include "xperror.h"

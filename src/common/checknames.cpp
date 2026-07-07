@@ -28,7 +28,7 @@
 
 #include "pack.h"
 #include "portability.h"
-#include "proto.h"
+// #include "proto.h"
 
 int Check_user_name(char *name)
 {

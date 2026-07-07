@@ -1,7 +1,7 @@
 /*
  * BloodsPilot, a multiplayer space war game.
  *
- * Copyright (C) 2003-2007 Kristian S�derblom kps at users.sourceforge.net
+ * Copyright (C) 2003-2007 Kristian Söderblom
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,10 +18,7 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: option.h,v 1.10 2007/10/12 19:14:55 kps Exp $ */
-
-#ifndef OPTION_H
-#define OPTION_H
+#include <assert.h>
 
 #include "types.h"
 
@@ -413,5 +410,3 @@ extern void Option_print_default_value(xp_option_t *opt);
 extern xp_keydefs_t *keydefs;
 extern int num_keydefs;
 extern int max_keydefs;
-
-#endif /* OPTION_H */
