@@ -35,7 +35,6 @@
 *.i*86
 *.x86_64
 *.hex
-src/client/454/bloodspilot-client-454*
 src/client/x11/bloodspilot-client-x11*
 src/replay/bloodspilot-replay
 

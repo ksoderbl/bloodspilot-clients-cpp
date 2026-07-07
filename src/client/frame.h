@@ -21,24 +21,13 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: frame.h,v 1.11 2007/10/30 23:45:43 kps Exp $ */
-
-#ifndef FRAME_H
-#define FRAME_H
-
 /* need uint8_t */
-#ifndef TYPES_H
+#include <cstdint>
+
 #include "types.h"
-#endif
-#ifndef CONST_H
 #include "const.h"
-#endif
-#ifndef ITEM_H
 #include "item.h"
-#endif
-#ifndef OTHER_H
 #include "other.h"
-#endif
 
 /*
  * Local types and data for painting.
@@ -296,5 +285,3 @@ int Handle_vdecor(int x, int y, int xi, int yi, int type);
 int Handle_message(char *msg);
 int Handle_eyes(int id);
 int Handle_time_left(int sec);
-
-#endif

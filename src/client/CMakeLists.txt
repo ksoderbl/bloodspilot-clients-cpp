@@ -38,7 +38,3 @@ endif()
 if(BLOODSPILOT_BUILD_X11_CLIENT)
     add_subdirectory(x11)
 endif()
-
-if(BLOODSPILOT_BUILD_454_CLIENT)
-    add_subdirectory(454)
-endif()

@@ -21,13 +21,7 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-#ifndef SHIPSHAPE_H
-#define SHIPSHAPE_H
-
-#ifndef CONST_H
-/* need RES */
 #include "const.h"
-#endif
 
 /*
  * Please don't change any of these maxima.

@@ -23,30 +23,12 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-#ifndef CLIENT_H
-#define CLIENT_H
+#pragma once
 
-#ifdef _WINDOWS
-#ifndef _WINSOCKAPI_
-#include <winsock.h>
-#endif
-#endif
-
-#ifndef DRAW_H
-/* need shipshape_t */
 #include "shipshape.h"
-#endif
-#ifndef ITEM_H
-/* need NUM_ITEMS */
 #include "item.h"
-#endif
-#ifndef OPTION_H
-/* need xp_keysym_t */
 #include "option.h"
-#endif
-#ifndef OTHER_H
 #include "other.h"
-#endif
 
 #include "global.h"
 #include "proto.h"
@@ -103,5 +85,3 @@ static inline int WINSCALE(int x)
 int init_blockmap(void);
 int init_polymap(void);
 int Map_edges(void);
-
-#endif
