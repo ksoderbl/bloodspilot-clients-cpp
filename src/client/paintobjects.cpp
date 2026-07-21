@@ -23,14 +23,15 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: paintobjects.c,v 1.10 2007/10/07 21:34:48 kps Exp $ */
-
 #include "wreckshape.h"
 #include "frame.h"
 #include "global.h"
 #include "proto.h"
 #include "client.h"
 #include "xperror.h"
+
+#include "guiobjects.h"
+#include "guimap.h"
 
 #define COLOR(i) (i / areas)
 #define BASE_X(i) (((i % x_areas) << 8) + ext_view_x_offset)
@@ -543,7 +544,7 @@ int Init_wreckage(void)
 	/*
 	 * Allocate memory for all the wreckage points.
 	 */
-	point_size = sizeof(position_t) * RES;
+	point_size = sizeof(position_t) * ANGLE_RESOLUTION;
 	total_size = point_size * NUM_WRECKAGE_POINTS * NUM_WRECKAGE_SHAPES;
 	if ((dynmem = (char *)malloc(total_size)) == NULL)
 	{

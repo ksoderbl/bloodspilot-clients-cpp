@@ -27,7 +27,7 @@
 #define PACKET_H
 
 #ifndef SOCKBUF_H
-#include "sockbuf.h"
+#include "net.h"
 #endif
 
 int Packet_printf(sockbuf_t *, const char *fmt, ...);

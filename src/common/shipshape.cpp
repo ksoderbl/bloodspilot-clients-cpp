@@ -38,11 +38,11 @@ static int shapeLimits = 0;
 static int Get_shape_keyword(char *keyw);
 static void Calculate_shield_radius(shipshape_t *w);
 
-void Old_rotate_point(position_t pt[RES])
+void Old_rotate_point(position_t pt[ANGLE_RESOLUTION])
 {
     int i;
 
-    for (i = 1; i < RES; i++)
+    for (i = 1; i < ANGLE_RESOLUTION; i++)
     {
         pt[i].x = tcos(i) * pt[0].x - tsin(i) * pt[0].y;
         pt[i].y = tsin(i) * pt[0].x + tcos(i) * pt[0].y;

@@ -28,6 +28,9 @@
 #include <cstdio>
 #include <cstring>
 
+#include "configure.h"
+#include "netclient.h"
+
 #include "bit.h"
 #include "const.h"
 #include "xperror.h"

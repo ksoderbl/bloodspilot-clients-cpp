@@ -21,35 +21,11 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: proto.h,v 1.39 2007/11/02 00:06:16 kps Exp $ */
+#pragma once
 
-#ifndef PROTO_H
-#define PROTO_H
-
-#ifndef TYPES_H
 #include "types.h"
-#endif
-#ifndef OTHER_H
 #include "other.h"
-#endif
-#ifndef OPTION_H
 #include "option.h"
-#endif
-
-/*
- * checknames.c
- */
-#define NAME_OK 1
-#define NAME_ERROR 0
-
-int Check_user_name(char *name);
-void Fix_user_name(char *name);
-int Check_nick_name(char *name);
-void Fix_nick_name(char *name);
-int Check_host_name(char *name);
-void Fix_host_name(char *name);
-int Check_disp_name(char *name);
-void Fix_disp_name(char *name);
 
 /*
  * clientcommand.c
@@ -66,29 +42,6 @@ int Colors_init_block_bitmaps(void);
 void Colors_free_block_bitmaps(void);
 void Colors_cleanup(void);
 void Colors_debug(void);
-
-/*
- * color-codes.c
- */
-int Index_by_color_code(int ascii_char);
-char Color_code_by_index(int ind);
-int RGB_by_index(int ind);
-int XPilot_color(int ind);
-
-/*
- * configure.c
- */
-#define CONFIG_NONE 0
-#define CONFIG_DEFAULT 1
-#define CONFIG_COLORS 2
-#define CONFIG_KEYS 3
-
-void Config_init(void);
-int Config(bool, int);
-void Config_redraw(void);
-void Config_resize(void);
-void Config_destroy(void);
-void Config_key_event(char *ksname);
 
 /*
  * default.c
@@ -140,77 +93,6 @@ void Scale_dashes(void);
 
 bool Key_press(keys_t key);
 bool Key_release(keys_t key);
-
-/*
- * gui map
- */
-void Gui_paint_cannon(int x, int y, int type);
-void Gui_paint_fuel(int x, int y, int fuel);
-void Gui_paint_base(int x, int y, int xi, int yi, int type);
-void Gui_paint_decor(int x, int y, int xi, int yi, int type, bool last, bool more_y);
-
-void Gui_paint_border(int x, int y, int xi, int yi);
-void Gui_paint_visible_border(int x, int y, int xi, int yi);
-void Gui_paint_hudradar_limit(int x, int y, int xi, int yi);
-
-void Gui_paint_setup_check(int x, int y, int xi, int yi);
-void Gui_paint_setup_check_ng(int x, int y, bool isNext);
-void Gui_paint_setup_acwise_grav(int x, int y);
-void Gui_paint_setup_cwise_grav(int x, int y);
-void Gui_paint_setup_pos_grav(int x, int y);
-void Gui_paint_setup_neg_grav(int x, int y);
-void Gui_paint_setup_up_grav(int x, int y);
-void Gui_paint_setup_down_grav(int x, int y);
-void Gui_paint_setup_right_grav(int x, int y);
-void Gui_paint_setup_left_grav(int x, int y);
-void Gui_paint_setup_worm(int x, int y);
-void Gui_paint_setup_item_concentrator(int x, int y);
-void Gui_paint_setup_asteroid_concentrator(int x, int y);
-void Gui_paint_decor_dot(int x, int y, int size);
-void Gui_paint_setup_target(int x, int y, int target, int damage, bool own);
-void Gui_paint_setup_treasure(int x, int y, int treasure, bool own);
-void Gui_paint_walls(int x, int y, int type, int xi, int yi);
-void Gui_paint_filled_slice(int bl, int tl, int tr, int br, int y);
-void Gui_paint_polygon(int i, int xoff, int yoff);
-void Store_guimap_options(void);
-
-/*
- * gui objects
- */
-void Paint_items(void);
-void Gui_paint_item_object(int type, int x, int y);
-void Gui_paint_ball(int x, int y, int style);
-void Gui_paint_ball_connector(int xa, int ya, int xb, int yb);
-void Gui_paint_mine(int x, int y, int teammine, char *name);
-void Gui_paint_spark(int color, int x, int y);
-void Gui_paint_wreck(int x, int y, bool deadly, int wtype, int rot, int size);
-void Gui_paint_asteroids_begin(void);
-void Gui_paint_asteroids_end(void);
-void Gui_paint_asteroid(int x, int y, int type, int rot, int size);
-void Gui_paint_fastshot(int color, int x, int y);
-void Gui_paint_teamshot(int color, int x, int y);
-void Gui_paint_missiles_begin(void);
-void Gui_paint_missiles_end(void);
-void Gui_paint_missile(int x, int y, int len, int dir);
-void Gui_paint_lasers_begin(void);
-void Gui_paint_lasers_end(void);
-void Gui_paint_laser(int color, int xa, int ya, int len, int dir);
-void Gui_paint_paused(int x, int y, int count);
-void Gui_paint_appearing(int x, int y, int id, int count);
-void Gui_paint_ecm(int x, int y, int size);
-void Gui_paint_refuel(int xa, int ya, int xb, int yb);
-void Gui_paint_connector(int xa, int ya, int xb, int yb, int tractor);
-void Gui_paint_transporter(int xa, int ya, int xb, int yb);
-void Gui_paint_all_connectors_begin(void);
-void Gui_paint_refuel_begin(void);
-void Gui_paint_incomplete_ball_connectors_begin(void);
-void Gui_paint_transporters_begin(void);
-void Gui_paint_ships_begin(void);
-void Gui_paint_ships_end(void);
-void Gui_paint_ship(int x, int y, float angle, int id, int cloak, int phased, int shield,
-					int deflector, int eshield);
-int Gui_calculate_ship_color(other_t *other);
-void Store_guiobject_options(void);
 
 /*
  * math.c
@@ -309,97 +191,6 @@ extern void Partition_talk_message(char *message,
 								   size_t sender_size,
 								   char *reciever,
 								   size_t reciever_size);
-
-/*
- * net client
- */
-int Net_setup(void);
-int Net_verify(Connect_param_t *conpar);
-int Net_init(char *server, int port);
-void Net_cleanup(void);
-void Net_key_change(void);
-int Net_flush(void);
-int Net_fd(void);
-int Net_start(void);
-void Net_init_measurement(void);
-void Net_init_lag_measurement(void);
-int Net_input(void);
-/* void Net_measurement(long loop, int status);*/
-int Receive_start(void);
-int Receive_end(void);
-int Receive_message(void);
-int Receive_self(void);
-int Receive_self_items(void);
-int Receive_modifiers(void);
-int Receive_refuel(void);
-int Receive_connector(void);
-int Receive_laser(void);
-int Receive_missile(void);
-int Receive_ball(void);
-int Receive_ship(void);
-int Receive_mine(void);
-int Receive_item(void);
-int Receive_destruct(void);
-int Receive_shutdown(void);
-int Receive_thrusttime(void);
-int Receive_shieldtime(void);
-int Receive_phasingtime(void);
-int Receive_rounddelay(void);
-int Receive_debris(void);
-int Receive_wreckage(void);
-int Receive_asteroid(void);
-int Receive_wormhole(void);
-int Receive_fastshot(void);
-int Receive_ecm(void);
-int Receive_trans(void);
-int Receive_paused(void);
-int Receive_radar(void);
-int Receive_fastradar(void);
-int Receive_damaged(void);
-int Receive_leave(void);
-int Receive_war(void);
-int Receive_seek(void);
-int Receive_player(void);
-int Receive_score(void);
-int Receive_score_object(void);
-int Receive_team_score(void);
-int Receive_timing(void);
-int Receive_fuel(void);
-int Receive_cannon(void);
-int Receive_target(void);
-int Receive_base(void);
-int Receive_reliable(void);
-int Receive_quit(void);
-int Receive_string(void);
-int Receive_reply(int *replyto, int *result);
-int Receive_team(void);		 /* ng */
-int Receive_appearing(void); /* ng */
-int Receive_polystyle(void); /* ng */
-int Send_ack(long rel_loops);
-int Send_keyboard(uint8_t *);
-int Send_shape(char *);
-int Send_power(double pwr);
-int Send_power_s(double pwr_s);
-int Send_turnspeed(double turnspd);
-int Send_turnspeed_s(double turnspd_s);
-int Send_turnresistance(double turnres);
-int Send_turnresistance_s(double turnres_s);
-int Send_pointer_move(int movement);
-int Receive_audio(void);
-int Receive_talk_ack(void);
-int Send_talk(void);
-int Send_display(void);
-int Send_display_ng(int width, int height, int sparks, int spark_colors);
-int Send_modifier_bank(int);
-int Net_talk(const char *str, bool team_talk);
-int Net_ask_for_motd(long offset, long maxlen);
-int Receive_time_left(void);
-int Receive_eyes(void);
-int Receive_motd(void);
-int Receive_magic(void);
-int Send_audio_request(int onoff);
-int Send_fps_request(int fps);
-int Receive_loseitem(void);
 
 /*
  * join.c
@@ -628,9 +419,3 @@ extern int micro_delay(unsigned usec);
 extern int Welcome_screen(Connect_param_t *conpar);
 
 extern void Widget_cleanup(void);
-
-#ifdef _WINDOWS
-extern void WinXCreateItemBitmaps();
-#endif
-
-#endif

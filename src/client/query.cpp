@@ -21,6 +21,23 @@
  * <https://www.gnu.org/licenses/>.
  */
 
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
+#include <cerrno>
+#include <ctime>
+#include <sys/types.h>
+
+#include <unistd.h>
+#include <sys/param.h>
+#include <sys/socket.h>
+#include <sys/ioctl.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <sys/time.h>
+#include <net/if.h>
+
 #include "const.h"
 #include "xperror.h"
 #include "portability.h"

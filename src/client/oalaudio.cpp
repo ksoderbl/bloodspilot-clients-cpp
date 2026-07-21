@@ -4,7 +4,7 @@
  * Copyright (C) 1991-2001 by
  *
  *      The XPilot Authors   <xpilot@xpilot.org>
- *      Juha Lindstr�m       <juhal@users.sourceforge.net>
+ *      Juha Lindström
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

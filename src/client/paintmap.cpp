@@ -23,14 +23,14 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: paintmap.c,v 1.6 2007/11/01 23:03:40 kps Exp $ */
-
 #include "setup.h"
 #include "global.h"
 #include "proto.h"
 #include "frame.h"
 #include "bit.h"
 #include "rules.h"
+
+#include "guimap.h"
 
 static double hrLimitTime = 0.0;
 

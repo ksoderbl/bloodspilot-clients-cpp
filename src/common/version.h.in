@@ -7,8 +7,8 @@
  *      Ken Ronny Schouten
  *      Bert Gijsbers
  *      Dick Balaska
- *      Uoti Urpala          <uau@users.sourceforge.net>
- *      Juha Lindstr�m       <juhal@users.sourceforge.net>
+ *      Uoti Urpala
+ *      Juha Lindström
  *      Kristian Söderblom
  *      Erik Andersson
  *

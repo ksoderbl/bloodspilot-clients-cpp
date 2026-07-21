@@ -47,45 +47,45 @@
 
 /*
  * Number of directions in 'dir' variables.
- * Legal values are 0 to RES-1.
+ * Legal values are 0 to ANGLE_RESOLUTION - 1.
  */
-#define RES 128
+#define ANGLE_RESOLUTION 128
 
 /*
  * Conversion functions of 'dir' to radians and inverse function of that.
  */
 static inline float dir_to_angle(float dir)
 {
-	return (float)(dir * ((2.0f / RES) * M_PI));
+	return (float)(dir * ((2.0f / ANGLE_RESOLUTION) * M_PI));
 }
 
 static inline float angle_to_dir(float angle)
 {
-	float float_dir = angle * (1.0f / (2 * M_PI)) * RES;
+	float float_dir = angle * (1.0f / (2 * M_PI)) * ANGLE_RESOLUTION;
 
 	while (float_dir < 0)
-		float_dir += RES;
-	while (float_dir >= RES)
-		float_dir -= RES;
+		float_dir += ANGLE_RESOLUTION;
+	while (float_dir >= ANGLE_RESOLUTION)
+		float_dir -= ANGLE_RESOLUTION;
 	return float_dir;
 }
 
 static inline int angle_to_int_dir(float angle)
 {
-	float float_dir = angle * (1.0f / (2 * M_PI)) * RES;
+	float float_dir = angle * (1.0f / (2 * M_PI)) * ANGLE_RESOLUTION;
 	int dir;
 
 	while (float_dir < 0)
-		float_dir += RES;
+		float_dir += ANGLE_RESOLUTION;
 	dir = (int)(float_dir + 0.5f);
-	while (dir >= RES)
-		dir -= RES;
+	while (dir >= ANGLE_RESOLUTION)
+		dir -= ANGLE_RESOLUTION;
 	return dir;
 }
 
 #define BLOCK_SZ 35
 
-#define TABLE_SIZE RES
+#define TABLE_SIZE ANGLE_RESOLUTION
 
 extern double tbl_sin[];
 extern double tbl_cos[];

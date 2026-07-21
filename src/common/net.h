@@ -21,15 +21,10 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: sockbuf.h,v 1.2 2007/09/27 22:19:46 kps Exp $ */
+#pragma once
 
-#ifndef SOCKBUF_H
-#define SOCKBUF_H
-
-#ifndef SOCKLIB_H
 /* need sock_t */
 #include "socklib.h"
-#endif
 
 #define MIN_SOCKBUF_SIZE 1024
 #define MAX_SOCKBUF_SIZE (50 * 1024)
@@ -93,5 +88,3 @@ int Sockbuf_flush(sockbuf_t *sbuf);
 int Sockbuf_write(sockbuf_t *sbuf, char *buf, int len);
 int Sockbuf_read(sockbuf_t *sbuf);
 int Sockbuf_copy(sockbuf_t *dest, sockbuf_t *src, int len);
-
-#endif

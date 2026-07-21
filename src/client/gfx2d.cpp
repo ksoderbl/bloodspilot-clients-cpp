@@ -23,9 +23,15 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-#include <cstdio>
-#include <cstdint>
+#include <cstdlib>
 #include <cstring>
+#include <cstdio>
+#include <cerrno>
+#include <cmath>
+#include <climits>
+#include <cctype>
+
+#include <unistd.h>
 
 #include "portability.h"
 #include "gfx2d.h"
@@ -393,7 +399,7 @@ RGB_COLOR Picture_get_rotated_pixel(const xp_picture_t *picture, int x, int y, i
 	int angle;
 	double rot_x, rot_y;
 
-	angle = ((image * RES) / picture->count) % 128;
+	angle = ((image * ANGLE_RESOLUTION) / picture->count) % 128;
 
 	x -= picture->width / 2;
 	y -= picture->height / 2;

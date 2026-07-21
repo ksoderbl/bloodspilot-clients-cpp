@@ -37,8 +37,7 @@
 #include "xpconfig.h"
 
 #include "const.h"
-// #include "net.h"
-#include "sockbuf.h"
+#include "net.h"
 // #include "commonproto.h"
 #include "xperror.h"
 

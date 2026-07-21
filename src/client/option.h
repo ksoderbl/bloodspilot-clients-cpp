@@ -18,6 +18,8 @@
  * <https://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <assert.h>
 
 #include "types.h"

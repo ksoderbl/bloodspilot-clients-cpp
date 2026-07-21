@@ -26,8 +26,8 @@
 #include "other.h"
 #include "proto.h"
 
-other_t *self; /* Player info */
-other_t *Others = 0;
+other_t *self = nullptr; /* Player info */
+other_t *Others = nullptr;
 int num_others = 0, max_others = 0;
 
 other_t *Other_by_id(int id)
@@ -44,16 +44,16 @@ other_t *Other_by_id(int id)
 			}
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 other_t *Other_by_name(const char *name, bool show_error_msg)
 {
 	int i;
-	other_t *found_other = NULL, *other;
+	other_t *found_other = nullptr, *other;
 	size_t len;
 
-	if (name == NULL || (len = strlen(name)) == 0)
+	if (name == nullptr || (len = strlen(name)) == 0)
 		goto match_none;
 
 	/* Look for an exact match on player nickname. */
@@ -106,13 +106,13 @@ match_none:
 {
 	if (show_error_msg)
 		Add_message("Name does not match any player. [*Client reply*]");
-	return NULL;
+	return nullptr;
 }
 match_several:
 {
 	if (show_error_msg)
 		Add_message("Name matches several players. [*Client reply*]");
-	return NULL;
+	return nullptr;
 }
 }
 
@@ -120,9 +120,9 @@ shipshape_t *Ship_by_id(int id)
 {
 	other_t *other;
 
-	if ((other = Other_by_id(id)) == NULL)
+	if ((other = Other_by_id(id)) == nullptr)
 	{
-		return Parse_shape_str(NULL);
+		return Parse_shape_str(nullptr);
 	}
 	return other->ship;
 }

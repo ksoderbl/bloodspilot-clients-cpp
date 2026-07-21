@@ -21,6 +21,8 @@
  * <https://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 /* need uint8_t */
 #include <cstdint>
 

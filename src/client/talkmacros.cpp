@@ -23,7 +23,7 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-/* $Id: talkmacros.c,v 1.10 2007/11/20 13:50:35 kps Exp $ */
+#include <cstdio>
 
 #include "bit.h"
 #include "xperror.h"

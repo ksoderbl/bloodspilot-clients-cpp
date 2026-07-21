@@ -21,6 +21,8 @@
  * <https://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include "const.h"
 #include "types.h"
 
@@ -77,7 +79,7 @@ extern shipshape_t *Parse_shape_str(char *str);
 extern shipshape_t *Convert_shape_str(char *str);
 extern int Validate_shape_str(char *str);
 extern void Convert_ship_2_string(shipshape_t *w, char *buf, char *ext, unsigned shape_version);
-extern void Old_rotate_point(position_t pt[RES]);
+extern void Old_rotate_point(position_t pt[ANGLE_RESOLUTION]);
 /*extern position_t Ship_get_point_position(shipshape_t *ship, int ind, double angle);*/
 extern void Rotate_shape(shape_t *w, double angle);
 

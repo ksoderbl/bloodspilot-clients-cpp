@@ -26,7 +26,7 @@
 #include "bit.h"
 #include "const.h"
 #include "xperror.h"
-#include "sockbuf.h"
+#include "net.h"
 
 int Packet_printf(sockbuf_t *sbuf, const char *fmt, ...)
 {

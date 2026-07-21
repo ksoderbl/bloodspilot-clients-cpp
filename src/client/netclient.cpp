@@ -25,7 +25,11 @@
  * <https://www.gnu.org/licenses/>.
  */
 
-#include "sockbuf.h"
+#include <cstdio>
+
+#include <ctime>
+
+#include "net.h"
 #include "global.h"
 #include "proto.h"
 #include "frame.h"
@@ -35,6 +39,8 @@
 #include "datagram.h"
 #include "bit.h"
 #include "rules.h"
+
+#include "netclient.h"
 
 #define TALK_RETRY 2
 #define MAX_MAP_ACK_LEN 500
@@ -1655,12 +1661,12 @@ int Receive_modifiers(void)
 int Receive_refuel(void)
 {
 	int n;
-	short x_0, y_0, x_1, y_1;
+	short x_0, y_0, x1, y1;
 	uint8_t ch;
 
-	if ((n = Packet_scanf(&rbuf, "%c%hd%hd%hd%hd", &ch, &x_0, &y_0, &x_1, &y_1)) <= 0)
+	if ((n = Packet_scanf(&rbuf, "%c%hd%hd%hd%hd", &ch, &x_0, &y_0, &x1, &y1)) <= 0)
 		return n;
-	if ((n = Handle_refuel(x_0, y_0, x_1, y_1)) == -1)
+	if ((n = Handle_refuel(x_0, y_0, x1, y1)) == -1)
 		return -1;
 	return 1;
 }
@@ -1668,13 +1674,13 @@ int Receive_refuel(void)
 int Receive_connector(void)
 {
 	int n;
-	short x_0, y_0, x_1, y_1;
+	short x_0, y_0, x1, y1;
 	uint8_t ch, tractor;
 
-	n = Packet_scanf(&rbuf, "%c%hd%hd%hd%hd%c", &ch, &x_0, &y_0, &x_1, &y_1, &tractor);
+	n = Packet_scanf(&rbuf, "%c%hd%hd%hd%hd%c", &ch, &x_0, &y_0, &x1, &y1, &tractor);
 	if (n <= 0)
 		return n;
-	if ((n = Handle_connector(x_0, y_0, x_1, y_1, tractor)) == -1)
+	if ((n = Handle_connector(x_0, y_0, x1, y1, tractor)) == -1)
 		return -1;
 	return 1;
 }
@@ -1899,7 +1905,8 @@ int Receive_wreckage(void)
 	short x, y;
 	uint8_t ch, wrecktype, size, rot;
 
-	if ((n = Packet_scanf(&rbuf, "%c%hd%hd%c%c%c", &ch, &x, &y, &wrecktype, &size, &rot)) <= 0)
+	if ((n = Packet_scanf(&rbuf, "%c%hd%hd%c%c%c", &ch, &x, &y,
+						  &wrecktype, &size, &rot)) <= 0)
 		return n;
 	if ((n = Handle_wreckage(x, y, wrecktype, size, rot)) == -1)
 		return -1;
@@ -1912,7 +1919,8 @@ int Receive_asteroid(void)
 	short x, y;
 	uint8_t ch, type_size, type, size, rot;
 
-	if ((n = Packet_scanf(&rbuf, "%c%hd%hd%c%c", &ch, &x, &y, &type_size, &rot)) <= 0)
+	if ((n = Packet_scanf(&rbuf, "%c%hd%hd%c%c", &ch, &x, &y,
+						  &type_size, &rot)) <= 0)
 		return n;
 
 	type = ((type_size >> 4) & 0x0F);
@@ -1953,12 +1961,13 @@ int Receive_ecm(void)
 int Receive_trans(void)
 {
 	int n;
-	short x_1, y_1, x_2, y_2;
+	short x1, y1, x2, y2;
 	uint8_t ch;
 
-	if ((n = Packet_scanf(&rbuf, "%c%hd%hd%hd%hd", &ch, &x_1, &y_1, &x_2, &y_2)) <= 0)
+	if ((n = Packet_scanf(&rbuf, "%c%hd%hd%hd%hd",
+						  &ch, &x1, &y1, &x2, &y2)) <= 0)
 		return n;
-	if ((n = Handle_trans(x_1, y_1, x_2, y_2)) == -1)
+	if ((n = Handle_trans(x1, y1, x2, y2)) == -1)
 		return -1;
 	return 1;
 }
@@ -1981,7 +1990,8 @@ int Receive_appearing(void)
 	int n;
 	short x, y, id, count;
 	uint8_t ch;
-	if ((n = Packet_scanf(&rbuf, "%c%hd%hd%hd%hd", &ch, &x, &y, &id, &count)) <= 0)
+	if ((n = Packet_scanf(&rbuf, "%c%hd%hd%hd%hd", &ch, &x, &y, &id,
+						  &count)) <= 0)
 		return n;
 	if ((n = Handle_appearing(x, y, id, count)) == -1)
 		return -1;
@@ -2065,7 +2075,8 @@ int Receive_war(void)
 	short robot_id, killer_id;
 	uint8_t ch;
 
-	if ((n = Packet_scanf(&cbuf, "%c%hd%hd", &ch, &robot_id, &killer_id)) <= 0)
+	if ((n = Packet_scanf(&cbuf, "%c%hd%hd",
+						  &ch, &robot_id, &killer_id)) <= 0)
 		return n;
 
 	if ((n = Handle_war(robot_id, killer_id)) == -1)
@@ -2080,8 +2091,8 @@ int Receive_seek(void)
 	short programmer_id, robot_id, sought_id;
 	uint8_t ch;
 
-	if ((n =
-			 Packet_scanf(&cbuf, "%c%hd%hd%hd", &ch, &programmer_id, &robot_id, &sought_id)) <= 0)
+	if ((n = Packet_scanf(&cbuf, "%c%hd%hd%hd", &ch,
+						  &programmer_id, &robot_id, &sought_id)) <= 0)
 		return n;
 
 	if ((n = Handle_seek(programmer_id, robot_id, sought_id)) == -1)
@@ -2095,14 +2106,18 @@ int Receive_player(void)
 	int n;
 	short id;
 	uint8_t ch, myteam, mychar, myself = 0;
-	char nick_name[MAX_CHARS], user_name[MAX_CHARS], host_name[MAX_CHARS], shape[2 * MSG_LEN],
+	char nick_name[MAX_CHARS],
+		user_name[MAX_CHARS],
+		host_name[MAX_CHARS],
+		shape[2 * MSG_LEN],
 		*cbuf_ptr = cbuf.ptr;
 
 	if ((n = Packet_scanf(&cbuf,
 						  "%c%hd%c%c"
 						  "%s%s%s"
 						  "%S",
-						  &ch, &id, &myteam, &mychar, nick_name, user_name, host_name,
+						  &ch, &id, &myteam, &mychar,
+						  nick_name, user_name, host_name,
 						  shape)) <= 0)
 		return n;
 	nick_name[MAX_NAME_LEN - 1] = '\0';
@@ -2119,9 +2134,8 @@ int Receive_player(void)
 		return n;
 	}
 
-	if ((n =
-			 Handle_player(id, myteam, mychar, nick_name, user_name, host_name, shape,
-						   myself)) == -1)
+	if ((n = Handle_player(id, myteam, mychar, nick_name, user_name, host_name,
+						   shape, myself)) == -1)
 		return -1;
 	return 1;
 }
@@ -2150,14 +2164,16 @@ int Receive_score_object(void)
 	if (version < 0x4500 || (version >= 0x4F09 && version < 0x4F11))
 	{
 		short rcv_score;
-		n = Packet_scanf(&cbuf, "%c%hd%hu%hu%s", &ch, &rcv_score, &x, &y, msg);
+		n = Packet_scanf(&cbuf, "%c%hd%hu%hu%s",
+						 &ch, &rcv_score, &x, &y, msg);
 		score = rcv_score;
 	}
 	else
 	{
 		/* newer servers send scores with two decimals */
 		int rcv_score;
-		n = Packet_scanf(&cbuf, "%c%d%hu%hu%s", &ch, &rcv_score, &x, &y, msg);
+		n = Packet_scanf(&cbuf, "%c%d%hu%hu%s",
+						 &ch, &rcv_score, &x, &y, msg);
 		score = (double)rcv_score / 100;
 	}
 	if (n <= 0)
@@ -2178,7 +2194,8 @@ int Receive_score(void)
 	if (version < 0x4500 || (version >= 0x4F09 && version < 0x4F11))
 	{
 		short rcv_score;
-		n = Packet_scanf(&cbuf, "%c%hd%hd%hd%c", &ch, &id, &rcv_score, &life, &mychar);
+		n = Packet_scanf(&cbuf, "%c%hd%hd%hd%c", &ch,
+						 &id, &rcv_score, &life, &mychar);
 		score = rcv_score;
 		alliance = ' ';
 	}
@@ -2186,8 +2203,8 @@ int Receive_score(void)
 	{
 		/* newer servers send scores with two decimals */
 		int rcv_score;
-		n = Packet_scanf(&cbuf, "%c%hd%d%hd%c%c", &ch, &id, &rcv_score, &life, &mychar,
-						 &alliance);
+		n = Packet_scanf(&cbuf, "%c%hd%d%hd%c%c", &ch,
+						 &id, &rcv_score, &life, &mychar, &alliance);
 		score = (double)rcv_score / 100;
 	}
 	if (n <= 0)
@@ -2266,7 +2283,8 @@ int Receive_target(void)
 	uint16_t num, dead_time, damage;
 	uint8_t ch;
 
-	if ((n = Packet_scanf(&rbuf, "%c%hu%hu%hu", &ch, &num, &dead_time, &damage)) <= 0)
+	if ((n = Packet_scanf(&rbuf, "%c%hu%hu%hu", &ch,
+						  &num, &dead_time, &damage)) <= 0)
 		return n;
 	if ((n = Handle_target(num, dead_time, damage)) == -1)
 		return -1;
@@ -2275,8 +2293,8 @@ int Receive_target(void)
 	return 1;
 }
 
-int Receive_polystyle(void)
-{ /* since ng 4.7.0 */
+int Receive_polystyle(void) /* since ng 4.7.0 */
+{
 	int n;
 	uint16_t num, newstyle;
 	uint8_t ch;
@@ -2344,7 +2362,8 @@ int Send_ack(long rel_loops)
 {
 	int n;
 
-	if ((n = Packet_printf(&wbuf, "%c%ld%ld", PKT_ACK, reliable_offset, rel_loops)) <= 0)
+	if ((n = Packet_printf(&wbuf, "%c%ld%ld", PKT_ACK,
+						   reliable_offset, rel_loops)) <= 0)
 	{
 		if (n == 0)
 			return 0;
@@ -2361,7 +2380,8 @@ int Receive_reliable(void)
 	uint8_t ch;
 	long rel, rel_loops;
 
-	if ((n = Packet_scanf(&rbuf, "%c%hd%ld%ld", &ch, &len, &rel, &rel_loops)) == -1)
+	if ((n = Packet_scanf(&rbuf, "%c%hd%ld%ld",
+						  &ch, &len, &rel, &rel_loops)) == -1)
 		return -1;
 	if (n == 0)
 	{
@@ -2370,8 +2390,8 @@ int Receive_reliable(void)
 	}
 #ifdef DEBUG
 	if (reliable_offset >= rel + len)
-		printf("Reliable my=%ld pkt=%ld len=%d loops=%ld\n", reliable_offset, rel, len,
-			   rel_loops);
+		printf("Reliable my=%ld pkt=%ld len=%d loops=%ld\n",
+			   reliable_offset, rel, len, rel_loops);
 #endif
 	if (len <= 0)
 	{
@@ -2380,8 +2400,8 @@ int Receive_reliable(void)
 	}
 	if (rbuf.ptr + len > rbuf.buf + rbuf.len)
 	{
-		warn("Not all reliable data in packet (%d,%d,%d)", rbuf.ptr - rbuf.buf, len,
-			 rbuf.len);
+		warn("Not all reliable data in packet (%d,%d,%d)",
+			 rbuf.ptr - rbuf.buf, len, rbuf.len);
 		rbuf.ptr += len;
 		Sockbuf_advance(&rbuf, rbuf.ptr - rbuf.buf);
 		return -1;
@@ -2491,42 +2511,48 @@ int Send_shape(char *str)
 
 int Send_power(double pwr)
 {
-	if (Packet_printf(&wbuf, "%c%hd", PKT_POWER, (int)(pwr * 256.0)) == -1)
+	if (Packet_printf(&wbuf, "%c%hd", PKT_POWER,
+					  (int)(pwr * 256.0)) == -1)
 		return -1;
 	return 0;
 }
 
 int Send_power_s(double pwr_s)
 {
-	if (Packet_printf(&wbuf, "%c%hd", PKT_POWER_S, (int)(pwr_s * 256.0)) == -1)
+	if (Packet_printf(&wbuf, "%c%hd", PKT_POWER_S,
+					  (int)(pwr_s * 256.0)) == -1)
 		return -1;
 	return 0;
 }
 
 int Send_turnspeed(double turnspd)
 {
-	if (Packet_printf(&wbuf, "%c%hd", PKT_TURNSPEED, (int)(turnspd * 256.0)) == -1)
+	if (Packet_printf(&wbuf, "%c%hd", PKT_TURNSPEED,
+					  (int)(turnspd * 256.0)) == -1)
 		return -1;
 	return 0;
 }
 
 int Send_turnspeed_s(double turnspd_s)
 {
-	if (Packet_printf(&wbuf, "%c%hd", PKT_TURNSPEED_S, (int)(turnspd_s * 256.0)) == -1)
+	if (Packet_printf(&wbuf, "%c%hd", PKT_TURNSPEED_S,
+					  (int)(turnspd_s * 256.0)) == -1)
 		return -1;
 	return 0;
 }
 
 int Send_turnresistance(double turnres)
 {
-	if (Packet_printf(&wbuf, "%c%hd", PKT_TURNRESISTANCE, (int)(turnres * 256.0)) == -1)
+	if (Packet_printf(&wbuf, "%c%hd", PKT_TURNRESISTANCE,
+					  (int)(turnres * 256.0)) == -1)
 		return -1;
 	return 0;
 }
 
 int Send_turnresistance_s(double turnres_s)
 {
-	if (Packet_printf(&wbuf, "%c%hd", PKT_TURNRESISTANCE_S, (int)(turnres_s * 256.0)) == -1)
+	if (Packet_printf(&wbuf, "%c%hd", PKT_TURNRESISTANCE_S,
+					  (int)(turnres_s * 256.0)) == -1)
 		return -1;
 	return 0;
 }
